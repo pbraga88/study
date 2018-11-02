@@ -1,0 +1,52 @@
+# Second draft of Makefile
+
+# Project name
+PROJ_NAME=person
+
+# .c files
+CPP_SOURCE=$(wildcard *.cpp)
+
+# .h files
+H_SOURCE=$(wildcard *.h)
+
+# Object files
+OBJ=$(CPP_SOURCE:.cpp=.o)
+
+# Compiler
+CC=g++
+
+# Flags for compiler
+CC_FLAGS=-c	\
+         -W	\
+         -Wall	\
+         -ansi	\
+         -pedantic
+
+#
+# Compilation and linking
+#
+all: $(PROJ_NAME)
+
+# '$@' refere-se ao target, que nesse caso é o nome do binário de output,
+# 'person'. '$^' refere-se a todos os pré-requisitos (arquivos .o) 
+# do target
+$(PROJ_NAME): $(OBJ)
+	$(CC) -o $@ $^	
+
+# '$@' refere-se ao nome do target, que nesse caso é o
+# arquivo '.o'. '$<' refere-se ao primeiro pré-requisito,
+# nesse caso, arquivo '.cpp'
+%.o: %.cpp %.h
+	$(CC) -o $@ $< $(CC_FLAGS)	
+
+# '$@' refere-se ao nome do target, que nesse caso é o
+# arquivo '.o'. '$<' refere-se ao primeiro pré-requisito,
+# nesse caso, arquivo '.cpp'
+main.o: main.cpp $(H_SOURCE)
+	$(CC) -o $@ $< $(CC_FLAGS)	
+
+# O comando 'clean' limpa todos os arquivos com extensão
+# '.o', arquivos de backup '*~' e o arquivo binário, neste
+# caso, 'person'.
+clean:
+	rm -rf *.o $(PROJ_NAME) *~	

@@ -1,0 +1,15 @@
+# First draft of Makefile
+
+all: person
+
+person: testProgram.o Person.o
+	g++ -o person testProgram.o Person.o
+
+testProgram.o: testProgram.cpp Person.h
+	g++ -o testProgram.o testProgram.cpp -c -W -Wall -ansi -pedantic
+
+Person.o: Person.cpp Person.h
+	g++ -o Person.o Person.cpp -c -W -Wall -ansi -pedantic
+
+clean:
+	rm -rf *.o *~ person
