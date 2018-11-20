@@ -1,9 +1,27 @@
-31.20.2018
+31.10.2018
 ===========
 Checkpoint: Module Two More C++ Classes >  Scope in Classes >  Namespaces
 Note: Created Makefile under: ~/WorkSpace/Study/cpp/2_Classes/Encapsulation
 
 Next: 
-- Create standard Makefile [refer to:https://www.embarcados.com.br/introducao-ao-makefile/?utm_source=nl196&utm_medium=e-mail&utm_campaign=Newsletter%20196]
-- Create Repository in Git and feed with cpp classes
-- Continue from Checkpoint
+- Create standard Makefile [refer to:https://www.embarcados.com.br/introducao-ao-makefile/?utm_source=nl196&utm_medium=e-mail&utm_campaign=Newsletter%20196] [DONE]
+- Create Repository in Git and feed with cpp classes  [DONE]
+- Continue from Checkpoint  [DONE]
+
+02.11.2018
+==========
+Checkpoint: Module Two More C++ Classes >  Scope in Classes >  Namespaces
+Note: Repository 'git@github.com:pbraga88/study.git' and fed with cpp classes
+
+Next
+- Continue from checkpoint: Finish and test code under ~/WorkSpace/Study/cpp/2_Classes/2.Namespaces/src/main.cpp
+- Update git
+
+20.11.2018
+==========
+Checkpoint: Module Two More C++ Classes > Lab > Lab Instructions
+
+Next:
+- Continue from Checkpoint: Created draft header file '2_Classes/Lab/src/course.h';
+			    Create the remaining implementation/prototypes files
+- Update git
