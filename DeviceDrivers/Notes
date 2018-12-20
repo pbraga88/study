@@ -1,0 +1,60 @@
+01.11.2018
+==========
+Checkpoint: Linux Device Drivers - Page 70
+
+Next: 
+- Solve 'Segmentation fault (core dumped)' under: ~/WorkSpace/Study/DeviceDrivers/ExtraClass/C/6-Structures/4_Self-Referential_Structures
+- Raise and merge in my git repository
+- Continue from checkpoint (?)
+
+21.11.2018
+==========
+Checkpoint: Debug of 'Segmentation fault (core dumped)' under: ~/WorkSpace/Study/DeviceDrivers/ExtraClass/C/6-Structures/4_Self-Referential_Structures
+
+Next: Continue the debug of 'Segmentation fault (core dumped)'
+
+05.12.2018
+==========
+Checkpoint: Linux Device Drivers - Page 70
+
+Next: Continue from Checkpoint
+
+07.12.2018
+==========
+Checkpoint: Linux Device Drivers - Page 71 - Message Printing printk()
+
+Next: Continue from checkpoint
+
+10.12.2018
+==========
+Checkpoint: Linux Device Drivers - Page 73 - Module Parameters
+
+Next: Continue from checkpoint
+
+12.12.2018
+==========
+Checkpoint: Linux Device Drivers - Page 78 - In the Kernel Tree
+
+Next: 
+- Configurar ambiente para buildar Linux; -DONE
+- Pesquisar fontes do Livro http://www.packtpub.com; - DONE
+- Escrever e compilar módulo de exemplo; ***
+- Continuar do Checkpoint. ****
+
+14.12.2018
+==========
+Checkpoint: Linux Device Drivers - Page 78 - In the Kernel Tree
+
+Next:
+- Terminar de configurar ambiente para buildar Linux (usar script);
+- Escrever e compilar módulo de exemplo; ****
+- Continuar do Checkpoint. ****
+
+19.12.2018
+==========
+Checkpoint: Linux Device Drivers - Page 78 - In the Kernel Tree
+Next:
+- Terminar de configurar ambiente para buildar Linux (usar script):
+	* Debugar erro: ~/WorkSpace/Build-BSP/bsp-buildscript/build_refsw18.2_kernel4.9/proteus-bsp-build/setup_bsp.sh openmw 
+- Escrever e compilar módulo de exemplo;
+- Continuar do Checkpoint.

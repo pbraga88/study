@@ -1,0 +1,22 @@
+Load Module
+===========
+insmod <module>		-> Carrega apenas o modulo especificado 
+modprobe <module>	-> Carrega o modulo e suas dependências
+
+Load modules at boot
+====================
+Create the file
+$ /etc/modulesload.d/<filename>.conf
+
+Create the .conf file:
+#this line is a comment
+uio
+iwlwifi
+
+Unload Module
+=============
+rmmod <module>		-> Remove Module
+rmmod -f <module>	-> Force Remove Module
+modprobe -r <module>	-> Remove module and unused dependencies
+
+lsmod	-> List modules

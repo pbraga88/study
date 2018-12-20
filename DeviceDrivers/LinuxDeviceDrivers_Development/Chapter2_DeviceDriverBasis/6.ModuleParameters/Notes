@@ -1,0 +1,57 @@
+Modules Parameters
+==================
+Assim como um programa de usuário, os módulos do Kernel também aceitam parâmetros via linha de comando. 
+Isto permite alterar dinamicamente o funcionamento do módulo, ajudando assim a alterar/compilar tal módulo durante o teste/debug.
+A macro 'module_param()' definida em 'include/linux/moduleparam.h' deve ser utilizada para cada variável declarada. Tal macro também deve ser definida no código (#include <linux/moduleparam.h). A definição da macro é:
+module_param(name, type, perm);
+
+This macro contains the following elements:
+	name: The name of the variable used as the parameter
+	type: The parameter’s type (bool, charp, byte, short, ushort, int, uint, long, ulong),
+	where charp stands for char pointer
+	perm: This represents the /sys/module/<module>/parameters/<param> file permissions. Some of
+	them are S_IWUSR, S_IRUSR, S_IXUSR, S_IRGRP, S_WGRP, and S_IRUGO, where:
+	S_I is just a prefix
+	R: read, W: write, X: execute
+	USR: user, GRP: group, UGO: user, group, others
+
+Quando utilizar 'module parameters', a macro 'MODULE_PARM_DESC' deve ser utilizada para descrever cada um dos parâmetros:
+/**** START ****/
+#include <linux/moduleparam.h>
+[...]
+
+static char *mystr = "hello";
+static int myint = 1;
+static int myarr[3] = {0, 1, 2};
+
+module_param(myint, int, ISRUGO);
+module_param(mystr, charp, S_IRUGO);
+module_param_array(myarr, int, NULL, S_IWUSR|S);
+
+MODULE_PARM_DESC(myint, "this is my int variable");
+MODULE_PARM_DESC(mystr, "this is my char pointer variable");
+MODULE_PARM_DESC(myarr, "this is my array of int");
+
+static int foo(){
+	pr_info("mystring is a string: %s\n", mystr);
+	pr_info("Array elements: %d\t%d\t%d", myarr[0], myarr[1], myarr[2]);
+	return myint;
+}
+
+/**** END ****/
+
+Para carregar o módulo, fazemos da seguinte maneira:
+# insmod hellomodule-params.ko mystring="packtpub" myint=15 myArray=1,2,3
+
+É possível também ver a descrição do módulo com 'modinfo' antes de carrega-lo:
+$ modinfo ./helloworld-params.ko
+filename: /home/jma/work/tutos/sources/helloworld/./helloworld-params.ko
+license: GPL
+author: John Madieu <john.madieu@gmail.com>
+srcversion: BBF43E098EAB5D2E2DD78C0
+depends:
+vermagic: 4.4.0-93-generic SMP mod_unload modversions
+parm: myint:this is my int variable (int)
+parm: mystr:this is my char pointer variable (charp)
+parm: myarr:this is my array of int (array of int)
+
