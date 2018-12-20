@@ -1,12 +1,22 @@
+<<<<<<< HEAD
+#pragma once
+
+=======
 #include <string.h>
 #pragma once
 
 using namespace std;
 
+>>>>>>> 94c580a3f053ac996edba95e0c9e47e1ce22a0e4
 class Course{
 	public:
 		Course();
 		~Course();
+<<<<<<< HEAD
+		int func(char student[3], char teacher); // DRAFT
+
+};
+=======
 	
 	protected :
 		struct{
@@ -27,3 +37,4 @@ class Course{
 			string ttelefone;
 		}professor;
 };
+>>>>>>> 94c580a3f053ac996edba95e0c9e47e1ce22a0e4
