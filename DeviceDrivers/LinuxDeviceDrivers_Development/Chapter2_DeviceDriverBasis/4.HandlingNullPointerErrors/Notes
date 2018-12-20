@@ -1,0 +1,33 @@
+Handling Null Pointers Errors
+=============================
+O kernel dispõe de três funções para tratar 'null pointer errors':
+
+void *ERR_PTR(long error); 		// Return the error values as a pointer
+long IS_ERR(const void *ptr);	// Check wheter the returned value is a pointer error or not
+long PTR_ERR(const void *ptr);	// Returns the actual error code
+
+How to use ERR_PTR, IS_ERR, and PTR_ERR:
+
+/**** START ****/
+static  struct iio_dev *indiodev_setup(){
+	[...]
+	struct iio_dev *indio_dev;
+	indio_dev = devm_iio_device_alloc(&data->client->dev, sizeof(data));
+	if(!indio_dev)
+		return ERR_PTR(-ENOMEM);
+	[...]
+	return indio_dev;
+}
+
+static int foo_probe([...]){
+	[...]
+	struct iio_dev *my_indio_dev = indiodev_setup();
+	if (IS_ERR(my_indio_dev))
+		return PTR_ERR(data->acc_indio_dev);
+	[...]
+}
+/**** END ****/
+
+Este tipo de tratativa de erro é algo a mais, que também pode ser extraído do 'kernel coding style' onde diz:
+Se o nome de uma função é uma ação ou um comando imperativo,  a função deve retornar um inteiro como código de erro. Caso o nome da função seja um predicado, a função deve retornar um boleano 'succeeded'.
+Por exemplo, 'add work' é um comando, e a função 'add_work()' retorna '0' em caso de sucesso ou '-EBUSY' para falha. Da mesma maneira,  'PCIE device present' é um predicado, e a função 'pcie_dev_present()' retorna '1' caso obtenha sucesso em encontrar um dispositivo em acordo ou '0' em caso de falha.

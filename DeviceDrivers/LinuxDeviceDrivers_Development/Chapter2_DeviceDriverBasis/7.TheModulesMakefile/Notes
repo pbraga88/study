@@ -1,0 +1,46 @@
+The Module's Makefile
+=====================
+A variável kbuild 'obj-<x>' diz de qual maneira o módulo será compilado (estático, como módulo ou não será compilado). Um exemplo simples é:
+obj-y += mymodule.o
+
+A linha acima diz que um objeto 'mymodule.o' será compilado no diretório atual à partir de um arquivo fonte mymodule.c ou mymodule.s. A maneira como o módulo será compilado e se ele será compilado, depende do valor da variável <x>:
+* Se <x> está definido como 'm', a variável obj-m é utilizada, e 'mymodule.o' será compilado como módulo;
+* Se <x> está definido como 'y', a variável obj-y é utilizada, e 'mymodule.o' será compilado estaticamente como parte do Kernel (módulo built-in);
+* Se <x> está definido como 'n', a variável obj-n é utilizada, e 'mymodule.o' não será compilado.
+
+O padrão obj-$(CONFIG_XXX) é comumente usado, onde CONFIG_XXX é uma opção de configuração do Kernel, definida ou não durante o processo de configuração. Um exemplo é:
+obj-$(CONFIG_MYMODULE) += mymodule.o
+
+O último caso de uso é:
+obj-<x> += somedir/
+
+A linha acima diz que o kbuild deve entrar no diretório 'somedir'; procurar por um 'Makefile' e processa-lo para decidir quais objetos devem ser compilados.
+
+O 'Makefile' a seguir é o padrão que será utilizado para compilar cada um dos módulos utilizados neste livro:
+
+/**** START ****/
+
+obj-m := helloworld.o
+
+KERNELDIR ?= /lib/modules/$(shell uname -r)/build
+
+all default: modules
+install: modules_install
+
+modules modules_install help clean:
+$(MAKE) -C $(KERNELDIR) M=$(shell pwd) $@
+
+/**** END ****/
+
+* obj-m := helloworld.o 	-> 'obj-m' lista os módulos que queremos compilar. Para cada '<filename>.o', o build system irá procurar por '<filename>.c' para compilar. 'obj-m' é utilizado para compilação como módule enquanto que 'obj-y' irá resultar em objeto 'built-in'.
+
+* KERNELDIR := /lib/modules/$(shell uname -r)/build 	-> 'KERNELDIR' é o local do fonte do Kernel pré-conpilado. Um Kernel pré-compilado se faz necessário para a compilação de qualquer módulo. Se o kernel foi compilado do fonte, está variável deve possuir o caminho absoluto para o diretório do código fonte. '-C' instrui o utilitário 'make' à mudar para o diretório especificado antes de ler os 'makefiles' ou tomar qualquer outra ação.
+
+* M=$(shell pwd)	-> Está é uma variável relevante para o Build System utilizada pelo Makefile do Kernel para localizar o diretório do módulo externo à ser compilado. É também onde os arquivos .c devem ser colocados.
+
+* all default: modules 		-> Está linha instrui o utilitário 'make' a executar o target 'modules', seja este target 'all' ou 'default', que são targets clássicos no que tange à aplicações de usuários. Em outras palavras, os comandos 'make default' ou 'make all' ou simplesmente 'make' serão traduzidos em 'make modules'
+
+* modules modules_install help clean:	-> Está linha repersenta a lista de targets válidos neste Makefile
+
+* $(MAKE) -C $(KERNELDIR) M=$(shell pwd) $@ 	-> Está é regra à ser seguida por cada um dos targets deste Makefile. '$@' será substituído pelo target à ser executado. Em outras palavras, se 'make modules' é chamado, '$@' será substituído por 'modules', e tal regra pode ser escrita da seguinte maneira: 
+$(MAKE) -C $(KERNELDIR) M=$(shell pwd) module

@@ -1,0 +1,41 @@
+
+Error Handling
+==============
+The error codes are defined under:
+include/uapi/asm-generic/errno-base.h
+include/uapi/asm-generic/errno.h
+
+****
+
+Caso erro retornado seja uma resposta a uma chamada de sistema (system call: open, read, ioctl, mmap), o valor será automaticamente atribuído à variável global em usser=space 'errno'. Deste modo, o usupario pode utilizar 'strerror(errno)' para traduzir o erro em uma string legível:
+
+#include <errno.h>	/* to access errno global variable */
+#include <string.h>
+[...]
+if(write(fd, buf, 1) < 0){
+	printf("something gone wrong! %s\n" strerror(errno));
+}
+[...]
+
+****
+
+Quando um erro é encontrado, tudo até onde o erro ocorre deve ser desfeito. E o jeito usual para se fazer isso, é usando 'goto':
+
+[...]
+ptr = kmalloc(sizeof (device_t));
+if(!ptr){
+	ret = -ENOMEM;
+	goto err_alloc;
+}
+dev = init(&ptr);
+
+if(dev){
+	ret = -EIO;
+	goto err_init;
+}
+return 0;
+
+err_init:
+		free(ptr);
+err_alloc:
+		return ret;

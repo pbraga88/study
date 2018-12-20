@@ -1,0 +1,8 @@
+object dump
+===========
+$ objdump -h <module-name>.ko
+Important sections from the dump:
+.modinfo	-> Store information about the module
+.init.text	-> Stores code prefixed with the __init macro
+
+$ objdump <module-name>.ko -d -j .modinfo	-> To see info like author, license, etc
