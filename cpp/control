@@ -1,9 +1,63 @@
-31.20.2018
+31.10.2018
 ===========
 Checkpoint: Module Two More C++ Classes >  Scope in Classes >  Namespaces
 Note: Created Makefile under: ~/WorkSpace/Study/cpp/2_Classes/Encapsulation
 
 Next: 
-- Create standard Makefile [refer to:https://www.embarcados.com.br/introducao-ao-makefile/?utm_source=nl196&utm_medium=e-mail&utm_campaign=Newsletter%20196]
-- Create Repository in Git and feed with cpp classes
-- Continue from Checkpoint
+- Create standard Makefile [refer to:https://www.embarcados.com.br/introducao-ao-makefile/?utm_source=nl196&utm_medium=e-mail&utm_campaign=Newsletter%20196] [DONE]
+- Create Repository in Git and feed with cpp classes  [DONE]
+- Continue from Checkpoint  [DONE]
+
+02.11.2018
+==========
+Checkpoint: Module Two More C++ Classes >  Scope in Classes >  Namespaces
+Note: Repository 'git@github.com:pbraga88/study.git' and fed with cpp classes
+
+Next
+- Continue from checkpoint: Finish and test code under ~/WorkSpace/Study/cpp/2_Classes/2.Namespaces/src/main.cpp
+- Update git
+
+20.11.2018
+==========
+Checkpoint: Module Two More C++ Classes > Lab > Lab Instructions
+
+Next:
+- Continue from Checkpoint: Created draft header file '2_Classes/Lab/src/course.h';
+			    Create the remaining implementation/prototypes files
+- Update git(?)
+
+27.11.2018
+==========
+Checkpoint: Module Two More C++ Classes > Lab > Hands on
+
+Done:
+- Abrir e reler exercício edx - Done
+- Continuar com aplicação (Ver oq já foi feito e fazer lista):
+	• Usar 'array/string' para assinar valores à students/teacher - DONE
+	• Aplicar array/string no course.cpp 
+- Definir 'void Course::setStudent(string stud)' - DONE
+
+Next:
+- Definir 'string Course::getStudent()'
+- Definir void Course::setTeacher(string teac)
+- Definir string Course::getTeacher(void)
+- Começar a trabalhar nos outros arquivos .h e .cpp
+
+07.12.2018
+==========
+Checkpint: Module Two More C++ Classes > Lab > Hands on
+
+Done:
+- Arquivos .cpp e .h 
+- Build test mostrou erros de compilação
+
+Next:
+- Debugar erros de compilação
+
+11.12.2018
+==========
+Checkpoint: Module Three More OOP in C++ > Inheritance > Inheritance Refresher
+
+Next: 
+- Continuar do Checkpoint
+- Atualizar git
