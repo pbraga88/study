@@ -1,0 +1,11 @@
+The Principle of Substitutability
+=================================
+Em acordo com outras linguagens orientadas a objetos, C++ permite a criação de variáveis na 'base-class' e inicializá-las para apontar para objetos da classe derivada. Mais especificamente, um ponteiro C++ de tipo X pode apontar para um objeto X ou qualquer coisa herdada de X. Bem como, uma varíavel referencial do C++ de tipo X pode referir-se a um objeto X ou qualquer coisa herdada de X.
+
+// A base-class pointer can point to that type of object, or to any derived type of object
+Person *p1 = new Person;
+Person *p2 = new Student;
+
+// A base-class reference can refer to that type of object, or to any derived type of object
+Person & r1 = somePersonObject;
+Person & r2 = someStudentObject;

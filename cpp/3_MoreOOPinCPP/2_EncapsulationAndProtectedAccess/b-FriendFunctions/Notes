@@ -1,0 +1,20 @@
+O seguinte exemplo demonstra como uma classe pode declarar uma função externa chamada 'SomeExternalFunction()' como 'friend function' da classe. 'SomeExternalFunction' recebe um parâmetro de referência que identifica o objeto com qual a função vai lhe dar:
+
+****MyClass.h****
+
+class MyClass
+{
+	friend void SomeExternalFunction(MyClass & targetObject);
+
+	// Data members and member functions, as required.
+	[...]
+};
+
+
+Normalmente, a implementação da 'friend function' é feita no mesmo arquivo fonte que as funções membro, uma vez que elas fazem parte do mesmo significado semântico da classe. Contudo, não se deve utilizar o prefixo 'ClassName::syntax', pois a 'friend function' não é membro da classe:
+
+****MyClass.cpp****
+void SomeExternalFunction(MyClass & targetObject)
+{
+	// Access any members on the target objects, i.e. public, private, or protected members.
+}

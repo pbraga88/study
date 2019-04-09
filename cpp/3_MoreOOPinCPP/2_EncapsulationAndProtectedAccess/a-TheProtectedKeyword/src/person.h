@@ -10,10 +10,12 @@ class Person{
 		string lastName;
 	
 	protected:
-		int age;
+		int age; // a variável age, é agora acessível por outras classes que declararem 'public', assim
+				 // como as variáveis públicas abaixo 
 
 	public:
 		Person();
+		Person(string fName, string lName);
 		Person(string fName, string lName, int age);
 		~Person();
 
@@ -23,6 +25,6 @@ class Person{
 		void SetLastName(string lName);
 		string GetLastName();
 
-		void SayHello;
+		void SayHello();
 
 };

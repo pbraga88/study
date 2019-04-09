@@ -1,0 +1,41 @@
+Reading and Writing Text Data
+=============================
+O Exemplo a seguir demonstra como escrever algumas linhas em um determinado arquivo:
+|    std::ofstream ofile("file1.txt");
+|    if (ofile.is_open())
+|    {
+|        ofile << "Here is line 1." << std::endl;
+|        ofile << "Here is line 2." << std::endl;
+|        ofile << "Here is line 3." << std::endl;
+|        ofile.close();
+|    
+|        std::cout << "Finished writing text to file1.txt." << std::endl;
+|    }
+|    else
+|    {
+|        std::cerr << "Couldn't open file1.txt for writing." << std::endl;
+|    }
+
+O ouput será:
+Here is line 1.
+Here is line 2.
+Here is line 3.
+
+O exemplo seguinte demonstra a leitura de todas as linhas do arquivo utilizando std::getline() em um loop:
+|    std::ifstream ifile("file1.txt");
+|    if (ifile.is_open())
+|    {
+|        std::string line;
+|        while (std::getline(ifile, line)) 
+|        {
+|            std::cout << line << std::endl;
+|        }
+|
+|        ifile.close();        
+|    
+|        std::cout << "Finished reading text from file1.txt." << std::endl;
+|    }
+|    else
+|    {
+|        std::cerr << "Couldn't open file1.txt for reading." << std::endl;
+|    }

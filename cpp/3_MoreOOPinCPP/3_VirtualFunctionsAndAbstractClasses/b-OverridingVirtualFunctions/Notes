@@ -1,0 +1,37 @@
+Overriding Virtual Functions
+============================
+Quando uma classe derivada é definida, popde-se opcionalmente escolher sobrepor apenas algumas ou todas as funções virtuais da 'base class'. Vale ressaltar que não é necessário sobrepor uma função virtual, ficando a cargo do desenvolvedor definir.
+
+Para sobrepor uma função na classe derivada, tal função deve ser declarada novamente no header da classe derivada. A assinatura (definição) da função deve ser a mesma da 'base class'. A 'virutal keyword' deve ser utilizada novamente, para ficar explícito à qualquer um que ler o código posteriormente que trata-se the uma função "overridable" - por exemplo, classes derivadas subsequentes podem escolher sobrepor tal função, caso seja apropriado.
+
+O exemplo abaixo demonstra como a classe 'Student' declara que sobrepõe a função 'display()' da 'base class':
+****START****
+// student.h
+
+class Student:public Person
+{
+	private:
+		str::string course;
+
+	public:
+		virtual void display() const; // Override function from base class
+	[...]
+}
+
+****END****
+
+No arquivo fonte da classe derivada, a nova versão da função virtual é declarada. Para aproveitar as funcionalidades da função virtual definida na 'base classe', pode-se chamar a função utilizando a syntax 'BaseClassName::FunctionName()'. Por exemplo:
+
+****START****
+// student.cpp
+
+void Student::display() const
+{
+	// Call base-class version of display(), to display person-related info.
+	Person::display();
+
+	// Now display the student-related info
+	std::cout<<course<<std::endl;
+}
+
+****END****

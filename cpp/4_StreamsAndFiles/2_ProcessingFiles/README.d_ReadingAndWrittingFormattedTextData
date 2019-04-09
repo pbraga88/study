@@ -1,0 +1,25 @@
+Reading and Writting Formatted Text Data
+========================================
+O exemplo a seguir escreve diferentes tipos de variáveis em um arquivo .txt. Pervebe-se que na última linha não é utilizado carácter de nova linha (std::endl), exatamente para indicar o marcador de fim de arquivo (end-of-file marker) ao final da última escrita:
+
+|    std::ofstream ofile("peopleFile.txt");
+|    if (ofile.is_open())
+|    {
+|        ofile << "John" << " " << 42 << " " << 1.67 << std::endl;
+|        ofile << "Jane" << " " << 41 << " " << 1.54 << std::endl;
+|        ofile << "Bill" << " " << 35 << " " << 1.82;
+|        
+|        ofile.close();
+|        
+|        std::cout << "Finished writing text to peopleFile.txt." << std::endl;
+|    }
+|    else
+|    {
+|        std::cerr << "Couldn't open peopleFile.txt for writing." << std::endl;
+|    }
+
+O output do código acima será:
+
+| John[space]42[space]1.67[newline]
+| Jane[space]41[space]1.54[newline]
+| Bill[space]35[space]1.82[eof]

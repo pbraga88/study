@@ -1,0 +1,22 @@
+Introduction to Streams
+=======================
+ A biblioteca padrão do c++ para input e output de streams é a 'iostream', que se utilizada dos operadores 
+ << e >> para output e input no console. Vide exemplo:
+     #include <iostream>
+    …
+    double unitPrice;
+    int quantity;
+    
+    std::cout << "What is the unit price? ";
+    std::cin >> unitPrice;
+    
+    std::cout << "How many do you want? ";
+    std::cin >> quantity;
+    
+    std::cout << "Total cost is " << unitPrice * quantity << std::endl;
+
+cin e cout são objetos pré-definidos no namespace std. Existe também o cerr, que é útil para output de erros. Os três objetos são definidos no arquivo header <iostream>.
+
+- cin é uma instância da classe istream, e permite fazer inputs à partir do 'stdin device'
+- cout é uma instância da classe ostream, e permite fazer outputs para o 'stdout device'
+- cerr é também uma instância da classe ostream, e permite fazer outputs para o 'stderr device'

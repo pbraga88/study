@@ -1,0 +1,15 @@
+Getting and Setting the Position in a Stream
+============================================
+- istream e ifstream:
+	* Ver posição do get: tellg();
+	* Alterar posição do get: seekg();
+
+- ostream e ofstream:
+	* Ver posição do put: tellp();
+	* Alterar posição do put: seekp();
+
+- iostream e fstream:
+	* Ver posição do get: tellg();
+	* Alterar posição do get: seekg();
+	* Ver posição do put: tellp();
+	* Alterar posição do put: seekp();

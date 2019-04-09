@@ -1,0 +1,25 @@
+Invoking Virtual Functions
+==========================
+Quando uma função virtual é chamada através de ponteiro ou referência, o C++ garante que a versão correta da função é invocada - É o tipo de objeto que está sendo apontado que importa, não o tipo de referência ou ponteiro estático que importam.
+
+Considerando o exemplo a seguir utilizando ponteiros:
+
+	// Declarando um ponteiro do tipo 'Person', que na verdade aponta para um objeto 'Student'
+	Person *p = new Student;
+
+	// Chamada da função virtual 'display()'. A função 'Student display()' será chamada, porquê é para 
+	// este tipo de objeto que 'p' aponta.
+	p->display();
+
+O mesmo efeito ocorre quando referências são utilizadas:
+
+	// Declarão de uma referência do tipo 'Person', que na verdade refere-se a um objeto do tipo 'Student'
+	Person & r = someStudentObject;
+
+	// Chamada função virtual 'display()'. A função 'Student display()' será chamada, porquê este é o tipo de 
+	// objeto que 'r' refere-se.
+	r.display();
+
+	// Caso o destructor seja virtual, o tipo de objeto em 'run-time' determina qual 'destructor' é chamado. 
+	// Neste exemplo, será o 'Student'
+	delete p;

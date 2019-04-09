@@ -1,0 +1,21 @@
+Virtual Destructors
+===================
+Se uma 'base class' define uma ou mais funções virtuais, ela também deve definir o 'virtual detructor'. Por exemplo, o 'virtual destructor' da classe 'Person':
+****START****
+// person.h
+
+class Person
+{
+	[...]
+	public:
+		virtual ~Person();
+	[...]
+};
+
+Person:~Person()
+{
+	// Any destructor code for Person object.
+}
+
+****END****
+

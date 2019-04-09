@@ -1,0 +1,44 @@
+Intorduction to File Stream
+===========================
+- std::ifstream -> Herança do std::istream. Permite ler do arquivo
+- std::ofstream -> Herança do std::ostream. Permite escrever no arquivo
+- std::fstream -> Herança de ambos std::istream e std::ostream. Permite ler e escrever no arquivo
+
+Exemplo:
+|    #include <fstream>
+|    …
+|
+|    void openCloseFilesExplicitly()
+|    {
+|        // Declare file stream objects (files aren't opened yet).
+|        std::ofstream ofile;
+|        std::ifstream ifile;
+|        std::fstream  iofile;
+|    
+|        // Open the files.
+|        ofile.open("file1.dat");    // Opens file1.dat for writing.
+|        ifile.open("file2.dat");    // Opens file2.dat for reading.
+|        iofile.open("file3.dat");   // Opens file3.dat for reading/writing.
+|    
+|        // Use the files...
+|    
+|        // Close the files.
+|        ofile.close();
+|        ifile.close();
+|        iofile.close();
+|    }
+
+É possível também utilizar o contructor/destructor para abrir/fechar o arquivo:
+|    #include <fstream>
+|    …
+|
+|    void openCloseFilesImplicitly()
+|    {
+|        // Declare file stream objects (files opened implicitly by constructors).
+|        std::ofstream ofile("file1.dat");
+|        std::ifstream ifile("file2.dat");
+|        std::fstream  iofile("file3.dat");
+|    
+|        // Use the files...
+|    
+|    }   // Files closed implicitly by destructors.

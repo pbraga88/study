@@ -1,0 +1,29 @@
+Setting and Getting the Content of a String Stream
+==================================================
+Para operações de 'set' e 'get' em um objeto do tipo 'std::stringstream', utiliza-se a chamada do método 'str()'. Existem duas versões 'overloaded' deste método:
+|    // Set the content for a string stream.
+|    void str(const string & s);
+|    // Get the content for s string stream.
+|    std::string str() const;
+
+O código abaixo demonstra como utilizar os métodos 'set' e 'get':
+|        // Create a stringstream object.
+|        std::stringstream stream;
+|        
+|        // Set the string content for a stringstream.
+|        stream.str("Jane 42 15000");
+|        
+|        // Get the content from a stringstream.
+|        std::cout << "Content of string stream: " << stream.str() << std::endl;
+
+[...]        
+|        // We can still use the stringstream as stream of formatted data.
+|        std::string name;
+|        int age;
+|        double salary;
+|        stream >> name >> age >> salary;
+|        
+|        std::cout
+|            << "Name: " << name << std::endl
+|            << "Age: " << age << std::endl
+|            << "Salary:" << salary << std::endl; 

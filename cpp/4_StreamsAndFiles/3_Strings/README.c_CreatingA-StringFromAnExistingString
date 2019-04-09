@@ -1,0 +1,37 @@
+Creating a String from and existing Stream
+==========================================
+O 'constructor' do std::stringstream permit criar um objeto do tipo 'string stream' à partir de um 'std:string' já exsitente. Isto pode ser útil em duas ocasiões:
+- Sobrescrever uma string já existente com um novo conteúdo:
+|    // Create a stringstream object to write to an existing string.
+|    std::string str = "********************";
+|    std::stringstream stream(str);
+|    
+|    // Do some output.
+|    stream << "Jane" << " " << 42 << " " << 15000;
+|        
+|    // See the effect.
+|    std::cout << stream.str() << std::endl;
+
+Output:
+|	Jane 42 15000*******
+
+- Fazer o 'parse' de uma 'string' formatada afim de extrair valores:
+|    // Create a stringstream object to read from an existing string.
+|    std::string str = "Jane 42 15000";
+|    std::stringstream stream(str);
+|    
+|    // Read formatted data from stringstream.
+|    std::string name;
+|    int age;
+|    double salary;
+|    stream >> name >> age >> salary;
+|    
+|    std::cout
+|        << "Name: " << name << std::endl
+|        << "Age: " << age << std::endl
+|        << "Salary:" << salary << std::endl;
+
+Output:
+|    Name: Jane
+|    Age: 42
+|    Salary:15000

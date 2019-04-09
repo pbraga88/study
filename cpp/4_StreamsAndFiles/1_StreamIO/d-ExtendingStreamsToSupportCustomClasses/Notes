@@ -1,0 +1,50 @@
+Extending Streams to Support Custom Classes
+===========================================
+É possível definir operadores >> << de função para habilitar input/output de stream em classes criadas pelo desenvolvedor. 
+O exemplo à seguir, demosntra como extender o stream I/O para que a classe 'point' tenha suporte à ele:
+
+|class point
+|{
+|	public:
+|		int x, y;
+|}
+
+Após criar a classe, é possível definir uma função com operador '>>' customizada:
+
+|std::istream &operator >> (std::istream &is, point &p)
+|{
+|	is>>p.x>>p.y;
+|	return is;
+|}
+
+Notas:
+
+- A função deve se chamar 'operator >>'. Este é um exemplo de sobrecarga de operador em C++, com o qual pode-se extender o significado de operadores padrões para dar suporte aos tipos customizados do desenvolvedor.
+- A função deve receber dois parâmetros. O primeiro parâmetro deve ser uma referência 'std::istream', e representa o stream de input do qual os valores serão obtidos(e.g std::cin). O segundo parâmetro é uma referência à classe 'point' neste exemplo, e representa o objeto que será populado com o input do stream.
+- Dentro da função, é utilizado o objeto 'istream' da mesma maneira que é feito no código normal quando utilizado 'std:cin'. Os valores de x e y são atribuídos separadamente
+- A função deve retornar um objeto std::istream por referência. Isto permite o 'client code' usar o operador >> em casacata. 
+No exemplo abaixo, o 'client code' pode pedir ao usuário para que digite dois objetod do tipo 'point':
+
+|point p1, p2; // Instanciado dois objetos do tipo point
+|std::cout<<"Please enter two points"<<endl;
+|std::cin >> p1 >> p2; // Os 'points' passados pelo usuário, são atribuídos aos objetos p1 e p2
+
+
+Similarmente, é possível definir uma função de operador '<<' customizada:
+
+|std::ostream &operator << (std::ostream &os, const point &p)
+|{
+|	os << "[" << p.x << "," << p.y << "]";
+|	return os;
+|}
+
+Notas:
+- A função deve se chamar 'operator<<';
+- A função deve receber dois parâmetros. O primeiro parâmetro precisa ser uma referência à 'std::ostream', e representa o stream de output onde ocorrerá o 'output' dos valores(e.g. std::cout). O segundo parâmetro, exemplo, é uma referência constante 'point', que representa será o output para o stream;
+- Dentro da função, utiliza-se ostream da mesma maneira que seria utilizado 'std::cout' em um código normal. O ouput do objeto point é no formato [x,y];
+- A função deve retornar um objeto 'std::ostream' por referência. Isto permite o 'client code' utilizar o operador '<<' em cascata. Por exemplo, o 'client code' pode fazer o output de dois objetos do tipo point:
+
+|std::cout
+|<<"Here are your points..."<<std::endl
+|<< p1 << std::endl
+|< p2 << std::endl;

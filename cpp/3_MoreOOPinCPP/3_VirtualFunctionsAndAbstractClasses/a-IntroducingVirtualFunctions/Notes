@@ -1,0 +1,28 @@
+Quando se usa 'inheritance', percebe-se que a classe derivada precisa implementar versões específicas das 'member functions' relacionadas a 'base class'. Por exemplo, a classe 'Person' deve definir a função membro 'display member()' para mostrar nome e idade da pessoa, enquanto que a classe 'Student' pode querer mostrar o curso do estudante também. Isto é conhecido como "overriding".
+Para definir uma uma função membro 'overridable' propriamente em C++, deve-se utilizar um prefixo (virtual keyword) na definição da 'base class':
+****START****
+// person.h
+
+class Person
+{
+	private:
+		std::string name;
+		int age;
+
+	public:
+		virtual void display() const;	// Overridable function
+		[...]
+}
+****END****
+
+Não é ncessário utilizar a 'virtual keyword' quando da implementação da função no arquivo fonte:
+****START****
+// person.cpp
+
+
+void Person::display()
+{
+	std::cout<<name<<","<<age<<std::endl;
+}
+
+****END****

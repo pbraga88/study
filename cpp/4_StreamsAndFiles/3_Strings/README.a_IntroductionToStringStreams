@@ -1,0 +1,24 @@
+Introduction to String Stream
+=============================
+O exemplo abaixo demonstra como escrever dados formatados em um objeto std::stringstream, utilizando o operador '<<': 
+|    #include <sstream>// For std::stringstream.
+|    …
+|    
+|    std::stringstream stream;
+|    stream << "Jane" << " " << 42 << " " << 15000 << std::endl; 
+
+O exemplo abaixo demonstra como ler dados formatados de um objeto std::stringstream, utilizando o operador '>>'. Os dados lidos são provenientes do objeto 'stream' criado acima:
+|        #include <sstream>// For std::stringstream.
+|        #include <string> // For std::string.
+|        #include <iostream>   // For std::cout etc. 
+|        …
+|            
+|        std::string name;
+|        int age;
+|        double salary;
+|        stream >> name >> age >> salary;
+|            
+|        std::cout
+|        << "Name: " << name << std::endl
+|        << "Age: " << age << std::endl
+|        << "Salary:" << salary << std::endl;

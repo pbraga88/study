@@ -1,0 +1,26 @@
+Inputting and Outputting Strings
+================================
+A classe std::string, definida em no header <string>, define os operadores '>>' e '<<' que permitem fazer input e output para o/do stream.
+Aqui um exemplo simples:
+    
+    std::string s;
+    cin >> s;
+    std::cout << "Your string is " << s << std::endl;
+
+Note que o operador '>>' recebe apenas uma única palavra, por exemplo, ele para de receber no primeiro caracter branco (white space). Para ler uma linha inteira de texto, deve-se utilzar a função 'std::getline()'. Esta função recebe dois parâmetros:
+- O stream de input, de onde deve-se pegar o inputs
+- O objeto std::string, no qual deve-se guardar o valor
+
+O exemplo à seguir, demonstra como utilzar 'std::getline()'. Veja que o fragmento de código abaixo permite ao usuário entrar com nome completo e endereço.
+    
+    std::string name;
+    std::cout << "Full name: ";
+    std::getline(std::cin, name);
+    
+    std::string address;
+    std::cout << "Full address: ";
+    std::getline(std::cin, address);
+    
+    std::cout 
+        << name << std::endl
+        << address << std::endl;

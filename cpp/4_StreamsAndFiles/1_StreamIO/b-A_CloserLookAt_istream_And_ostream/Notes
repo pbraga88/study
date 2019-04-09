@@ -1,0 +1,52 @@
+A Closer Look at istream and ostream
+====================================
+istream e ostream não são verdadeiramente classes. Na verdade, são 'typedefs' (aliases) que representam instâncias character-based  das classes 'basic_istream' e 'basic_ostream', respectivamente:
+- typedef basic_istream<char> istream;
+- typedef basic_ostream<char> ostream;
+
+A classe 'basic_istream' define uma série de funções com o operador '>>' que permitem inserir valores em tipos built-in. Veja o exmeplo à seguir:
+    short s;
+    std::cin >> s;
+    
+    int i;
+    std::cin >> i;
+    
+    long l;
+    std::cin >> l;
+    
+    unsigned short us;
+    std::cin >> us;
+    
+    unsigned int ui;
+    std::cin >> ui;
+    
+    unsigned long ul;
+    std::cin >> ul;
+    
+    float f;
+    std::cin >> f;
+    
+    double d;
+    std::cin >> d;
+    
+    long double ld;
+    std::cin >> ld;
+    
+    bool b;
+    std::cin >> b;  // You must enter 0 or 1
+    
+    void * ptr;
+    std::cin >> ptr;  // You can enter an address, e.g. FFFF
+
+Similarmente, a classe 'basic_ostream' define uma série de funções com o operador '<<' que permitem fazer o output de valores de tipos built-in. No exemplo à seguir, é possível fazer o output de todas as variáveis listadas acima:
+    std::cout
+        << s   << std::endl
+        << i   << std::endl
+        << l   << std::endl
+        << ui  << std::endl
+        << ul  << std::endl
+        << f   << std::endl
+        << d   << std::endl
+        << ld  << std::endl
+        << b   << std::endl
+        << ptr << std::endl;

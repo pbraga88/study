@@ -1,0 +1,70 @@
+Uma classe pode definir outra como uma classe amiga (friend class). Uma 'friend class' pode acessar todos os membros da primeira classe. Tal recurso é útil em um sistema binário, onde duas classe que intimamente relacionadas uma com a outra. 
+
+Um bom exemplo de 'friend class' é o idioma "handle-body" em c++. Esse idioma divide uma classe semântica em duas classe relacionadas - uma classe 'body' que define os dados privados, e uma classe "handle" que define o comportamento público. A classe 'body' define a classe 'handle' como uma 'friend class', assim a classe 'handle' pode acessar todos os membros (incluindo membros privados) na classe 'body'.
+
+Os códigos a seguir mostram como implementar o idioma 'handle-body' em c++ utilizando 'friend class':
+
+****Body.h****
+
+class Handle; // Envia a referência da classe "handle", avisando assim o compilador
+
+class Body
+{
+	friend class Handle;
+
+	private:
+		int someData;
+	[...]
+};
+
+
+****Handle.h****
+#include "Body.h"
+
+class Handle
+{
+	private:
+		Body *body; // A classe "handle" tipicamente mantém uma instância interna da classe "body"
+
+	public:
+		Handle();
+		~Handle();
+
+		void someOperationOnBody();
+	[...]
+}
+
+
+****Handle.cpp****
+
+#include "Handle.h"
+
+Handle::Handle()
+{
+	body = new Body // Cria o objeto "body" subjacente
+}
+
+Handle::~Handle()
+{
+	delete body; // Apaga o objeto subjacente "body"
+}
+
+void Handle::someOperationOnBody()
+{
+	body->someData = 10; // Efetua operações no objeto subjacente "body"
+}
+
+
+O "código cliente" trabalha apenas com a classe "handle" e não possui conhecimento da clase subjacente "body". Exemplo:
+
+****Main.cpp****
+
+#include "Handle.h"
+
+int main()
+{
+	Handle h;
+	h.someOperationOnBody();
+
+	return 0;
+}

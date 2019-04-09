@@ -1,0 +1,16 @@
+Manipulators
+============
+Os 'Manipulators' são objetos passados ao stream para obter-se um efeito de formatação. Um exemplo simples é o 'std::endl' utilizado para indicar o final de uma linha:
+|	std::cout<"Some string"<<std::endl;
+
+Outro ecemplo é o "std::flush" que descarrega o buffer do stream para o dispositivo (por exemplo, um console). Isto é bom para debugar, pois garante que informações de debug sejam descarregadas imediatamente na tela:
+|	std::cout<<"Some debug mesage"<<std::flush;
+
+Os maipuladores acima, não aceitam nenhum parâmetro e são definidos em '<iostream>'. Para manipuladores que aceitam parâmetros, é utilizada a biblioteca '<iomanip>'. Um exemplo de maipulador que aceita parâmetro, é o 'std::setw', que ajusta a largura mínima do stream mostrado na tela:
+|	std::cout<<std::setw(20)<<"Some string"<<endl;
+
+Importante ressaltar que o manipulador 'std::setw' é aplicado ao próximo valor à ser mostrado na tela. Veja exemplo:
+|	const char *message = "Some Message";
+|	std::cout << "[" << std::setw(10) << message << "]" <<std::endl;
+
+Importante ressaltar que 'std::setw' não trunca a saída do stream, em outras palavras, se a mensagem do stream for maior que o valor definido em 'std::setw', o valor mínimo assumido sera o tamanho da mensagem. 

@@ -1,0 +1,7 @@
+Reading and Writing Binary Data
+===============================
+Arquivos binários são, normalmente, menores que arquivos de texto e, portanto, mais eficientes para leitura e escrita. O que é bom pquando se trabalha com grande quantidade de dados.
+Para escrever e ler nos arquivos Binários, utiliza-se o seguinte modo para abrir-los:
+| std::ios::binary
+
+

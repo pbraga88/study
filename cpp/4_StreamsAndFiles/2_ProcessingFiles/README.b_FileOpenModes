@@ -1,0 +1,39 @@
+File Open Modes
+===============
+Modos opcionais de abertura do arquivo:
+
+- std::ios_base::in -> Abre para oprações de input. Default para std::ifstream
+- std::ios_base::out -> Abre para operações de output. default para std::ofstream
+- std::ios_base::binary -> O arquivo será aberto no modo binário e nenhuma formatação será aplicada no que é escrito ou lido
+- std::ios_base::ate -> A posição inicial de leitura e escrita será no final do arquivo. Por default, é no começo
+- std::ios_base::app -> Toda operação de output irá ocorrer no final do arquivo, preservando todo o conteúdo já existente
+- std::ios_base::trunc -> Se o arquivo foi aberto para operações de output, todo o conteúdo já existente será apagado
+
+Exemplo com o operador bitwise para aplicar mais de uma flag:
+|    std::ofstream ofile1;
+|    ofile1.open("file1.dat", std::ios_base::binary | std::ios_base::app);
+|
+|    std::ofstream ofile2("file2.dat", std::ios_base::binary | std::ios_base::app);
+
+Para aplicar uma flag explicitamente:
+|    // Default file mode applies here, i.e. std::ios_base::in | std::ios_base::out.  
+|    std::fstream iofile1("iofile1.dat");   
+|    
+|    // File mode is just std::ios_base::binary.  
+|    std::fstream iofile2("iofile2.dat", std::ios_base::binary);
+|    
+|    // File mode is just std::ios_base::binary | std::ios_base::in | std::ios_base::out.  
+|    std::fstream iofile3("iofile3.dat", std::ios_base::binary | std::ios_base::in | std::ios_base::out);
+|    
+|    */After you've opened a file, you can call the is_open() method to determine if the file has been  	|	  opened successfully. Here's a simple example:*/
+|    if (somefile.is_open())
+|    {
+|        // File opened OK, so use it…
+|        
+|        // Close the file when we're done.
+|        somefile.close();
+|    }
+|    else
+|    {
+|        std::cerr << "Couldn't open file" << std::endl;
+|    }  
