@@ -1,0 +1,24 @@
+Working with Wide Characters
+============================
+O tipo 'wchar_t' representa caracteres longos (wide). Eles são úteis para repreentar caracteres não romanos. Uma serie de classes objetos permitem trabalhar com este tipo de caracteres:
+- std::wstring represents a string of wide characters.
+- std::wistream, std::wostream, and std::wstream allow you to input and output wide characters. std::wcin and std::wcout are predefined instances of std::wistream and std::wostream respectively.
+- std::wistringstream, std::wostringstream, and std::wstringstream allow you to input and output wide characters to/from a string.
+
+Exemplo:
+|    std::wstringstream stream;
+|    
+|    stream << "Jane" << " " << 42 << " " << 15000 << std::endl;
+|    
+|    std::wstring formattedString = stream.str();
+|    std::wcout << formattedString;
+|    
+|    std::wstring name;
+|    int age;
+|    double salary;
+|    stream >> name >> age >> salary;
+|    
+|    std::wcout
+|        << "Name: " << name << std::endl
+|        << "Age: " << age << std::endl
+|        << "Salary:" << salary << std::endl;
