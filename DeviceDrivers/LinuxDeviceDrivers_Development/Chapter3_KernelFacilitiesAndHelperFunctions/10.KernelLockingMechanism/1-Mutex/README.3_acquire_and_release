@@ -1,0 +1,34 @@
+Acquire and release
+===================
+Lock:
+|	void mutex_lock(struct mutex *lock);
+|	int mutex_lock_interruptible(struct mutex *lock);
+|	int mutex_lock_killable(struct mutex *lock);
+
+Unlock:
+|	void mutex_unlock(struct mutex *lock);
+
+Para verificar se o mutex está em estado 'locked' ou não:
+|	int mutex_is_locked(struct mutex *lock);
+|
+|	/* Retorna '0' se locked e '1' se não*/
+|	int mutex_trylock(struct mutex *lock);
+
+Exemplo de implementação:
+|	struct mutex my_mutex;
+|	mutex_init(&my_mutex);
+|	/* inside a work or a thread */
+|	mutex_lock(&my_mutex);
+|	access_shared_memory();
+|	mutex_unlock(&my_mutex);
+
+Some important rules, when using mutex (more in 'include/linux/mutex.h'):
+	* Only one task can hold the mutex at a time; this is actually not a rule, but a fact
+	* Multiple unlocks are not permitted
+	* They must be initialized through the API
+	* A task holding the mutex may not exit, since the mutex will remain locked, and
+	possible contenders will wait (will sleep) forever
+	* Memory areas where held locks reside must not be freed
+	* Held mutexes must not be reinitialized
+	* Since they involve rescheduling, mutexes may not be used in atomic contexts, such
+	as tasklets and timers

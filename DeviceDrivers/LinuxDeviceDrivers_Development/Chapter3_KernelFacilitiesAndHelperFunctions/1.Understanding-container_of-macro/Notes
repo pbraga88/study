@@ -1,0 +1,101 @@
+Understanding container_of macro
+================================
+A necessidade da macro 'container_of' surgiu da necessidade de retornar estruturas que estão embarcadas umas nas outras a qualquer momento, sem que questionamentos sobre offset de memória ou limites sejam feitos. Vamos considerar a seguinte estrutura 'person' definida aqui:
+**** Start ****
+struct person{
+	int age;
+	char *name;
+} p;
+**** End ****
+
+Apenas tendo um ponteiro em 'age' ou 'name', é possível recuperar toda a estrutura que contém aquele ponteiro. Como o próprio nome diz, a macro 'container_of' é utilizada para encontrar a estrutura onde tal campo (ou a variável, para melhor entendimento) é definido. A macro é definida em 'include/linux/kernel.h' e é escrita da seguinte maneira:
+**** Start ****
+#define container_of(ptr, type, member)({				\
+	const typeof((type *)0->member) * __mptr = (ptr);	\
+   	(type *)((char *)__mptr - offsetof(type, member)); })
+
+****End****
+
+Para melhor compreensão, a macro pode ser escrita assim:
+container_of(pointer, container_type, container_field);
+
+e cada um dos significados é:
+	pointer: É o ponteiro para o campo na estrutura;
+	container_type: Este é o tipo da estrutura que contém o ponteiro;
+	container_field: Este é o nome do campo, dentro da estrutura, para o qual o ponteiro aponta.
+
+Consideremos, novamente, o seguinte container:
+**** Start ****
+struct person{
+	int age; 
+	char *name;
+};
+**** End ****
+
+Agora, considerando uma instancia desta estrutura, juntamente com um ponteiro para o membro 'name':
+**** Start ****
+struct person somebody;
+[...]
+char *the_name_ptr = somebody.name;
+**** End ****
+
+Junto com o ponteiro para o membro 'name' (the_name_pointer), é possível utilizar a macro 'container_of'para obter um ponteiro para estrutura completa (container), que contém tal membro:
+**** Start ****
+struct person *the_person;
+the_person = container_of(the_name_ptr, struct person, name);
+
+**** End ****
+
+A macro 'container_of' considera o 'offset' da variável 'name' no início da estrutura para conseguir a localização correta do ponteiro. Se o 'offset' do campo 'name' for subtraido do ponteiro 'the_name_ptr', a localização correta será encontrada. Isto é o que a última linha da macro faz:
+(type *)( (char *)_mptr - offsetof(type, member));
+
+Aplicando a um caso de uso:
+**** Start ****
+struct person{
+	int age;
+	char *name;
+};
+
+struct family{
+	struct person *father;
+	struct person *mother;
+	int number_of_sons;
+	int salary;
+}f;
+
+/*
+ * ponteiro para um campo qualquer da estrutura
+*/
+struct *person = family.mother;
+struct family *fam_ptr;
+
+/* Retornando o offset da estrutura 'family'*/
+fam_ptr = container_of(person, struct family, mother);
+
+**** End ****
+
+Em um driver encontrado no fonte do kernel, o uso da macro 'container_of' fica assim:
+**** Start ****
+struct mcpp23016 {
+	struct i2c_client *client;
+	struct gpio_chip chip;
+}
+
+/* retrieve the mcp23016 struct given a pointer 'chip' field*/
+static inline struct mcp23016 *to_mcp23016(struct gpio_chip *gc)
+{
+	return container_of(gc, struct mcp23016, chip);
+}
+
+static int mcp23016_probe(struct i2c_client *client,
+				const struct 12c_device_id *id)
+{
+	struct mcp23016 *mcp;
+	[...]
+	mcp = devm_kzalloc(&client->dev, sizeof(*mcp), GFP_KERNEL);
+	if(!mcp)
+		return -ENOMEM;
+	[...]
+}
+
+**** End ****

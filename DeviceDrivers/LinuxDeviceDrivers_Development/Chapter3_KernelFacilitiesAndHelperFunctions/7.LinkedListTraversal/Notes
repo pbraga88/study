@@ -1,0 +1,29 @@
+Linked List Traversal
+=====================
+A macro 'list_for_each_entry(pos, head, member)' é utilizada para 'list traversal'
+	* head: É o 'head node' da lista
+	* member: É o nome da lista 'struct list_head' dentro da estrutura de dados (em meu caso, é 'list')
+	* pos: Utilizado para iteração. Trata-se de um cursor de loop (assim como 'i' em 'for(i=0; i<foo; i++')
+
+O parâmetro 'head' pode ser o próprio 'head' da 'linked list', ou qualquer outro node, e não faz diferença uma que trata-se de uma lista duplamente 'linkada':
+
+|struct car *acar; /* loop counter*/
+|int blue_car_num = 0;
+|
+|/* 'list' is the name of the list_head struct in our data structure */
+|list_for_each_entry(acar, carlist, list){
+|	if(acar->color == "blue")
+|		blue_car_num++;
+|}
+
+Qual a necessidade do nome da 'list_head' presente em nossa estrutura de dados? Veja a definição de 'list_for_each_entry':
+
+|#define list_for_each_entry(pos, head, member) 	\
+|for (pos = list_entry((head)->next, typeof(*pos), member);		\
+|	  &pos->member != (head); 	\
+|	  pos = list_entry(pos->member.next, typeof(*pos), member))
+|
+|#define list_entry(ptr, type, member)	\
+|	 container_of(ptr, type, member)
+
+Com isso, pode-se entender que trata-se de uma questão de potência de 'container_of'. É importante ter em mente também que 'list_for_each_entry_safe(pos, n, head, member)'

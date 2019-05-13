@@ -1,0 +1,11 @@
+Deleting a node from the list
+=============================
+O gerenciamento de listas é uma tarefa muito simples no código do kernel. Para excluir um node:
+
+|void list_del(struct list_head *entry);
+
+Excluindo o node do exemplo anterior:
+
+|list_del(&redcar->list);
+
+Para liberar a memória alocada para o node deve-se utilizar 'kfree'.

@@ -1,0 +1,63 @@
+Programming syntax
+==================
+As funções à seguir são definidas em 'include/linux/workqueue.h':
+
+Declare work and work queue:
+|	struct workqueue_struct *myqueue;
+|	struct work_struct thework;
+
+Define the worker function (the handler):
+|	void dowork(void *data) { /* Code goes here */ };
+
+Initialize our work queue and embed our work into:
+|	myqueue = create_singlethread_workqueue( "mywork" );
+|	INIT_WORK( &thework, dowork, <data-pointer> );
+
+Scheduling work:
+|	queue_work(myqueue, &thework);
+
+Queue after the given delay to the given worker thread:
+|	queue_delayed_work(myqueue, &thework, <delay>);
+
+These functions return false if the work was already on a queue and true if
+otherwise. delay represents the number of jiffies to wait before queueing. You may
+use the helper function msecs_to_jiffies in order to convert the standard ms delay
+into jiffies. For example, to queue a work after 5 ms, you can use
+|	queue_delayed_work(myqueue, &thework, msecs_to_jiffies(5));
+
+Wait on all pending work on the given work queue:
+|	void flush_workqueue(struct workqueue_struct *wq)
+
+CLEANUP:
+Use cancel_work_sync() or cancel_delayed_work_sync for synchronous cancellation, which
+will cancel the work if it is not already running, or block until the work has
+completed. The work will be cancelled even if it requeues itself. You must also
+ensure that the work queue on which the work was last queued can’t be destroyed
+before the handler returns. These functions are to be used respectively for
+nondelayed or delayed work:
+|	int cancel_work_sync(struct work_struct *work);
+|	int cancel_delayed_work_sync(struct delayed_work *dwork);
+
+Since Linux kernel v4.8, it is possible to use cancel_work or cancel_delayed_work, which are
+asynchronous forms of cancellation. One must check whether the function returns true or
+no, and makes sure the work does not requeue itself. You must then explicitly flush the
+work queue:
+|	if ( !cancel_delayed_work( &thework) ){
+|	flush_workqueue(myqueue);
+|	destroy_workqueue(myqueue);
+|	}
+
+The other is a different version of the same method and will create only a single thread for
+all the processors. In case you need a delay before the work is enqueued, feel free to use
+the following work initialization macro:
+|	INIT_DELAYED_WORK(_work, _func);
+|	INIT_DELAYED_WORK_DEFERRABLE(_work, _func);
+
+Using the preceding macros would imply that you should use the following functions to
+queue or schedule the work in the work queue:
+|	int queue_delayed_work(struct workqueue_struct *wq,
+|						struct delayed_work *dwork, unsigned long delay)
+
+For delayed work, you can use:
+|	int queue_delayed_work_on(int cpu, struct workqueue_struct *wq,
+|							struct delayed_work *dwork, unsigned long delay);

@@ -1,0 +1,3 @@
+Dynamic tick/tickless kernel
+============================
+Diferenemente do que foi visto antes, onde o kernel possuia uma frequência pré-estabelecida, o Kernel que não tem um valor de ticks (frequência) pré-definido, é chamado de 'tickless kernel' ou, mais precisamente, 'dynamic tick'

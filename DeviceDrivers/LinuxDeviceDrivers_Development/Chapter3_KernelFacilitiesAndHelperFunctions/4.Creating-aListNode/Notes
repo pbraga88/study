@@ -1,0 +1,11 @@
+Creating a List Node
+====================
+Para criar novos 'nodes', basta criar uma instância da estrutura de dados, e inicializar seus campos 'list_head' inclusos. Utilizando o exemplo do carro:
+
+|struct car *blackcar = kzalloc(sizeof(struct car), GFP_KERNEL);
+|
+|/* Inicializalção não estática, uma vez que é o campo incluso na lista
+|INIT_LIST_hEAD(&BLACKCAR->list);
+
+Como dito anteriormente, é preciso utilizar 'INIT_LIST_HEAD', que é uma lista dinamicamente alocada e normalmente parte de outra estrutura.
+

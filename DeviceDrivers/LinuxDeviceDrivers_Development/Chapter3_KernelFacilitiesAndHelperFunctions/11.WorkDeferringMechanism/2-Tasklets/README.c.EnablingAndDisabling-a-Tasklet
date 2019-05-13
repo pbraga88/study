@@ -1,0 +1,12 @@
+Enabling and Disabling a Tasklet
+================================
+Enable tasklet:
+| void tasklet_enable(struct tasklet_struct *);
+
+Disable tasklet:
+| void tasklet_disable(struct tasklet_struct *);
+
+também para desabilitar:
+| void tasklet_disable_nosync(struct tasklet_struct *);
+
+A diferença entre tasklet_disable e tasklet_disable_nosynch é que a primeira retorna apenas quando a tasklet é de fato terminada, já a segunda retorna imediatamente, ainda que a tasklet não tenha sido terminada.

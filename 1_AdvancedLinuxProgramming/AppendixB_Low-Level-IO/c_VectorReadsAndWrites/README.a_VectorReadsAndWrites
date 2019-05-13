@@ -1,0 +1,16 @@
+Vector Reads and Writes
+=======================
+É possível efetuar escrita em multiplas áreas descontinuadas de memória através do uso da função writev(). Tal função necessita de uma estrutura de vetores 'struct iovec' que irá guardar a região de memória e tamanho de cada elemento (iov_base e iov_len, respectivamente).
+
+writev() deve ser chamado com os argumentos: File descriptor (fd);
+											 Matriz struct iovec;
+											 Número de elementos na matriz.
+
+ssize_t writev(int fd, const struct iovec *iov, int iovcnt);
+
+
+Similarmente, tem-se a função readv(), que lê a memória de maneira descontinuada e deve ser chamada com os mesmos argumentos:
+			     File descriptor (fd);
+				 Matriz struct iovec;
+				 Número de elementos na matriz.
+ssize_t readv(int fd, const struct iovec *iov, int iovcnt);

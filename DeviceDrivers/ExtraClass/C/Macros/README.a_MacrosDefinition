@@ -1,0 +1,3 @@
+Macros Definition
+=================
+Macros are generally used to define constant values that are being used repeatedly in program. Macros can even accept arguments and such macros are known as function-like macros. It can be useful if tokens are concatenated into code to simplify some complex declarations. Macros provide text replacement functionality at pre-processing time.

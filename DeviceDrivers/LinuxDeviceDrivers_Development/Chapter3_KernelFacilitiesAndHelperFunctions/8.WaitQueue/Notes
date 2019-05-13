@@ -1,0 +1,40 @@
+Wait queue
+==========
+A 'Wait queue' é essencialmente utilizada para processar I/O bloqueados, fazendo com que esperem por certa condição ser verdadeira, e para detectar dados ou disponibilidade de dispositivos. A estrutura desta queue, que pode ser encontrada em 'include/linux/wait.h', é a seguinte:
+
+|struct __wait_queue {
+|	unsigned int flags;
+|#define WQ_FLAG_EXCLUSIVE 0x1
+|	void *private;
+|	wait_queue_func_t func;
+|	struct list_head task_list;	
+|};
+
+To processo que entra no modo 'sleep' é colocado em 'task_list' da estrutura acima (por isso, o nome qait queue) e fica neste estado até alguma condição se tornar verdadeira. A 'wait queue' nada mais é do que uma simples lista de processos e um cadeado.
+
+As funções comumente utilizada quando trabalhamos com queues são:
+
+* Static declaration:
+|	DECLARE_WAIT_QUEUE_HEAD(name)
+
+* Dynamic declaration:
+|	wait_queue_head_t my_wait_queue;
+|	init_waitqueue_head(&my_wait_queue);
+
+* Blocking:
+|	/*
+|	 * block the current task (process) in the wait queue if
+|	 * 	CONDITION is false
+|	 */
+|	int wait_event_interruptible(wait_queue_head q, CONDITION);
+
+* Unblocking:
+|	/*
+|	 * wake up one process sleeping in the wait queue if
+|	 * CONDITION above has become true
+|	 */
+|	void wake_up_interuptible(wait_queue_head_t *q);
+
+A função 'wait_event_interruptible' não fica o tempo todo verificando se a condição é verdadeira, ela simlesmente avalia tal condição quando é chamada. Se a condição é falsa, o proceso é colocado em estado de 'TASK_INTERRUPTIBLE' e removido da 'run queue'. A condição é então verificada novamente a cada chamada de 'wake_up_interruptible' na 'wait_queue'. Se a condição é verdadeira quando 'wake_up_interruptible' é executada, um processo na 'wait queue' será acordado, e seu estado é alterado para 'TASK_RUNNING'. Os processos são acodados na mesma ordem em que eles são postos para dormir. Para acordar todos os processos na 'queue', deve ser utilizada 'wake_up_interruptible_all'.
+
+Se as funões 'wake_up' ou 'wake_up_interruptible' forem chamadas e a condição continuar 'FALSE', nada irá acontecer. Sem 'wake_up' (ou 'wake_up_interruptible'), os processos nunca serão acordados. 

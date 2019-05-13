@@ -1,0 +1,6 @@
+Work Deferring Mechanism
+========================
+Utilizados para adiar a execução de uma tarefa ou ação. Os métodos de adiamento (deferring) permitem que funções de qualquer tipo sejam adiadas. Existem três tipos no kernel:
+	* SoftIRQs: Executado em contexto atômico
+	* Tasklets: Executado em contexto atômico
+	* Workqueues: Executado em contexto de processo

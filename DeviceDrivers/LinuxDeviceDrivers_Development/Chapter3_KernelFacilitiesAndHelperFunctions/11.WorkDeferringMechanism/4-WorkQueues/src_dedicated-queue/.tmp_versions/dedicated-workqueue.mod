@@ -1,0 +1,3 @@
+/home/pbraga/WorkSpace/Study/DeviceDrivers/LinuxDeviceDrivers_Development/Chapter3_KernelFacilitiesAndHelperFunctions/11.WorkDeferringMechanism/4-WorkQueues/src_dedicated-queue/dedicated-workqueue.ko
+/home/pbraga/WorkSpace/Study/DeviceDrivers/LinuxDeviceDrivers_Development/Chapter3_KernelFacilitiesAndHelperFunctions/11.WorkDeferringMechanism/4-WorkQueues/src_dedicated-queue/dedicated-workqueue.o
+

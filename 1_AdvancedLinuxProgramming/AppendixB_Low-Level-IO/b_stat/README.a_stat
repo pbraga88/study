@@ -1,0 +1,35 @@
+stat
+====
+A função 'stat()' busca informações como tamanho, última modificação, permissões, dono, etc do arquivo para ela passado. 
+
+Como parâmetros para essa função, devem ser passados o caminho para o arquivo e um ponteiro para uma variável do tipo 'struct stat'. Em caso de sucesso, é retornado '0', caso contrário, '-1'.
+
+These are the most useful fields in struct stat:
+	• st_mode contains the file's access permissions. File permissions are explained in Section
+	10.3, "File System Permissions."
+	• In addition to the access permissions, the st_mode field encodes the type of the file in
+	higher-order bits. See the text immediately following this bulleted list for instructions on
+	decoding this information.
+	• st_uid and st_gid contain the IDs of the user and group, respectively, to which the file
+	belongs. User and group IDs are described in Section 10.1, "Users and Groups."
+	• st_size contains the file size, in bytes.
+	• st_atime contains the time when this file was last accessed (read or written).
+	• st_mtime contains the time when this file was last modified.
+
+These macros check the value of the st_mode field value to figure out what kind of file you've
+invoked stat on. The macro evaluates to true if the file is of that type.
+	S_ISBLK (mode) block device
+	S_ISCHR (mode) character device
+	S_ISBLK (mode) block device
+	S_ISDIR (mode) directory
+	S_ISFIFO (mode) fifo (named pipe)
+	S_ISLNK (mode) symbolic link
+	S_ISREG (mode) regular file
+
+Adicionalmente, tem-se os seguintes campos da 'struct stat':
+	st_dev: contains the major and minor device number of the hardware device on which
+			this file resides;
+	st_ino: contains the inode number of this file. This locates the file in the file system.
+
+A função stat(), quando usada em um link simbólico, varifica o arquivo para qual o link aponta e não o link em si e, em caso de link quebrado, retorna erro (-1). Sem contar que, a macro S_ISLNK não tem efeito quando utilizado stat(). Para lhe dar com links, deve-se utilizar lstat(), que verifica o link e não o arquivo. 
+Caso um arquivo já esteja aberto em modo 'read', deve-se utilizar 'fstat()'. Neste caso, é passado o 'file descriptor' como primeiro argumento, ao invés do caminho para o arquivo.

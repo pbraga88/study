@@ -1,0 +1,11 @@
+The concept of C Inline Functions
+=================================
+Inline functions are those functions whose definition is small and can be substituted at the place where its function call is made. Basically they are inlined with its function call.
+
+Even there is no guarantee that the function will actually be inlined. Compiler interprets the inline keyword as a mere hint or request to substitute the code of function into its function call. Usually people say that having an inline function increases performance by saving time of function call overhead (i.e. passing arguments variables, return address, return value, stack mantle and its dismantle, etc.) but whether an inline function serves your purpose in a positive or in a negative way depends purely on your code design and is largely debatable.
+
+Compiler does inlining for performing optimizations. If compiler optimization has been disabled, then inline functions would not serve their purpose and their function call would not be replaced by their function definition.
+
+To have GCC inline your function regardless of optimization level, declare the function with the “always_inline” attribute:
+
+void func_test() __attribute__((always_inline))

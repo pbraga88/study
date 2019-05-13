@@ -1,0 +1,10 @@
+Mutex
+=====
+- Definição de mutex em 'include/linux/mutex.h':
+|struct mutex {
+|	/* 1: unlocked, 0: locked, negative: locked, possible waiters */
+|	atomic_t count;
+|	spinlock_t wait_lock;
+|	struct list_head wait_list;
+|	[...]
+|};

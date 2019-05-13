@@ -56,5 +56,112 @@ Checkpoint: Linux Device Drivers - Page 78 - In the Kernel Tree
 Next:
 - Terminar de configurar ambiente para buildar Linux (usar script):
 	* Debugar erro: ~/WorkSpace/Build-BSP/bsp-buildscript/build_refsw18.2_kernel4.9/proteus-bsp-build/setup_bsp.sh openmw 
+- Escrever e compilar módulo de exemplo; ****
+- Continuar do Checkpoint. ****
+
+21.12.2018
+==========
+Checkpoint: Linux Device Drivers - Page 78 - In the Kernel Tree
+Next:
 - Escrever e compilar módulo de exemplo;
 - Continuar do Checkpoint.
+
+02.01.2019
+==========
+Checkpoint: Linux Device Drivers - Page 80 - Out of the tree
+Next:
+- Resolver problema de build da pasta do Linux (~/WorkSpace/Build-BSP/dropJ.p1/stblinux-4.9/linux)
+- Continuar do Checkpoint
+
+04.01.2019
+==========
+Checkpoint: Linux Device Drivers - Page 80 - Out of the tree
+Next:
+- Continuar do Checkpoint
+
+07.01.2019
+==========
+Checkpoint: Chapter03 Kernel Facilities and Helper Functions - Linked lists - Page 86
+NEXT:
+- Continuar do Checkpoint
+
+15.01.2019
+==========
+Checkpoint: Chapter03 Kernel Facilities and Helper Functions - Deleting a node from the list - Page 93
+NEXT:
+- Continuar do Checkpoint
+
+18.01.2019
+==========
+Checkpoint: Chapter03 Kernel Facilities and Helper Functions - Wait queue - Page 96
+Next:
+- Buildar e testar exemplo wait queue
+- Continuar do checkpoint
+
+21.01.2019
+==========
+Checkpoint: Chapter03 Kernel Facilities and Helper Functions - Wait queue - Page 97
+Next:
+- Buildar exemplo queue escrito em 'DeviceDrivers/LinuxDeviceDrivers_Development/Chapter3_KernelFacilitiesAndHelperFunctions/8.WaitQueue/waitQueue_example.c'
+- Estudar exemplo buildado
+- Configurar ambiente para usar caixa em modo NFS
+
+22.01.2019
+==========
+Checkpoint: Chapter03 Kernel Facilities and Helper Functions - Wait queue - Page 97
+Next:
+- Estudar e fazer anotações do  exemplo buildado
+- Configurar ambiente para usar caixa em modo NFS
+
+04.02.2019
+==========
+Checkpoint: Chapter03 Kernel Facilities and Helper Functions - Wait queue - Page 97
+Next:
+-	Compilar 'waitqueue' como módulo (M), instalar no directory tree e fazer insmod
+-	Fazer Makefile para compilar os módulos fora da árvore do kernel
+-	Continuar do checkpoint
+
+06.02.2019
+==========
+Checkpoint: Chapter03 Kernel Facilities and Helper Functions - Wait queue - Page 97
+Next:
+-	Resolver problema de compilação do Makefile (usar device drivers labworks training como exemplo)
+-	Continuar do checkpoint
+
+08.02.2019
+==========
+Checkpoint: Chapter03 Kernel Facilities and Helper Functions - Wait queue - Page 101
+Next:
+-	Continuar do checkpoint
+
+13.02.2019
+==========
+Checkpoint: Chapter03 Kernel Facilities and Helper Functions - High Resolution Timers (HRTs) - page 103
+Next:
+-	Estudar timerexample.c
+-	Continuar do checkpoint
+
+15.02.2019
+==========
+Checkpoint: Chapter03 Kernel Facilities and Helper Functions - HRT setup initialization - page 106
+Next:
+-	Continuar do checkpoint
+
+18.02.2019
+==========
+Checkpoint: Chapter03 Kernel Facilities and Helper Functions - Mutex - page 113
+Next:
+-	Continuar do checkpoint
+
+22.02.2019
+==========
+Checkpoint: Chapter03 Kernel Facilities and Helper Functions - Work deferring mechanism - page 121
+Next:
+-	Continuar do checkpoint
+
+25.03.2019
+==========
+Checkpoint: Chapter03 Kernel Facilities and Helper Functions - Kernel-global workqueue – the shared queue page 130
+Next:
+-	Ler sobre inline functions: https://www.thegeekstuff.com/2013/04/c-macros-inline-functions/
+-	Continuar do checkpoint

@@ -1,0 +1,10 @@
+Tasklet Scheduling
+==================
+Existem duas funções de chamada para tasklet, dependendo da sua prioridade:
+|void tasklet_schedule(struct tasklet_struct *t);
+|void tasklet_hi_schedule(struct tasklet_struct *t);
+
+tasklet_schedule, não possui prioridade, portanto fica na lista de prioridade normal
+tasklet_hi_schedule, tem maior prioridade é adicionada na lista de maior prioridade
+
+Para parar uma tasklet, utiliza-se a função 'tasklet_kill'.

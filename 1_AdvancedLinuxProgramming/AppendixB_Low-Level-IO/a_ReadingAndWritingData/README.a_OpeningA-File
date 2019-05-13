@@ -1,0 +1,25 @@
+Opening a File
+==============
+To open a file and produce a file descriptor that can access that file, use the open call. It takes as
+arguments the path name of the file to open, as a character string, and flags specifying how to open
+it. You can use open to create a new file; if you do, pass a third argument that specifies the access
+permissions to set for the new file.
+If the second argument is O_RDONLY, the file is opened for reading only; an error will result if you
+subsequently try to write to the resulting file descriptor. Similarly, O_WRONLY causes the file
+descriptor to be write-only. Specifying O_RDWR produces a file descriptor that can be used both for
+reading and for writing. Note that not all files may be opened in all three modes. For instance, the
+permissions on a file might forbid a particular process from opening it for reading or for writing; a
+file on a read-only device such as a CD-ROM drive may not be opened for writing.
+
+You can specify additional options by using the bitwise or of this value with one or more flags.
+These are the most commonly used values:
+	• Specify O_TRUNC to truncate the opened file, if it previously existed. Data written to the file
+	descriptor will replace previous contents of the file.
+	• Specify O_APPEND to append to an existing file. Data written to the file descriptor will be
+	added to the end of the file.
+	• Specify O_CREAT to create a new file. If the filename that you provide to open does not
+	exist, a new file will be created, provided that the directory containing it exists and that the
+	process has permission to create files in that directory. If the file already exists, it is opened
+	instead.
+	• Specify O_EXCL with O_CREAT to force creation of a new file. If the file already exists, the
+	open call will fail.

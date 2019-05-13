@@ -1,0 +1,40 @@
+HRT setup initialization
+========================
+1. Inicializando o hrtimer: Antes de inizalizar o hrtimer, é preciso configurar um ktime, 
+que representa a duração:
+	
+|	/* Note que o ktime é passado em '*time' */
+|	void hrtimer_init(struct hrtimer *time, clockid_t which_clock,
+|					  enum hrtimer_mode mode);
+
+2. Starting hrtimer: O 'hrtimer' pode ser inicializado da seguinte maneira:
+
+|int hrtimer_start(struct hrtimer *timer, ktime_t time,
+|					const enum hrtimer_mode mode);
+
+O parâmetro 'mode' representa o modo de expirãção. Pode tanto ser 'HRTIMER_MODE_ABS' para um valor de tempo absoluto, como 'HRTIMER_MODE_REL' para um valor de tempo relativo.
+
+3. Cancelando o 'hrtimer': É possível tanto cancelar o timer ou apenas verificar a possibilidade de cancelar o timer:
+
+|	int hrtimer_cancel(struct hrtimer *timer);
+|	int hrtimer_try_to _cancel(struct hrtimer *timer);
+
+Ambos retornam '0' quando o timer não está ativo e '1' quando ativo. A diferença entre estas duas funções é que 'hrtimer_try_to_cancel' falha caso o timer esteja ativo ou sua callback esteja sendo executado, retornando '-1', ao passo que 'hrtimer_cancel' irá experar até que a callback seja finalizada.
+
+
+Para verificar, de maneira independente, se a callback ainda está executando:
+
+|	/* Esta função também é chamada internamente pela 'hrtimer_try_to_cancel*/
+|	int hrtimer_callback_running(struct hrtimer *timer);
+
+Para verificar se o HRT está disponível no sistema:
+* Através arquivo de conficuração .config:
+CONFIG_HIGH_RES_TIMERS=y: cat /proc/configs.gz | grep CONFIG_HIGH_RES_TIMERS
+
+* Através da linha de comando no Target:
+cat /proc/timer_list | grep resolution	-> O retorno deve ser '.resolution: 1 nsecs'
+
+* Utilizando a system call 'clock_getres'
+
+* No código do Kernel, utilizar '#ifdef CONFIG_HIGH_RES_TIMERS'
+

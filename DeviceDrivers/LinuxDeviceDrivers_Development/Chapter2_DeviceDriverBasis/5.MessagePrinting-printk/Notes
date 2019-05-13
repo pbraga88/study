@@ -32,4 +32,4 @@ cat /proc/sys/kernel/printk
 No output acima, o primeiro valor é o nível de log atual (4), e o segundo (também 4) é o 'default', de acordo com a opção de configuração do Kernel 'CONFIG_DEFAULT_MESSAGE_LOGLEVEL'. Os outros dois valores (1 e 7) não são relevantes para este capítulo.
 
 É possível alterar o nível de log atual com o comando:
-# echo <level> /proc/sys/kernel/printk
+# echo <level> > /proc/sys/kernel/printk

@@ -1,0 +1,4 @@
+Delays and sleep in the kernel
+==============================
+Exitem dois tipos de delays no kernel, dependendeo em qual contexto o código está sendo executado: atomic ou nonatomic. O header mandatório para trabalhar com delays no kernel é:
+|	#include <linux/delay>

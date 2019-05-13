@@ -1,0 +1,11 @@
+Atomic context
+==============
+As tarefas dentro do contexto atômico (ISR, por exemplo) não podem dormir, e também não podem ser agendadas; este é o motivo pelo qual loops 'busy-wait' são utilizados para 'delays' em um contexto atômico. A família de funções de delay do kernel que irão gastar tempo em um loop busy é:
+
+* ndelay(unsigned long nsecs)
+* udelay(unsigned long usecs)
+* mdelay(unsigned long msecs)
+
+É aconselhável utilizar udelay, uma vez que ndelay é dependente do hardware utilizado e mdelay não é tão preciso. 
+
+Quando utilizado 'timers handles (callbacks)' não é permitido o uso de funções que mandem o 'caller' para o modo sleep, tais como alocação de memória, mutex, ou uma chamada explicita da função 'sleep()', uma vez que se está trabalhando no contexto ãtômico.
