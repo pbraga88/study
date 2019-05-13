@@ -7,7 +7,7 @@ include/uapi/asm-generic/errno.h
 
 ****
 
-Caso erro retornado seja uma resposta a uma chamada de sistema (system call: open, read, ioctl, mmap), o valor será automaticamente atribuído à variável global em usser=space 'errno'. Deste modo, o usupario pode utilizar 'strerror(errno)' para traduzir o erro em uma string legível:
+Caso erro retornado seja uma resposta a uma chamada de sistema (system call: open, read, ioctl, mmap), o valor será automaticamente atribuído à variável global em espaço de usuário 'errno'. Deste modo, o usupario pode utilizar 'strerror(errno)' para traduzir o erro em uma string legível:
 
 #include <errno.h>	/* to access errno global variable */
 #include <string.h>

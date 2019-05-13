@@ -1,2 +1,23 @@
 In The Kernel Tree
 ==================
+Os drivers de tipo 'char', ficam na pasta 'drivers/char' no fonte do kernel. 
+O seguinte conteúdo foi adicionado nos arquivos 'kconfig' e 'Makefile' do diretório supracitado:
+* kconfig:
+config PACKT_MYCDEV
+	tristate "Our packtpub special Character driver"
+	default m
+	help
+	  Say Y here if you want to support the /dev/mycdev device.
+	  The /dev/mycdev device is used to access packtpub.
+
+* Makefile:
+obj-$(CONFIG_PACKT_MYCDEV) += mychardev.o
+
+O arquivo de configuração '.config (/PATH/TO/LINUX/.config)' também foi alterado para acomodar o novo módulo:
+$ echo "CONFIG_PACKT_MYCDEV=m" >> .config
+
+Tal alteração também pode ser feita via 'make menuconfig':
+$ sudo PATH=toolchain/bin/:$PATH ARCH=arm make menuconfig -C stblinux-4.9/linux/
+
+- Módulo 'mychardev.ko'(~/WorkSpace/Repository/LinuxDeviceDriversDevelopment/Linux-Device-Drivers-Development/Chapter02/helloworld.c) escrito e buildado.
+- O Módulo foi carregado via wget no '/tmp' da caixa F098 e carregado com 'insmod'. 
