@@ -1,0 +1,18 @@
+Spinlock
+========
+Mecanismo de exclusão mútua que possui apenas dois estados:
+*	locked (aquired)
+*	unlocked (released)
+
+Exemplo de código de 'acquire' e 'release' do spinlock salvando o status da interrupção:
+|	/* some where */
+|	spinlock_t my_spinlock;
+|	spin_lock_init(my_spinlock);
+|	static irqreturn_t my_irq_handler(int irq, void *data)
+|	{
+|		unsigned long status, flags;
+|		spin_lock_irqsave(&my_spinlock, flags);
+|		status = access_shared_resources();
+|		spin_unlock_irqrestore(&gpio->slock, flags);
+|		return IRQ_HANDLED;
+|	}

@@ -1,0 +1,49 @@
+Linked lists
+============
+Two types of linked list exist
+ - Simply linked list
+ - Doubly linked list
+
+No kernel, apenas 'circular doubly linked lists' são utilizadas, porque esse tipo de lista permite o uso de FIFO e LIFO, e os desenvolvedores do kernel preocupam-se em manter o mínimo de código possível. O header a ser utilizado é: <linux/list.h>
+A estrutura central da implemntação de listas é 'struct list_head', definida da seguinte maneira:
+
+|struct list_head{
+|	struct list_head *next, *prev;
+|}
+
+A 'struct list_head' é utiliada tanto no cabeçalho da lista quanto em cada um dos nodes. Na esfera do kernel, antes de uma estrutura ser representada como uma 'linked list', ela deve incluir 'struct list_head'. Por exemplo, criando uma lista 'cars':
+
+|struct car{
+|	int door_number;
+|	char *color;
+|	char *model;
+|};
+
+Antes da lista ser criada, devemos alterar a estrutra para incluir 'struct list_head'. A estrutura fica assim então:
+
+|struct car{
+|	int door_number;
+|	char *color;
+|	char *model;
+|	struct list_head list; /* kernel's list structure*/
+|};
+
+Antes de qualquer coisa, é necessário criar a variável 'struct list_head' que irá sempre apontar para o primeiro elemento da lista. Esta instância de 'list_head' não é associada a nenhum 'car' e é especial:
+
+|static LIST_HEAD(carlist)
+
+Agora é possível criar 'cars' e adicioná-los à lista (carlist):
+
+|#include <linux/list.h>
+|
+|struct car *redcar = kmalloc(sizeof(*car), GFP_KERNEL);
+|struct car *bluecar = kmalloc(sizeof(*car), GFP_KERNEL);
+|
+|/* Initialize each node's list entry */
+|INIT_LIST_HEAD(&bluecar->list);
+|INIT_LIST_HEAD(&redcar->list);
+|
+|/* Allocate memory for color and model field and fill every field*/
+|[...]
+|list_add(&redcar->list, &carlist);
+|list_add(&bluecar->list, &carlist);

@@ -1,0 +1,31 @@
+ Computadores modernos são baseados na arquitetura Von Neumann, que pode ser dividida em quatro partes distintas:
+       Memory 
+   |			|
+   |			| 
+-----------------------
+ Control   Arithmetic  >   
+ Unit		  Logic	   > Also called 
+ 			  Unit	   > CPU
+ 			  (ALU)    >
+-----------------------
+ 	   |
+ 	   |
+ 	  / \
+ Input 	 Output
+
+
+ A Memória pode ser não-volátil(Read Only Memory - ROM) ou volátil (Random Access Memory - RAM).
+
+ Uma palavra (word) é o endereço de memória e é comumente encontrado com 8, 16, 32 ou 64 bits.
+ Em uma arquitetura 8 bits, por exemplo, cada palavra representa um endereço de memória de 8 bits. E isto é importante para fazer o endereçamento.  
+Exmplo de memória de 2kB de tamanho:
+0000 0000 -> @0x00
+0000 0000 -> @0x01
+0000 0000 -> @0x02
+0000 0000 -> @0x03
+[..,]
+0000 0000 -> @0xFF
+
+Tamanho do endereço (word) = 8 bits (8 cells)
+Quantidade de endereços (words) = 255 (0xFF)
+Tamanho da memória = 8 x 255 = 2040 ou 2kB (kilo bits)

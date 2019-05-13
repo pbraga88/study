@@ -1,0 +1,23 @@
+Kernel-global workqueue - the shared queue
+==========================================
+Existem três funções para adicionar para agendar tarefas na work queue compartilhada (shared work queue):
+	* A versão que amarra a tarefa à CPU atual:
+	|	int schedule_work(struct work_struct *work);
+
+	* A mesma função, mas com 'delay':
+	|	static inline bool schedule_delayed_work(struct delayed_work *dwork, unsingned long delay);
+
+	* A função que de fato agenda a tarefa em uma dada CPU:
+	|	int schedule_work_on(int cpu, struct work_struct *work);
+
+	* A mesma função que a anterior, mas com 'delay':
+	|	int scheduled_delayed_work_on(int cpu, struct delayed_work *dwork, unsigned long delay);
+
+All of these functions schedule the work given as an argument on to the system’s shared
+work queue system_wq, defined in kernel/workqueue.c:
+|struct workqueue_struct *system_wq __read_mostly;
+|EXPORT_SYMBOL(system_wq);
+
+A work already submitted to the shared queue can be cancelled with the cancel_delayed_work
+function. You can flush the shared workqueue with:
+| void flush_scheduled_work(void);

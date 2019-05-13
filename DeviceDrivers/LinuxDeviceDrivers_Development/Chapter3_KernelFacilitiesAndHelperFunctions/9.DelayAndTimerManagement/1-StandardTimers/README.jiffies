@@ -1,0 +1,20 @@
+Delay and Timer Management
+==========================
+Para lhe dar com 'relative time' o kernel depende de uma 'feature' da CPU chamada 'timer'.
+Os timers do kernel são classificados em duas partes diferentes:
+* Standard timers, ou timers do sistema;
+* Timers de alta resolução
+
+Jiffies e HZ
+===========
+Jiffy é uma unidade de tempo do kernel declarada em <linux/jiffies.h>
+O jiffy utiliza-ze da constante HZ (vem de Hertz) para mensurar seu tamanho. 
+Cada incremento do jiffy é chamado de tick e a quantidade de incrementos por segundo define 
+o valor do jiffy:
+1000 ticks = 1000HZ
+
+Uma vez definido, o PIT(programable interruput timer), que é um componente de hardware, é programado com tal valor (do Jiffy) para incrementar jiffies unidades quando o interruptor do PIT é acionado.
+
+Para não causar overflow, o jiffy deve guardado em variáveis 64-bit. 
+Em sistemas 32-bit, a variável 'jiffies' vai apontar para 32-bits de baixa ordem, enquanto a variável 'jiffies_64' vai apontar, no sistema 32-bit, para os bits de alta ordem. 
+Em sistemas 64-bit, jiffies = jiffies_64

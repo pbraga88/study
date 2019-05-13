@@ -1,0 +1,18 @@
+Moving Around a File
+====================
+Uma vez que o 'file descriptor' grava sua posição em um arquivo aberto, é possível utilizar a função 'lseek' para encontrar e/ou reposicionar o 'fd'. Para tal, a finção 'lseek' deve ser chamada com o fd mais dois argumentos que especificam a nova posição:
+	• If the third argument is SEEK_SET, lseek interprets the second argument as a position, in
+	bytes, from the start of the file;
+	
+	• If the third argument is SEEK_CUR, lseek interprets the second argument as an offset, which
+	may be positive or negative, from the current position;
+	
+	• If the third argument is SEEK_END, lseek interprets the second argument as an offset from
+	the end of the file. A positive value indicates a position beyond the end of the file.
+
+O retorno da função 'lseek' é o offset, em bytes, à partir do início do arquivo. Em caso de erro, ó retorno será -1.
+
+Para apenas encontrar a posição do fd, basa passar '0' como segundo argumento (offset) para a função lseek:
+| off_t position = lseek (file_descriptor, 0, SEEK_CUR);
+
+O tipo do offset é 'off_t'.

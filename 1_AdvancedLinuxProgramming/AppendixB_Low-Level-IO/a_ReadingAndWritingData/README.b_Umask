@@ -1,0 +1,18 @@
+Umasks
+======
+When you create a new file with open, some permission bits that you specify may be turned off.
+This is because your umask is set to a nonzero value. A process's umask specifies bits that are
+masked out of all newly created files' permissions. The actual permissions used are the bitwise and
+of the permissions you specify to open and the bitwise complement of the umask.
+To change your umask from the shell, use the umask command, and specify the numerical value of
+the mask, in octal notation. To change the umask for a running process, use the umask call, passing it
+the desired mask value to use for subsequent open calls.
+
+For example, calling this line
+| umask (S_IRWXO | S_IWGRP);
+
+in a program, or invoking this command
+% umask 027
+
+specifies that write permissions for group members and read, write, and execute permissions for
+others will always be masked out of a new file's permissions.

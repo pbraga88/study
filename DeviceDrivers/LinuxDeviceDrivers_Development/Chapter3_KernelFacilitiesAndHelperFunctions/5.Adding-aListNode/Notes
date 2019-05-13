@@ -1,0 +1,38 @@
+Adding a List Node
+==================
+o kernel disponibiliza 'list_add' para adicionar uma nova entrada à lista, que é na verdade um 'wrapper' da função interna '__list_add':
+
+|void list_add(struct list_head *new, struct list_head *head);
+|static inline void list_add(struct list_head *new, struct list_head *head)
+|{
+|	__list_add(new, head, head->next);
+|}
+
+__list_add pega duas entradas conhecidas como parâmetro, e insere o elemento passado pelo usuário entre eles. Sua implementação no kernel é bastante simples:
+
+|static inline void __list_add(struct list head *new,
+|					struct list_head *prev,
+|					struct list_head *next)
+|{
+|	nextt->prev = new;
+|	new->next = next;
+|	new->prev = prev;
+|	prev->next = new;
+|}
+
+Exemplo adicionando dois 'cars' em nossa lista:
+
+|list_add(&redcar->list, &carlist);
+|list_add(&blue->list, &carlist);
+
+Tal modo pode ser utilizado para implementar uma 'stack'. A outra função para adicionar uma entrada na lista é:
+
+|void list_add_tail(struct list_head *new, struct list_head *head);
+
+Este modo insere uma dada entrada no final da lista. Seguindo o último exemplo, pode-se escreve o seguinte:
+
+|list_add_tail(&redcar->list, &carlist);
+|list_add_tail(&blue->list, &carlist);
+
+Este modo pode ser utilizado para implementar uma 'queue'.
+

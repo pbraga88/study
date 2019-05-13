@@ -1,0 +1,12 @@
+Nonatmoic context
+=================
+Em um contexto não atômico (nonatomic), o kernel provê a família de funções sleep[_range]:
+
+* udelay(unsigned long usecs): Baseada em loop 'busy-wait'. Deve ser utilizada caso for necessário dormir por poucos usecs( <~10 us ).
+
+* usleep_range(unsigned long min, unsigned long max): Depende do 'hrtimers', e é recomendada para pequenos intervalos de usecs ou msecs (10us ~ 20ms).
+
+* msleep(usgined long msecs): Baseada em jiffies/legacy_timers. Deve ser utilizada para 'sleeps' de mais tempo (10 ms+).
+
+Documentação mais detalhada de sleep na fonte do kernel em: Documentation/timers/timershowto.
+txt.

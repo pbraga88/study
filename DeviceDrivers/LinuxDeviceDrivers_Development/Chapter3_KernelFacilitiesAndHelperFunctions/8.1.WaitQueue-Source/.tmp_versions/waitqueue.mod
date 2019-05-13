@@ -1,0 +1,3 @@
+/home/pbraga/WorkSpace/Study/DeviceDrivers/LinuxDeviceDrivers_Development/Chapter3_KernelFacilitiesAndHelperFunctions/8.1.WaitQueue-Source/waitqueue.ko
+/home/pbraga/WorkSpace/Study/DeviceDrivers/LinuxDeviceDrivers_Development/Chapter3_KernelFacilitiesAndHelperFunctions/8.1.WaitQueue-Source/waitqueue.o
+

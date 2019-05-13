@@ -1,0 +1,14 @@
+Tasklets
+========
+Tasklets são mecânismos bottom-half buildados em cima de sofirqs. Sua representação no kernel se dá como instâncias da estrutura 'tasklet_struct':
+
+|struct tasklet_struct
+|{
+|	struct tasklet_struct *next;
+|	unsigned long state;
+|	atomic_t count;
+|	void (*func)(unsigned long);
+|	unsigned long data;
+|};
+
+Tasklets não 're-entrant' por natureza, ou seja, não podem ser interrompidas durante sua execução. Além disso, podem apenas rodar em uma CPU simultaneamente, contudo diferentes tasklets podem ser executas desde que estejam em CPUs diferentes.

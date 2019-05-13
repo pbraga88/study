@@ -1,0 +1,15 @@
+Closing File Descriptors
+========================
+When you're done with a file descriptor, close it with close. In some cases, such as the program in
+Listing B.1, it's not necessary to call close explicitly because Linux closes all open file descriptors
+when a process terminates (that is, when the program ends). Of course, once you close a file
+descriptor, you should no longer use it.
+
+Closing a file descriptor may cause Linux to take a particular action, depending on the nature of the
+file descriptor. For example, when you close a file descriptor for a network socket, Linux closes the
+network connection between the two computers communicating through the socket.
+
+Linux limits the number of open file descriptors that a process may have open at a time. Open file
+descriptors use kernel resources, so it's good to close file descriptors when you're done with them.
+A typical limit is 1,024 file descriptors per process. You can adjust this limit with the setrlimit
+system call; see Section 8.5, "getrlimit and setrlimit: Resource Limits," for more information.

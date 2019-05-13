@@ -1,0 +1,3 @@
+/home/pbraga/WorkSpace/Study/DeviceDrivers/LinuxDeviceDrivers_Development/Chapter3_KernelFacilitiesAndHelperFunctions/11.WorkDeferringMechanism/4-WorkQueues/src/shared-workqueue.ko
+/home/pbraga/WorkSpace/Study/DeviceDrivers/LinuxDeviceDrivers_Development/Chapter3_KernelFacilitiesAndHelperFunctions/11.WorkDeferringMechanism/4-WorkQueues/src/shared-workqueue.o
+

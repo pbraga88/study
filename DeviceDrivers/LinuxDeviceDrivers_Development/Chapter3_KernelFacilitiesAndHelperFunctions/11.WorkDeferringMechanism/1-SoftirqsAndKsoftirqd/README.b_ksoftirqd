@@ -1,0 +1,4 @@
+ksoftirqd
+=========
+Ksoftirqd são responsáveis pela execução tardia em contexto de processo. 
+Trata-se de kernel thread por cpu para administrar software interrupts 'unserviced'.

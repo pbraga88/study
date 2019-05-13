@@ -1,0 +1,15 @@
+Timers API
+==========
+O timer é representado no kernel como uma instância da estrutura 'timer_list':
+
+|#include <linux/timer.h>
+|
+|struct timer_list{
+|	struct list_head entry;
+|	unsigned long expires;
+|	struct tvec_t_base_s *base;
+|	void (*function)(unsigned long);
+|	unsigned long data;
+|};
+
+A variável 'expires' é um valor absoluto em jiffies. 'entry' é uma lista 'doubly linked', e 'data' é opcional, e passada para a função de callback.

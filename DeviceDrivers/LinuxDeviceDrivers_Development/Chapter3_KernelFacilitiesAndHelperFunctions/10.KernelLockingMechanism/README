@@ -1,0 +1,8 @@
+Kernel locking mechanism
+========================
+Os mecânismos de 'locking' ajudam com o compartilhamento de recursos entre diferentes threads ou processos. Um recurso compartilhado é um dado ou dispositivo que pode ser acessado por pelo menos dois usuários, simultâneamente ou não. Tais mecânismos previnem acesso abusivo, por exemplo, um processo escrevendo dados quando outro está lendo no mesmo lugar, ou dois processos acessando o mesmo dispositivo (a mesma GPIO, por exemplo). Os mecânismos de locking mais importantes do kernel são:
+* Mutex
+* Semaphore
+* Spinlock
+
+Mutex e Spinlocks são muito utilizados em device drivers e serão, por tanto, os objetos de estudo deste capítulo. 

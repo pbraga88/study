@@ -1,0 +1,32 @@
+Timer setup initialization
+==========================
+Os passos para inicializar e deletar os timers são:
+
+1. Inicializando o timer: Inicializar o timer passando os dados e a callback definida pelo usuário:
+
+|void setup_timer(struc timer_list *timer, \
+|			void (*function)(unsigned long), \
+|			unsigned long data);
+
+Também é possível utilizar da seguinte maneira:
+
+|	void init_timer(struct timer_list *timer);
+
+'setup_timer' envolve (wrap) 'init_timer'.
+
+2. Configurando o tempo de expiração: Quando um timer é inicialiado, se faz necessário definir um timer de expiração antes que a callback seja disparada, em outras palavras, tempo de espera até que a callback seja disparada:
+
+|	int mod_timer(struct timer_list *timer, unsigned long expires);
+
+3. Liberando o timer: Quando o timer não está mais sendo utilizado, ele precisa ser liberado:
+
+|	void del_timer(struct timer_list *timer);
+|	int del_timer_sync(struct timer_list *timer);
+
+A função 'del_timer' retorna 'void' quer ela tenha desativado um timer pendente ou não. O retorno é '0' em um timer inativo, ou '1' em um ativo. 
+Já a funcção 'del_timer_sync', espera o 'handler' finalizar sua execução, mesmo aqueles rodando em outra CPU. Não se deve evitar a finalização do handler propositalmente, podendo causar um dead lock. O timer deve ser liberado na rotina de cleanup do módulo. 
+É possível também verificar se o timer está executando ou não, com a seguinte função:
+
+|	int timer_pending(const struct timer_list *timer);
+
+A função acima verifica se há alguma callback de timer disparada pendente.

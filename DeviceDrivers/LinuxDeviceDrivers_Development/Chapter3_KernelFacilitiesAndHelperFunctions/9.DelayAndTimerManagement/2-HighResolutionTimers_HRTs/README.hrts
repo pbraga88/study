@@ -1,0 +1,8 @@
+High Resolution Timers (HRTs)
+=============================
+Timers de alta resolução trabalham em micro segundaos (ou até mesmo, nano segundos, dependendo da arquitetura), e são muito mais rápidos quanco comparados com os timers comuns, fazendo deste tipo de timer,
+ideal para sistemas de tempo real (RTOS). Diferentemente do timer comum, que baseia-se em jiffies, o tempo desse timer é baseado em 'ktime'
+Este ripo de timer é habilitado pela opção: CONFIG_HIGH_RES_TIMERS
+
+Tanto o Kernel quanto o hardware devem possuir suporte á HRT, para que tal funcionalidade seja implementada
+

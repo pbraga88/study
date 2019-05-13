@@ -1,0 +1,3 @@
+Softirqs and ksoftirqd
+======================
+Software IRQ (softirq) é um mmecanismo de adiamento utilizado apenas para processamento rápido, uma vez que ele roda com o 'scheduler' desabilitado (em um contexto de interrupção). Do ponto de vista do desenvolvedor, ele raramente é usado (quase nunca) de maneira direta.

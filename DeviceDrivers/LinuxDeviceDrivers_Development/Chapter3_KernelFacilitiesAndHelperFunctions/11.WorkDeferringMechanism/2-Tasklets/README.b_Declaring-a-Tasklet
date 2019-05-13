@@ -1,0 +1,9 @@
+Declaring a Tasklet
+===================
+Dinamicamente:
+|void tasklet_init(struct tasklet_struct *t,
+|		void (*func)(unsigned long), unsigned long data);
+
+Estáticamente:
+|DECLARE_TASKLET( tasklet_example, tasklet_function, tasklet_data );
+|DECLARE_TASKLET_DISABLED(name, func, data);

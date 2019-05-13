@@ -1,0 +1,30 @@
+Creating and initializing the list
+==================================
+É possível criar e inicializar a lista de maneira dinâmica ou estática.
+
+-> O método dinâmico consiste de uma 'struct list_head' e inicializa a lista com a macro 'INIT_LIST_HEAD':
+
+|struct list_head mylist;
+|INIT_LIST_HEAD(&mylist);
+
+E a expansão da macro 'INIT_LIST_HEAD':
+
+|static inline void INIT_LIST_HEAD(struct list_head *list)
+|{
+|	list->next = list;
+|	list->prev = list;
+|}
+
+-> Já a alocação estática é feita com a macro 'LIST_HEAD':
+
+|LIST_HEAD(mylist)
+
+A definição da macro é a seguinte:
+
+|#define LIST_HEAD(name)
+|	struct list_head name = LIST_HEAD_INIT(name)
+
+E sua expansão:
+|#define LIST_HEAD_INIT(name) { &(name), &(name) }
+
+Tal definição assina cada ponteiro ('prev' e 'next') dentro do campo 'name' para apontar para o próprio 'name' (da mesma maneira que 'INIT_LIST_HEAD' faz).

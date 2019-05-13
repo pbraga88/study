@@ -1,0 +1,8 @@
+Dedicated work queue
+====================
+Este tipo de queue é utilizada para executar uma tarefa em uma thread dedicada do kernel.
+Para escalonar na thread dedicada do kernel:
+1. Declare/initialize a struct workqueue_struct.
+2. Create your work function.
+3. Create a struct work_struct so that your work function will be embedded into it.
+4. Embed your work function in the work_struct.

@@ -1,0 +1,8 @@
+Reading Data
+============
+Assim como o método de write(), 'read()' necessita do file 'file descriptor (fd)' do arquivo, o buffer para qual a leitura será feita (buf), e até quantos bytes serão lidos (count).
+
+SYNOPSIS
+       #include <unistd.h>
+
+       ssize_t read(int fd, void *buf, size_t count);

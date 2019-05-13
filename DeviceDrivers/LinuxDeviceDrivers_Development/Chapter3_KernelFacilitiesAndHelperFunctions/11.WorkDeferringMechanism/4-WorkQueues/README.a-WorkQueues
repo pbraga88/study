@@ -1,0 +1,5 @@
+Work queues
+===========
+Adicionado à partir do Kernel Linux 2.6, este é o modo de deferinmento (deferring) mais simples e mais utilizado. 
+Tal método é construido em cima de threads do kernel. Uma vez que existe alguma tarefa à ser executada, ela pode ser agendada na 'global work queue', que será executada no momento apropriado. 
+Também é possível executar a tarefa em uma thread dedicada, sendo que sempre que for necessário executar tal tarefa, esta thread dedicada é chamada.
