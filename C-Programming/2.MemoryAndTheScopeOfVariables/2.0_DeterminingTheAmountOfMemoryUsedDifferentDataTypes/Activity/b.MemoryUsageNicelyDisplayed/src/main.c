@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define MEGA 1000000
+#define KILO 1000
+
 char *convertData(int data);
 
 int main()
@@ -32,13 +35,27 @@ int main()
 
 char *convertData(int data)
 {
-	/*if(data/1000000)*/
-
 	char *ret = malloc(1024);
-	sprintf(ret, "teste %d", data);
+	int b, kb, mb;
 
+	if((mb = data/MEGA))
+	{
+		kb = (data%MEGA)/KILO;
+		b = (data%MEGA)%KILO;
+		sprintf(ret, "%d MB and %d KB and %d B", mb, kb, b);
+	}
+
+	else if((kb = data/KILO))
+	{
+		b = data%KILO;
+		sprintf(ret, "%d KB and %d B", kb, b);
+	}
+	
+	else
+	{
+		b = data;
+		sprintf(ret,"%d B", b);
+	}
 
 	return ret;
-
-
 }
