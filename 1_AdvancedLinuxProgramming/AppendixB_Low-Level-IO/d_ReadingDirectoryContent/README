@@ -1,0 +1,16 @@
+Reading Directory Content
+=========================
+To read the contents of a directory, follow these steps:
+
+1. Call opendir, passing the path of the directory that you want to examine. The call to
+opendir returns a DIR* handle, which you'll use to access the directory contents. If an error
+occurs, the call returns NULL.
+
+2. Call readdir repeatedly, passing the DIR* handle that you obtained from opendir. Each
+time you call readdir, it returns a pointer to a struct dirent instance corresponding to
+the next directory entry. When you reach the end of the directory's contents, readdir
+returns NULL.
+The struct dirent that you get back from readdir has a field d_name, which contains the
+name of the directory entry.
+
+3. Cal closedir, passing the DIR* handle, to end the directory listing operation.
