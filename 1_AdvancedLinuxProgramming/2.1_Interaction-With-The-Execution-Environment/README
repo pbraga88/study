@@ -1,0 +1,14 @@
+GNU/Linux Command-Line Conventions
+==================================
+Almost all GNU/Linux programs obey some conventions about how command-line arguments are
+interpreted. The arguments that programs expect fall into two categories: options (or flags) and
+other arguments. Options modify how the program behaves, while other arguments provide inputs
+(for instance, the names of input files).
+Options come in two forms:
+	
+	• Short options consist of a single hyphen and a single character (usually a lowercase or
+	uppercase letter). Short options are quicker to type.
+	
+	• Long options consist of two hyphens, followed by a name made of lowercase and uppercase
+	letters and hyphens. Long options are easier to remember and easier to read (in shell scripts,
+	for instance).
