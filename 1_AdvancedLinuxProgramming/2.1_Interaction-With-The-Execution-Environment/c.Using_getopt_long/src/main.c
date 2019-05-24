@@ -84,8 +84,8 @@ int main(int argc, char** argv)
 	specified. */
 	if(verbose){
 	int i;
-	for(i = optind; i < argc; ++i)
-		printf("Argument: %s\n", argv[i]);
+	for(i = optind; i <= argc; i++)
+		printf("Argument: %s\n", argv[i-1]);
 	}
 	
 	/* Implementar main program */

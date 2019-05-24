@@ -20,8 +20,8 @@ CC_FLAGS=-c         \
          -W         \
          -Wall      \
          -ansi      \
-         -pedantic
- 
+         -pedantic  \
+	 -g 
 
 # Command used for clean
 RM = rm -rf
