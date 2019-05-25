@@ -4,10 +4,16 @@ void reverseArray(int *ptr);
 int main()
 {
 	int arr[6];
-	scanf("%d %d %d %d %d %d", &arr[0], &arr[1], &arr[2], &arr[3], &arr[4], &arr[5]);
+	int i;
+	for(i = 0; i < 6; i++)
+		scanf("%d", &arr[i]);
+
 	reverseArray(arr);
-	printf("%d %d %d %d %d %d\n", arr[0], arr[1], arr[2], arr[3], arr[4], arr[5]);
-	printf("%ld\n", sizeof(arr)/sizeof(int));
+
+	for(i = 0; i < 6; i++)
+		printf("%d", arr[i]);
+	
+	printf("\n%ld\n", sizeof(arr)/sizeof(int));
 
 	return 0;
 }
