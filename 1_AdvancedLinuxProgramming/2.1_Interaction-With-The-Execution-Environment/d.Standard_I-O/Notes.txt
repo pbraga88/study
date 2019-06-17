@@ -1,0 +1,10 @@
+When invoking a program, it is sometimes useful to redirect both standard output and standard
+error to a file or pipe. The syntax for doing this varies among shells; for Bourne-style shells
+(including bash, the default shell on most GNU/Linux distributions), the syntax is this:
+
+	% program > output_file.txt 2>&1
+	% program 2>&1 | filter'
+
+The 2>&1 syntax indicates that file descriptor 2 (stderr) should be merged into file descriptor 1
+(stdout). Note that 2>&1 must follow a file redirection (the first example) but must precede a pipe
+redirection (the second example).
