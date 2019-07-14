@@ -1,0 +1,10 @@
+Your shell, like any other program, has an environment. Shells provide methods for examining and
+modifying the environment directly. To print the current environment in your shell, invoke the
+printenv program. Various shells have different built-in syntax for using environment variables;
+the following is the syntax for Bourne-style shells.
+• The shell automatically creates a shell variable for each environment variable that it finds,
+so you can access environment variable values using the $varname syntax. For instance:
+[pbraga ~ ]$echo $USER
+pbraga
+[pbraga ~ ]$echo $HOME
+/home/pbraga
