@@ -1,7 +1,11 @@
 # Makefile draft
 
 # Project Name
+<<<<<<< HEAD
+PROJ_NAME=modifyStructures
+=======
 PROJ_NAME=passStructuresToFunctions
+>>>>>>> 11c757bb0d6995e78d31e182a23e346e277a845f
 
 # .c files
 C_SOURCE=$(wildcard ./src/*.c)

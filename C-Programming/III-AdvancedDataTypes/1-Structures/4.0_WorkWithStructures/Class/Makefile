@@ -1,7 +1,7 @@
 # Makefile draft
 
 # Project Name
-PROJ_NAME=passStructuresToFunctions
+PROJ_NAME=sizeOfStructure
 
 # .c files
 C_SOURCE=$(wildcard ./src/*.c)

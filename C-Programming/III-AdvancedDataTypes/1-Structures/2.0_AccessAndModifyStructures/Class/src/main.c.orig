@@ -1,4 +1,30 @@
 #include <stdio.h>
+<<<<<<< HEAD
+
+struct student {
+	char firstName[30];
+	char lastName[30];
+	int birthYear;
+	double aveGrade;
+};
+
+int main()
+{
+	struct student learner;
+	printf("First Name\n");
+	scanf("%s", learner.firstName);
+	printf("Last Name\n");
+	scanf("%s", learner.lastName);
+	printf("Year of birth\n");
+	scanf("%d", &learner.birthYear);
+	printf("Average grade\n");
+	scanf("%lf", &learner.aveGrade);
+
+	printf("Name: %s %s\n", learner.firstName, learner.lastName);
+	printf("Year of birth: %d\n", learner.birthYear);
+	printf("Average grade: %.2f\n", learner.aveGrade);
+
+=======
 #include <stdlib.h>
 #include <string.h>
 
@@ -33,6 +59,7 @@ int main(){
 	}
 	me.name[i] = '\0';
 	printf("%s %s %d %.2f\n",me.name, me.lastName, me.age, me.grade );
+>>>>>>> 11c757bb0d6995e78d31e182a23e346e277a845f
 
 	return 0;
 }
