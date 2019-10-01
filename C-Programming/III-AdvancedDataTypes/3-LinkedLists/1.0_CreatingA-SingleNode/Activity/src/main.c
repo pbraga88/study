@@ -8,6 +8,7 @@ struct student {
 };
 
 struct student *createStudent(char studentName[], int studentAge);
+void copyString(char dest[], char src[]);
 
 int main(void) {
     struct student *studptr;
@@ -21,15 +22,20 @@ int main(void) {
 }
 
 struct student *createStudent(char studentName[], int studentAge) {
-	int i = 0;
 	struct student *ptr;
 	ptr = (struct student *)malloc(sizeof(struct student));
-	while(studentName[i]!='0') {
-		ptr->name[i] = studentName[i];
-		i++;
-	}
-	ptr->name[i] = '\0';
+	copyString(ptr->name, studentName);
 	ptr->age = studentAge;
 	ptr->next = NULL;
 	return ptr;
+}
+
+void copyString(char dest[], char src[])
+{
+	int i = 0;
+	while(src[i] != '\0') {
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
 }
