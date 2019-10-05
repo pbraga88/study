@@ -11,13 +11,18 @@ struct digit * append(struct digit * end, struct digit * newDigptr);
 void printNumber(struct digit *);
 void freeNumber(struct digit *start);
 struct digit *readNumber(void);
+int divisibleByThree(struct digit *start);
 
 int main(void) {
     struct digit *start;
 
-    printf("Enter a integer numerical value");
+    printf("Enter a integer numerical value:\n");
     start = readNumber();
     printNumber(start);
+    if (divisibleByThree(start)) 
+        printf("is divisible by 3.\n");
+    else
+        printf("is not divisible by 3.\n");
     freeNumber(start);
     return 0;
 }
@@ -32,7 +37,7 @@ struct digit *createDigit(int dig) {
 
 struct digit * append(struct digit * end, struct digit * newDigptr) {
     end->next = newDigptr;
-    return(end->next);
+    return (end->next);
 }
 
 void printNumber(struct digit *start) {
@@ -56,17 +61,17 @@ void freeNumber(struct digit *start) {
 
 struct digit *readNumber()
 {
-    int c, d;
+    char c;
+    int d;
     struct digit *start, *end, *newDigptr;
     start = NULL;
     scanf("%c", &c);
-
     while(c != '\n') {
-        d = c - 48; // Conversion from ASCII value
+        d = c - 48; /* Conversion from ASCII value*/
         newDigptr = createDigit(d);
         if(start == NULL) {
             start = newDigptr;
-            end = start
+            end = start;
         }
         else {
             end = append(end, newDigptr);
@@ -74,4 +79,19 @@ struct digit *readNumber()
         scanf("%c", &c);
     }
     return start;
+}
+
+int divisibleByThree(struct digit *start)
+{
+    int n = 0;
+    while(start != NULL) {
+        n += start->num;
+        start = start->next;
+    }
+
+
+    if(n%3)
+        return 0; /*Is not divisible by 3*/
+    else
+        return 1; /*Is divisible by 3*/
 }
