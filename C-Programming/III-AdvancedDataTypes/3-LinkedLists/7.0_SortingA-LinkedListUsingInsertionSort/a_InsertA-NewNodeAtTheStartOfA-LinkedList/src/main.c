@@ -12,7 +12,8 @@ void printNumber(struct digit *);
 void freeNumber(struct digit *start);
 struct digit * readNumber();
 struct digit *searchNumber(struct digit *start,int number);
-struct digit *reverseDigits(struct digit *start);
+struct digit *reverseDigits(struct digit *pStart);
+struct digit *addInfront(struct digit *nbdigit, struct digit *bstart);
 
 int main(void) {
     int nb = 5;
@@ -26,10 +27,10 @@ int main(void) {
     else {
         printf("Number %d not found.\n", nb);
     }
-
     printNumber(start);
 
     reverse = reverseDigits(start);
+    printNumber(reverse);
 
     freeNumber(start);
     return 0;
@@ -95,19 +96,27 @@ struct digit *searchNumber(struct digit *start,int number)
     return start;
 }
 
-struct digit *reverseDigits(struct digit *start)
+struct digit *reverseDigits(struct digit *pStart)
 {
+    struct digit *ptr = pStart;
     struct digit *bstart;
     struct digit *nbdigit;
 
-    if (start != NULL) {
-        bstart = createDigit(start->num);
-        start = start->next;
+    if (ptr != NULL) {
+        bstart = createDigit(ptr->num);
+        ptr = ptr->next;
     }
 
-    while (start != NULL) {
-        nbdigit = createDigit(start->nunm);
-        bstart = addInfront(nbdigit);
+    while (ptr != NULL) {
+        nbdigit = createDigit(ptr->num);
+        bstart = addInfront(nbdigit, bstart);
+        ptr = ptr->next;
     }
-    
+    return bstart;
+}
+
+struct digit *addInfront(struct digit *nbdigit, struct digit *bstart) 
+{
+    nbdigit->next = bstart;
+    return nbdigit;
 }
