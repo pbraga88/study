@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct digit {
+/*struct digit {
     int num;
     struct digit *next;
 };
@@ -154,4 +154,61 @@ struct digit *appendSorted(struct digit *startSorted, struct digit *newSorted)
 {
 
     
+}*/
+
+int main()
+{
+    int i = 0; 
+    int store;
+    int n;
+    int elementsQty = 0;
+    int flag = 1;
+    int numberArray[256];
+    char numbers;
+
+    printf("Enter with Numbers:\n");
+    scanf("%c", &numbers);
+    while (numbers != '\n') {
+        numberArray[elementsQty] = numbers - 48;
+        elementsQty++;
+        scanf("%c", &numbers);
+    }
+    for (n = 0; n < elementsQty; n++)
+        printf("%d", numberArray[n]);
+    printf("\n");
+
+
+    /*int elementsQty = sizeof(numberArray)/sizeof(numberArray[0]);*/
+    
+    while (flag) {
+        flag = 0;
+        n = 1;
+        for (i=0; i < elementsQty; i++) {
+            if (numberArray[i] > numberArray[n]) {
+                store = numberArray[i];
+                numberArray[i] = numberArray[n]; 
+                numberArray[n] = store;
+                flag = 1;
+            }
+            n++;
+        }
+    }
+
+    for (i = 0; i < elementsQty; i++) 
+        printf("%d ", numberArray[i]);
+
+    printf("\n");
+
+    return 0;
 }
+
+
+
+
+
+
+
+
+
+
+

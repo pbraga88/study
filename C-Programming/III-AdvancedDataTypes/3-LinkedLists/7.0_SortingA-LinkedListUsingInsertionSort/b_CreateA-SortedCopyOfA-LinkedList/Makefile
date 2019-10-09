@@ -19,8 +19,8 @@ CC=gcc
 CC_FLAGS=-c         \
          -W         \
          -Wall      \
-         -ansi      \
-         -pedantic
+#         -ansi      \
+#         -pedantic
  
 
 # Command used for clean
