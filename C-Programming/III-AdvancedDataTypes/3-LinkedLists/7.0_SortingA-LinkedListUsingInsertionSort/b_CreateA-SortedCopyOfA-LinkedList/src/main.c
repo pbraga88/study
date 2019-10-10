@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*struct digit {
+struct digit {
     int num;
     struct digit *next;
 };
@@ -152,54 +152,23 @@ struct digit *sortDigits(struct digit *start)
 
 struct digit *appendSorted(struct digit *startSorted, struct digit *newSorted)
 {
+    struct digit *ptr = startSorted;
+    struct digit *prevLinearPosition = NULL;
 
-    
-}*/
-
-int main()
-{
-    int i = 0; 
-    int store;
-    int n;
-    int elementsQty = 0;
-    int flag = 1;
-    int numberArray[256];
-    char numbers;
-
-    printf("Enter with Numbers:\n");
-    scanf("%c", &numbers);
-    while (numbers != '\n') {
-        numberArray[elementsQty] = numbers - 48;
-        elementsQty++;
-        scanf("%c", &numbers);
-    }
-    for (n = 0; n < elementsQty; n++)
-        printf("%d", numberArray[n]);
-    printf("\n");
-
-
-    /*int elementsQty = sizeof(numberArray)/sizeof(numberArray[0]);*/
-    
-    while (flag) {
-        flag = 0;
-        n = 1;
-        for (i=0; i < elementsQty; i++) {
-            if (numberArray[i] > numberArray[n]) {
-                store = numberArray[i];
-                numberArray[i] = numberArray[n]; 
-                numberArray[n] = store;
-                flag = 1;
-            }
-            n++;
-        }
+    while (ptr!=NULL && ptr->num < newSorted->num) {
+        prevLinearPosition = ptr;
+        ptr = ptr->next;
     }
 
-    for (i = 0; i < elementsQty; i++) 
-        printf("%d ", numberArray[i]);
+    if (prevLinearPosition == NULL) {
+        startSorted = addInfront(newSorted, startSorted);
+    }
+    else {
+        prevLinearPosition->next = newSorted;
+        newSorted->next = ptr;
+    }
 
-    printf("\n");
-
-    return 0;
+    return startSorted;
 }
 
 
@@ -207,8 +176,51 @@ int main()
 
 
 
+/* Sortinf Arrays for practice */
+/*int main()
+{
+    int i = 0; 
+    int store;
+    int n;
+    int elementsQty = 0;
+    int flag = 1;
+    int numberArray[128];
+    char numbers;
+
+    printf("Enter with Numbers:\n");
+    scanf("%c", &numbers);
+    while (numbers != '\n') {
+        if (numbers != ' '){
+            numberArray[elementsQty] = numbers - 48;
+            elementsQty++;
+        }
+        scanf("%c", &numbers);
+    }
+    for (n = 0; n < elementsQty; n++)
+        printf("%d ", numberArray[n]);
+    printf("\n");
 
 
+    
+    printf("eq: %d\n", elementsQty);    
+    while (flag) {
+        flag = 0;
+        //n = 1;
+        for (i=0; i < elementsQty-1; i++) {
+            if (numberArray[i] > numberArray[i+1]) {
+                store = numberArray[i];
+                numberArray[i] = numberArray[i+1]; 
+                numberArray[i+1] = store;
+                flag = 1;
+            }
+            // n++;
+        }
+    }
 
+    for (i = 0; i < elementsQty; i++) 
+        printf("%d ", numberArray[i]);
 
-
+    printf("\n");
+    printf("%d\n", numberArray[0]);
+    return 0;
+}*/
