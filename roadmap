@@ -1,0 +1,34 @@
+Cursos para certificação C, C++ e Python
+========================================
+https://openedg.org/courses/
+
+Next Courses
+============
+* Realtime Bluetooth Networks (RTOS) -> edx
+* C++ Advanced -> CPP Institute
+* Object Oriented Python -> CPP Institute (?)
+* Advanced Linux Programming -> Book
+* Unix Networking Programming (?!)-> Book
+
+To improve
+==========
+* Makefile (linking libs/ object file) -> 
+* Entendimento de libs .a e .so -> 
+* Computer/Embedded system archtecture understanding ->
+* Memory understanding ->
+* Broadcom Nexus ->
+* Linux file system ->
+* Linux bootimage components (rootfs, initramfs, etc)
+* Hardware (understanding from schemes)
+
+Personal Projects
+=================
+Glodin
+
+Lessons Learned
+===============
+* Flashtool
+* BSP build Script
+* F273/F277 BringUP
+* API 3.0.3 integration
+* GCTIO test tool
