@@ -1,0 +1,29 @@
+Compilando
+==========
+-c -> Flag utilizada para criar apenas arquivo objeto. Sem ela, o compilador tentar criar um arquivo binário executável.
+-I -> Flag utilizada para indicar o caminho do header
+e.g:
+$ gcc -c -I include/ src/inverso.so 	-> Cria o arquivo inverso.o
+
+-D -> Flag utilizada para passar #define no momento da compilação
+e.g: 
+$ gcc -c -I include/ -D NDEBUG=1 src/inverso.c
+
+-O2 -> Um dos níveis de otimização do compilador gcc
+e.g: 
+$ gcc -c -I include/ -D NDEBUG=1 -O2 src/inverso.c
+
+***** For more information *****
+$ info gcc
+
+Link dos arquivos objeto
+========================
+-o -> Flag utilizada para o nome do output binário executável
+No exemplo à seguir, os arquivos objeto criados anteriorment são 'linkados' para gerar o binário:
+$ gcc -o inverso main.o inverso.o
+
+-l -> Esta flag é utilizada para adicionar outras libs. Por exemplo, para incluir a lib "libpam.a", pode-se utilizar o comando abaixo:
+gcc -o inverso main.o inverso.o -lpam 	-> A grande maioria das libs linux começam com 'lib'. Portanto o gcc complementa o nome e adiciona o sufixo ".a".
+
+-L -> Flag utilizada para definir um caminho adicional para busca de libs. O compilador, por padrão, busca as libs em "/lib" e "/usr/lib". Se a opção "-L" for utilizada, primeiro o compilador busca na pasta apontada por tal opção. Veja exemplo:
+$ gcc -o inverso main.o inverso.o -L/usr/local/lib/pam -lpam 	-> A flag -L deve ser utilizada mesmo que a 																   lib esteja no mesmo repositório de build.

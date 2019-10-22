@@ -5,6 +5,8 @@ PROJ_NAME=wkFunc
 
 # .c files
 C_SOURCE=$(wildcard ./src/*.c)
+# A macro wildcard pega todos os arquivos .c no diretório src e os atribui, separados por espaço,
+# à variável C_SOURCE
 
 # .h files
 H_SOURCE=$(wildcard ./src/*.h)
@@ -29,6 +31,9 @@ RM = rm -rf
 #
 # Compilation and Linking
 #
+
+print-%  : ; @echo $* = $($*)
+
 all: objFolder $(PROJ_NAME)
 
 $(PROJ_NAME): $(OBJ)
@@ -53,5 +58,6 @@ objFolder:
 clean:
 	@ $(RM) ./objects/*.o $(PROJ_NAME) *~
 	@ rmdir objects
+# *~ é utilizado para excluir arquivos de backup 
 
 .PHONY: all clean
