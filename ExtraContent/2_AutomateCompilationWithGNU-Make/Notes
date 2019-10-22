@@ -1,0 +1,6 @@
+O Makefile é baseado na seguinte sintaxe:
+|target: dependência
+|	receita
+
+obs.: Sempre deve haver um tab de espaço antes da receita
+
