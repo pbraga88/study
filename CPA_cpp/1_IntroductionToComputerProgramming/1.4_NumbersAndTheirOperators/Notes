@@ -1,0 +1,22 @@
+The point makes a float!
+4.0 = float
+4. = float
+.4 = float
+4 = int
+
+300000000 = 3 x 10^8
+Em C++: 3E8
+		3e8
+Para expoente negativo (número muito pequeno, maior parte das vezes):
+6.62607 · 10^-34 (Constante de Plank)
+Em C++: 6.62607E-34
+		6.62607e-34
+
+Converter float em int e vice-versa causa perda de precisão
+
+Nunca dividir por 0!
+|float x,y;
+|
+|x = 0.0;
+|y = 1.0 / x;
+O código acima deve causar uma exception

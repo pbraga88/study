@@ -24,20 +24,20 @@ all: objFolder $(PROJECT)
 
 $(PROJECT): $(OBJ)
 	@ echo 'Link to build binary: $@'
-	$(CC) $^ -o $@
+	$(CC) -o $@ $^
 	@ echo ' '
 # $@ = TARGET; $^ = Todos os arquivos dependentes
 # O caracter '@' é utilizado para suprimir a mensagem a ser printada
 
 ./obj/main.o: ./src/main.c
 	@ echo 'Build main obj: $<'
-	$(CC) $< $(CFLAGS) -I $(INC) -o $@
+	$(CC) $(CFLAGS) -I $(INC) $< -o $@
 	@ echo ' '
 # $@ = TARGET; $< = Primeiro arquivo dependente
 
 ./obj/%.o: ./src/%.c
-	@ echo 'Build other obj: $<'
-	$(CC) $< $(CFLAGS) -DNDEBUG=1 -I $(INC) -o $@
+	@ echo 'Build obj: $<'
+	$(CC) $(CFLAGS) -DNDEBUG=1 -I $(INC) $< -o $@
 	@ echo ' '
 # Flag NDEBUG exclusiva para este projeto
 
