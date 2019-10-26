@@ -16,12 +16,17 @@ CFLAGS=-c 	    \
 
 CC=gcc 
 
+# Used to create static library
+AR=ar
+
 # Objects to create static library
 static_lib += obj/printAndFree.o
 static_lib += obj/linkedListOperations.o
 static_lib += obj/numberOperations.o
 
-AR=ar
+# Se o "make" for passado sem target, os targets são printados
+default:
+	@ echo "Targets: all buildStatic staticLib clean print-<VAR>"
 
 # To print variables: make print-<VAR>
 print-%  : ; @echo $* = $($*)

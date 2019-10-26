@@ -1,0 +1,47 @@
+A biblioteca compartilhada (shared lib), assim como a estática, é composta por arquivos objeto. A diferença
+fundamental, contudo, para uma lib estática, está no fato de a shared library (lib.so) não ser incluída no 
+binário final. O que acontece é apenas o binário referenciar a lib.so. Daí o nome shared (comartilhado), pois uma mesma lib.so pode set 'linkada' com diversos binários.
+
+Uma segunda, é o fato de que quando o binário faz o link com a lib.so, tal link é feito com o arquivo como
+um todo, e não somente com os arquivos objeto necessários, como acontece na lib estática. 
+
+
+Para criar arquivos objeto que serão utilizados em uma lib.so, a flag fPIC (Position-Independent Code) 
+deve ser utilizada:
+|$ gcc -c -fPIC src/linkedListOperations.c src/numberOperations.c src/printAndFree.c -I include
+Output
+| linkedListOperations.o  numberOperations.o  printAndFree.o
+
+
+Finalmente, para criar a biblioteca compartilhada .so:
+|$ gcc -shared -o liblinkedlist.so linkedListOperations.o numberOperations.o printAndFree.o
+Output:
+| liblinkedlist.so
+A flag 'shared' instrui o compilador a criar uma shared library ao invés de um executável
+
+
+Para linkar o binário com uma shared library, usa-se o mesmo comando utilizado para lib estática:
+|$ gcc -c src/main.c -I include/				<- para criar o arquivo objeto main.o
+|$ gcc -o myAppSO main.o -L. -llinkedlist
+Output:
+| myAppSO
+
+Caso o diretório apontado pela flag '-L' possua as versões estática e shared da lib, o linker dá preferência para a versão shared. Para forçar o uso da lib estática, deve-se utilizar a flag '-static':
+|$ gcc -static -o myAppA main.o -L. -llinkedlist
+
+ldd -> O comando ldd é utilizado para verificar quais shared libraries estão linkadas à um binário:
+|$ ldd myAppSO
+Output:
+	linux-vdso.so.1 (0x00007fff1fb76000)
+	liblinkedlist.so => not found
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f315bf16000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007f315c509000)
+
+Uma vez que o linker não adiciona automaticamente o path para a shared lib quando do momento da compilação,
+deve-se especificar tal path ou no próprio comando de compilação ou via variável de ambiente.
+Definindo o path na compilação com as flags '-Wl, -rpath':
+|$ gcc -o myAppSO main.o -L. -llinkedlist -Wl,-rpath,./
+Outra opção (mais comum) é utilizar a variável de ambiente 'LD_LIBRARY_PATH' apontando para o caminho onde
+deve ser feita a busca da shared lib:
+|$ export LD_LIBRARY_PATH=./	<- aponta para o diretório atual
+|$ gcc -o myAppSO main.o -L. -llinkedlist
