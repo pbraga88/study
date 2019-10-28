@@ -1,0 +1,8 @@
+=	<- assignement operator
+==	<- "are these values equal" binary operator with low priority
+!=	<- "are these values different" binary operator with low priority
+>	<- maior que
+>=	<- maior ou igual. Prioridade maior que '==' e '!='
+
+|Answer = Value1>=Value2;
+A variável answer guarda '1' caso true e '0' caso false

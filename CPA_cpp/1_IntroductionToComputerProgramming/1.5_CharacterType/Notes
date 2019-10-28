@@ -1,0 +1,22 @@
+A tabela de códigos ASCII é um subset do padrão internacional UNICODE. Tal padrão é capaz de representar 
+virtualmente todos os caracteres.
+
+Para atribuir um valor a uma variável do tipo 'char', utiliza-se aspas simples
+| char character;
+| character = 'A';
+
+Na tabela ASCII, letra 'A' é representada pelo número decimal 65:
+|	char c = 65; // 65 = 'A'
+|	cout << c << endl;
+output
+| A
+
+Para declarar caracteres especiais como o apóstrofe, deve-se utilizar o backslash '\' (escape character):
+| char character = '\'';	// Declara o apóstrofe (')
+
+'\n'	-> LF (Line Feed) Transição para a próxima linha
+'\r'	-> CR (Carriage Return) Retorna para o começo da linha
+'\a'	-> BEL (de bell) quando enviado para tela, aciona um pequeno beep
+'\0'	-> null (do latim 'nullus')
+
+É possível passar valores inteiros para um tipo char e um char para uma var int.
