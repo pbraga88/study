@@ -20,3 +20,46 @@ Nunca dividir por 0!
 |x = 0.0;
 |y = 1.0 / x;
 O código acima deve causar uma exception
+
+O remainder operator '%' calcula o resto de uma divisão de dois inteiros. Seus argumentos não podem
+ser do tipo float:
+| int i, j, k;
+| i = 13;
+| j = 5;
+| k = i%j;
+| cout<< k <<endl;
+output:
+3
+
+|2*3%5
+Os operadores acima têm a mesma prioridade em C++, contudo, como as operações são realizadas da 
+esquerda para a direira, primeiro é executado '2*3' e com o resultado é e feita a operação 
+dp 'remainder' %: 6%5=1;
+
+++ -> o operador ++ (plus plus) adiciona 1 à variável:
+| int i = 0;
+| i++;
+| cout << i << endl;
+ouput
+1
+para subtrair basta usar 'i --'
+
+Os operadores ++ e -- são chamados de operadores de incremento e decremento, respectivamente, e 
+também podem ser posicionados antes da variável à ser incrementada/decrementada. Para ser mais 
+correto, tais operadores devem ser chamdos de pre/post-increment/decrement.
+Caso o operador seja colocado antes da variável, tal variável tem seu valor alterado antes de ser 
+usada, caso o operador for colocado após a variável, esta mesma variável pode ser utilizada (por 
+exemplo, ter seu valor atribuido a uma outra variável) antes de ter seu valor alterado. Exemplo:
+|int i = 1;
+|int y;
+|y = i++;
+|cout<< y << ' ' << i <<endl;
+output:
+|1 2
+==
+|int i = 1;
+|int y;
+|y = ++i;
+|cout<< y << ' ' << i <<endl;
+output
+2 2
