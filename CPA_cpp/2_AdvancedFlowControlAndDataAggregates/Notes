@@ -1,3 +1,44 @@
+2.1 - If and Else
+=================
+Conditional statement com apenas uma instrução:
+|if(condition)
+|	doSomething();
+|else
+|	soSomethingElse();
+
+Se há mais instruções, cria-se então um bloco:
+|if(condition) {
+|	doSomething();
+|	takeArest();
+|	}
+|else {
+|	soSomethingElse();
+|	takeArest();
+|	}
+
+Quando uma condição é colocada dentro de outra, isto é chamado de nesting (aninhamento):
+|if(TheWeatherIsGood)
+|     if(NiceRestaurantFound)
+|            HaveLunch();
+|     else
+|            EatASandwich();
+|else
+|      if(TicketsAvailable)
+|            GoToATheatre();
+|     else
+|            GoShopping();
+
+Quando várias condições if são colocadas em sequencia, isto ś chamado de cascade (cascata). Para tal, 
+utiliza-se o conditional statement 'else if':
+|if(TheWeatherIsGood)
+|    GoForAWalk();
+|else if(TicketsAvailable)
+|    GoToATheatre();
+|else if(TableAvailable)
+|    GoForALunch();
+|else
+|    PlayChessAtHome();
+
 2.2 - More types and when to use them
 ===============================
 int normally is 4 bytes long (32 bits) and its size goes from -2147483648 to 2147483647

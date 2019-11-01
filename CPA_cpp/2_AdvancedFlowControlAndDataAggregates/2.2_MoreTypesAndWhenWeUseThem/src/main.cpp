@@ -19,14 +19,17 @@ int main() {
 
 	// cout<<"Size of char: "<<sizeof(x)<<endl;
 
-	// long double var = 1111111111111111111.111111;
+	// float var = 1111111111111111111.111111;
+	// double var_double = 1111111111111111111.111111;
+	// cout << fixed << var << endl << var_double << endl;
 	// cout << "Size of double: " << sizeof(double) << endl \
 	// 	 << "Size of long double: "<< sizeof(long double) << endl;
 
-	float a = 11111111000.0;
-	float b = 0.00011111111;
-	float result = a + b;
-	cout << fixed << result << endl;
+	// float a = 11111111000.0;
+	// float b = 0.00011111111;
+	// float result = a + b;
+	// cout << fixed << result << endl;
+	cout << sizeof(bool) << endl;
 
 	return 0;
 }
