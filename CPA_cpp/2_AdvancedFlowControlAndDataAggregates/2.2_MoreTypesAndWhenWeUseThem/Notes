@@ -19,3 +19,7 @@ o tipo int pode ser omitido, uma vez que toda declaração faltando o tipo, é c
 
 O tipo char tem normalmente tamanho de 1 byte (8 bits) indo de -128 até 127. Caso seja declarada com 
 o modifier 'unsigned', vai de 0 até 255.
+
+quando o valor literal é acompanhdo por 'l' ou 'L', o compilador considera a variável do tipo long:
+10l 10L
+A variável também é considerada do tipo long quando seu valor extrapola valor máximo de um tipo int
