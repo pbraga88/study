@@ -1,0 +1,21 @@
+More types and when to use them
+===============================
+int normally is 4 bytes long (32 bits) and its size goes from -2147483648 to 2147483647
+
+Para especificar a quantidade de memória, pode-se usar os modifiers (modificadores):
+long	-> Indica a necessidade de um range maior que o padrão para o int
+		   Normalmente 8 Bytes (64 bits) indo de -9223372036854775808 até 9223372036854775807
+short	-> Indica a necessidade de um range menor que o padrão para o int. 
+		   Normalmente 2 Bytes (32 bits) indo de -32768 até 32767
+unsigned	-> Indica que a variável irá utilizar apenas valores positivos. Pode ser utilizado também com 
+			   variáveis do tipo char (à ver)
+
+Declarando:
+| short int c;
+| long int b;
+o tipo int pode ser omitido, uma vez que toda declaração faltando o tipo, é considerada int. Portanto:
+| short a;
+| long b;
+
+O tipo char tem normalmente tamanho de 1 byte (8 bits) indo de -128 até 127. Caso seja declarada com 
+o modifier 'unsigned', vai de 0 até 255.

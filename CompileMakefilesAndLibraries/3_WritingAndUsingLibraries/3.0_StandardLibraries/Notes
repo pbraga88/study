@@ -1,0 +1,9 @@
+O compilador gcc automaticamente linka com a shared lib libc, portanto não há a necessidade de passar 
+nenhuma lib quando o código compilado utiliza apenas funções da libc, como por exemplo 'printf()'. 
+Um exemplo de função que não está na libc é a 'sin()', utilizada para calcular o seno de um determinado 
+angulo. Tal função, assim como as demais trigonométricas, está na libm. 
+Para compilar um programa que faz uso de tal lib:
+| gcc main.c -lm -o calculeSin
+Deve-se também, é claro, incluir o header no código do programa: #include <math.h>
+
+No caso de programas escritos em C++, a lib standard é a libstdc++
