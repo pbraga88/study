@@ -1,0 +1,84 @@
+input	-> User to Computer
+output	-> Computer to User
+
+<<		-> Insertion operator. Insere caracteres no dispositivo (e.g console)
+
+Tanto o stream 'cout' quanto o operador '<<', convertem a linguagem de máquina em linguagem
+humana, bem como transferem esta linguagem convertida para o dispositivo de output (e.g console)
+
+Uma expressão também é algo permitido para o stream cout:
+| int square = 4;
+| cout << "raiz quadrada de 4 = " << square*square;
+
+manipulator		-> O manipulator (manipulador) é um tipo especial que diz que o dado do stream 
+deve ser alterado imediatemente:
+| int byte = 255;
+| cout << "Byte in hex: " << hex << byte;
+output 
+| ff
+
+Vale ressaltar que o manipulador atua do momento em que ele é declarado até o momento em que um 
+outro manipulador cancele sua ação:
+|	int byte = 255;
+|	cout << "Byte in hex: " << hex << byte << endl;
+|	cout << byte << endl;
+|	cout << dec << byte << endl;
+output:
+| ff
+| ff
+| 255
+
+Para evitar conflito entre o manipulador e varáveis declaradas, deve-se utilizar 'namespace'
+
+Manipuladores:
+	hex
+	dec
+	oct
+	setbase()	-> Apenas este precisa da inclusão do header <iomanip> e aceita como 
+				   argumento apenas os 
+				   valores 8, 10 e 16;
+	endl	-> Para pular linha 
+
+setbase()	-> Faz a conversão para a base passada como argumento:
+|#include <iostream>
+|#include <iomanip>
+|
+|using namespace std;
+|int main(void)
+|{
+|	int byte = 255;
+|	cout << setbase(16) << byte;
+|	return 0;
+|}
+output
+| ff
+
+Manipuladores de número:
+	fixed	-> Printa o número completo
+	scientific	-> Printa em notação cientifica
+|	float x = 2.5, y = 0.0000000025;
+|	cout << fixed << x << " " << y << endl;
+| 	out << scientific << x << " " << y << endl;
+output:
+|   2.500000 0.000000
+|   2.500000e+000 2.500000e-009
+
+====
+
+cin e >>	-> O stream cin juntamente com o operador >> transferem os dados humanos do console 
+e o convertem em linguagem de máquina:
+|#include <iostream>
+|
+|using namespace std;
+|
+|int main(void) 
+|{
+|        int value,square;
+|
+|        cout << "Give me a number and I will square it!\n";
+|        cin >> value;
+|        square = value * value;
+|        cout << "You've given " << value << endl;
+|        cout << "The squared value is " << square << endl;
+|        return 0;
+|}
