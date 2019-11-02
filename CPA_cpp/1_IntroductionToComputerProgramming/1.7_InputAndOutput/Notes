@@ -1,3 +1,5 @@
+1.7 - Input and Output
+======================
 input	-> User to Computer
 output	-> Computer to User
 
@@ -8,7 +10,7 @@ humana, bem como transferem esta linguagem convertida para o dispositivo de outp
 
 Uma expressão também é algo permitido para o stream cout:
 | int square = 4;
-| cout << "raiz quadrada de 4 = " << square*square;
+| cout << "Quadrado de 4 = " << square*square;
 
 manipulator		-> O manipulator (manipulador) é um tipo especial que diz que o dado do stream 
 deve ser alterado imediatemente:
@@ -28,7 +30,7 @@ output:
 | ff
 | 255
 
-Para evitar conflito entre o manipulador e varáveis declaradas, deve-se utilizar 'namespace'
+Para evitar conflito entre o manipulador e variáveis declaradas, deve-se utilizar 'namespace'
 
 Manipuladores:
 	hex
@@ -62,8 +64,6 @@ Manipuladores de número:
 output:
 |   2.500000 0.000000
 |   2.500000e+000 2.500000e-009
-
-====
 
 cin e >>	-> O stream cin juntamente com o operador >> transferem os dados humanos do console 
 e o convertem em linguagem de máquina:

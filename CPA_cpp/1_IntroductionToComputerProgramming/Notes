@@ -1,0 +1,189 @@
+1.4 - Numbers and Their Operators
+=================================
+The point makes a float!
+4.0 = float
+4. = float
+.4 = float
+4 = int
+
+300000000 = 3 x 10^8
+Em C++: 3E8
+		3e8
+Para expoente negativo (número muito pequeno, maior parte das vezes):
+6.62607 · 10^-34 (Constante de Plank)
+Em C++: 6.62607E-34
+		6.62607e-34
+
+Converter float em int e vice-versa causa perda de precisão
+
+Nunca dividir por 0!
+|float x,y;
+|
+|x = 0.0;
+|y = 1.0 / x;
+O código acima deve causar uma exception
+
+O remainder operator '%' calcula o resto de uma divisão de dois inteiros. Seus argumentos não podem
+ser do tipo float:
+| int i, j, k;
+| i = 13;
+| j = 5;
+| k = i%j;
+| cout<< k <<endl;
+output:
+3
+
+|2*3%5
+Os operadores acima têm a mesma prioridade em C++, contudo, como as operações são realizadas da 
+esquerda para a direira, primeiro é executado '2*3' e com o resultado é e feita a operação 
+dp 'remainder' %: 6%5=1;
+
+++ -> o operador ++ (plus plus) adiciona 1 à variável:
+| int i = 0;
+| i++;
+| cout << i << endl;
+ouput
+1
+para subtrair basta usar 'i --'
+
+Os operadores ++ e -- são chamados de operadores de incremento e decremento, respectivamente, e 
+também podem ser posicionados antes da variável à ser incrementada/decrementada. Para ser mais 
+correto, tais operadores devem ser chamdos de pre/post-increment/decrement.
+Caso o operador seja colocado antes da variável, tal variável tem seu valor alterado antes de ser 
+usada, caso o operador for colocado após a variável, esta mesma variável pode ser utilizada (por 
+exemplo, ter seu valor atribuido a uma outra variável) antes de ter seu valor alterado. Exemplo:
+|int i = 1;
+|int y;
+|y = i++;
+|cout<< y << ' ' << i <<endl;
+output:
+|1 2
+==
+|int i = 1;
+|int y;
+|y = ++i;
+|cout<< y << ' ' << i <<endl;
+output
+2 2
+
+1.5 - Characters Types
+======================
+A tabela de códigos ASCII é um subset do padrão internacional UNICODE. Tal padrão é capaz de representar 
+virtualmente todos os caracteres.
+
+Para atribuir um valor a uma variável do tipo 'char', utiliza-se aspas simples
+| char character;
+| character = 'A';
+
+Na tabela ASCII, letra 'A' é representada pelo número decimal 65:
+|	char c = 65; // 65 = 'A'
+|	cout << c << endl;
+output
+| A
+
+Para declarar caracteres especiais como o apóstrofe, deve-se utilizar o backslash '\' (escape character):
+| char character = '\'';	// Declara o apóstrofe (')
+
+'\n'	-> LF (Line Feed) Transição para a próxima linha
+'\r'	-> CR (Carriage Return) Retorna para o começo da linha
+'\a'	-> BEL (de bell) quando enviado para tela, aciona um pequeno beep
+'\0'	-> null (do latim 'nullus')
+
+É possível passar valores inteiros para um tipo char e um char para uma var 
+int.
+
+1.6 - Flow Control
+==================
+=	<- assignement operator
+==	<- "are these values equal" binary operator with low priority
+!=	<- "are these values different" binary operator with low priority
+>	<- maior que
+>=	<- maior ou igual. Prioridade maior que '==' e '!='
+
+|Answer = Value1>=Value2;
+A variável answer guarda '1' caso true e '0' caso false
+
+1.7 - Input and Output
+======================
+input	-> User to Computer
+output	-> Computer to User
+
+<<		-> Insertion operator. Insere caracteres no dispositivo (e.g console)
+
+Tanto o stream 'cout' quanto o operador '<<', convertem a linguagem de máquina em linguagem
+humana, bem como transferem esta linguagem convertida para o dispositivo de output (e.g console)
+
+Uma expressão também é algo permitido para o stream cout:
+| int square = 4;
+| cout << "Quadrado de 4 = " << square*square;
+
+manipulator		-> O manipulator (manipulador) é um tipo especial que diz que o dado do stream 
+deve ser alterado imediatemente:
+| int byte = 255;
+| cout << "Byte in hex: " << hex << byte;
+output 
+| ff
+
+Vale ressaltar que o manipulador atua do momento em que ele é declarado até o momento em que um 
+outro manipulador cancele sua ação:
+|	int byte = 255;
+|	cout << "Byte in hex: " << hex << byte << endl;
+|	cout << byte << endl;
+|	cout << dec << byte << endl;
+output:
+| ff
+| ff
+| 255
+
+Para evitar conflito entre o manipulador e variáveis declaradas, deve-se utilizar 'namespace'
+
+Manipuladores:
+	hex
+	dec
+	oct
+	setbase()	-> Apenas este precisa da inclusão do header <iomanip> e aceita como 
+				   argumento apenas os 
+				   valores 8, 10 e 16;
+	endl	-> Para pular linha 
+
+setbase()	-> Faz a conversão para a base passada como argumento:
+|#include <iostream>
+|#include <iomanip>
+|
+|using namespace std;
+|int main(void)
+|{
+|	int byte = 255;
+|	cout << setbase(16) << byte;
+|	return 0;
+|}
+output
+| ff
+
+Manipuladores de número:
+	fixed	-> Printa o número completo
+	scientific	-> Printa em notação cientifica
+|	float x = 2.5, y = 0.0000000025;
+|	cout << fixed << x << " " << y << endl;
+| 	out << scientific << x << " " << y << endl;
+output:
+|   2.500000 0.000000
+|   2.500000e+000 2.500000e-009
+
+cin e >>	-> O stream cin juntamente com o operador >> transferem os dados humanos do console 
+e o convertem em linguagem de máquina:
+|#include <iostream>
+|
+|using namespace std;
+|
+|int main(void) 
+|{
+|        int value,square;
+|
+|        cout << "Give me a number and I will square it!\n";
+|        cin >> value;
+|        square = value * value;
+|        cout << "You've given " << value << endl;
+|        cout << "The squared value is " << square << endl;
+|        return 0;
+|}
