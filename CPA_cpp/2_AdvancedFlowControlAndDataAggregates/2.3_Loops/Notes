@@ -1,0 +1,8 @@
+2.3 - Loops
+===========
+Example of pseudo-code notation for loop:
+|1. max = -999999999;
+|2. read number
+|3. if(number == -1) print max next stop;
+|4. if(number > max) max = number
+|5. go to 2
