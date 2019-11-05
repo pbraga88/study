@@ -6,3 +6,42 @@ Example of pseudo-code notation for loop:
 |3. if(number == -1) print max next stop;
 |4. if(number > max) max = number
 |5. go to 2
+
+
+Loop while. Enquanto a condição for verdadeira, os statements são executados. Se a condição for falsa, nada é executado (nem mesmo o primeiro loop):
+|while(condition) {
+|	statement_1();
+|	statement_2();
+|}
+O corpo do loop while deve ser capaz de mudar a condição, para que o loop tenha um fim.
+
+initiator -> São os valores atribuídos a uma variável do momento de sua criação:
+|float pi = 3.14;
+|double pi2 = 2*pi;
+
+O loop 'do' executa o statement pelo menos uma vez, mesmo que a condição não seja verdadeira:
+|do{
+|	statement_1();
+|	statement_2();
+|}
+|while(condition);
+
+O loop for possui 'initialization', 'checking' e 'modifying':
+|for(initialization; checking; modifying) {
+|       /* the body goes here */
+|}
+Se uma variável é declarado dentro do loop, ela só estará disponível para tal loop:
+|for(int i = 0; i < 100; i++) {
+|
+|/* the body goes here */
+|
+|}
+Se quaisquer um dos três parâmetros do loop 'for', for omitido, tal parâmetro é considerado 1. 
+O loop for a seguir, por exemplo, é um loop infinito:
+|for(;;) {
+|	do_something();
+|}
+
+As instruções break e continue, também conhecidas como 'syntatic candies', fazem o seguinte:
+break	-> Sai do loop imediatamente e vai para a pŕoxima instrução fora do loop;
+continue	-> Vai direto para a checagem condicional do loop.
