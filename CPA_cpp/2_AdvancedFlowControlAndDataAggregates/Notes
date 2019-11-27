@@ -18,10 +18,10 @@ Se há mais instruções, cria-se então um bloco:
 
 Quando uma condição é colocada dentro de outra, isto é chamado de nesting (aninhamento):
 |if(TheWeatherIsGood)
-|     if(NiceRestaurantFound)
+|     if(NiceRestaurantFound) // Nested if
 |            HaveLunch();
 |     else
-|            EatASandwich();
+|            EatASandwich();  // Nested else
 |else
 |      if(TicketsAvailable)
 |            GoToATheatre();
@@ -32,7 +32,7 @@ Quando várias condições if são colocadas em sequencia, isto ś chamado de ca
 utiliza-se o conditional statement 'else if':
 |if(TheWeatherIsGood)
 |    GoForAWalk();
-|else if(TicketsAvailable)
+|else if(TicketsAvailable)  // 'else if' cascateando a condição if
 |    GoToATheatre();
 |else if(TableAvailable)
 |    GoForALunch();
@@ -41,7 +41,7 @@ utiliza-se o conditional statement 'else if':
 
 2.2 - More types and when to use them
 ===============================
-int normally is 4 bytes long (32 bits) and its size goes from -2147483648 to 2147483647
+int, normalmente, tem o tamanho de 4 bytes (32 bits) e vai de -2147483648 até 2147483647
 
 Para especificar a quantidade de memória, pode-se usar os modifiers (modificadores):
 long	-> Indica a necessidade de um range maior que o padrão para o int
@@ -49,14 +49,14 @@ long	-> Indica a necessidade de um range maior que o padrão para o int
 short	-> Indica a necessidade de um range menor que o padrão para o int. 
 		   Normalmente 2 Bytes (32 bits) indo de -32768 até 32767
 unsigned	-> Indica que a variável irá utilizar apenas valores positivos. Pode ser utilizado também com 
-			   variáveis do tipo char (à ver)
+			   variáveis do tipo char (à ver). int, nesse caso por exemplo, varia de 0 até 4294967295
 
 Declarando:
 | short int c;
 | long int b;
 o tipo int pode ser omitido, uma vez que toda declaração faltando o tipo, é considerada int. Portanto:
-| short a;
-| long b;
+| short a;	// omitindo o int de 'short int a; '
+| long b;	// omitindo o int de 'long int b;'
 
 O tipo char tem normalmente tamanho de 1 byte (8 bits) indo de -128 até 127. Caso seja declarada com 
 o modifier 'unsigned', vai de 0 até 255.
@@ -68,8 +68,8 @@ A variável também é considerada do tipo long quando seu valor extrapola valor
 float	-> 4 bytes (32 bits)
 double	-> 8 bytes (64 bits)
 
-O tipo float dá uma precisão de 8 digitos, para precisão maior de digitos utiliza-se o tipo double 
-(que também é um ponto flutuante). A variável do tipo 'double' uma precisão aproximada do dobro do 
+O tipo float dá uma precisão de 8 digitos, para precisão maior do que digitos utiliza-se o tipo double 
+(que também é um ponto flutuante). A variável do tipo 'double' tem uma precisão aproximada do dobro do 
 tipo float, de 15 a 17 digitos.
 
 Quando um número muito pequeno é adicionado a um muito grande, ocorre o que chamamos de 'anomalia 
@@ -81,5 +81,70 @@ numérica':
 output:
 | 11111110656.000000
 Tal característica da anomalia numérica  vale tanto para float quanto para double, com a diferença 
-de que o tipo double obterá o dobro da precisão do tipo float
+de que o tipo double obterá aproximadamente o dobro da precisão do tipo float
 
+2.3_Loops/Notes
+2.3 - Loops
+===========
+Example of pseudo-code notation for loop:
+|1. max = -999999999;
+|2. read number
+|3. if(number == -1) print max next stop;
+|4. if(number > max) max = number
+|5. go to 2
+
+
+Loop while. Enquanto a condição for verdadeira, os statements são executados. Se a condição for falsa, nada é executado (nem mesmo o primeiro loop):
+|while(condition) {
+|	/* O corpo do loop só será executado, caso a condição seja verdadeira. */
+|	statement_1();
+|	statement_2();
+|}
+O corpo do loop while deve ser capaz de mudar a condição, para que o loop tenha um fim.
+
+initiator -> São os valores atribuídos a uma variável do momento de sua criação:
+|float pi = 3.14;
+|double pi2 = 2*pi;
+
+O loop 'do' executa o statement pelo menos uma vez, mesmo que a condição não seja verdadeira:
+|do{
+|	/* O corpo do loop será executado ao menos uma vez, 
+|	   mesma que a condição não seja satisfeita*/
+|	statement_1();
+|	statement_2();
+|}
+|while(condition);
+
+O loop for possui 'initialization', 'checking' e 'modifying':
+|for(initialization; checking; modifying) {
+|       /* the body goes here */
+|}
+Se uma variável é declarado dentro do loop, ela só estará disponível para tal loop:
+|for(int i = 0; i < 100; i++) {
+|	/* A variável i existe apenas para este loop, 
+|	   uma vez que foi decladra dentro dele*/
+|	do_something();	
+|	do_somethingElse();
+|}
+Se quaisquer um dos três parâmetros do loop 'for', for omitido, tal parâmetro é considerado 1. 
+O loop for a seguir, por exemplo, é um loop infinito:
+|for(;;) {
+|	do_something();
+|}
+
+As instruções break e continue, também conhecidas como 'syntatic candies', fazem o seguinte:
+break	-> Sai do loop imediatamente e vai para a pŕoxima instrução fora do loop;
+|while(i){
+|	cin>>i;
+|	if(!i)
+|		break;
+|	i++;
+|	}
+continue	-> Vai direto para a checagem condicional do loop.
+|do{
+|	cin>>x;
+|	if(!n)
+|		continue;
+|	i+=n;
+|}
+|while(n && i<100);

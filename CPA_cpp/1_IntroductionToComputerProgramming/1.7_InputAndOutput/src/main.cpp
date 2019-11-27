@@ -35,12 +35,11 @@ int main() {
 	// 	cout << "Square Root: " << sqrtf(value) << endl;
 	// else
 	// 	cout << "Enter a non-negative value" << endl;
-
-	int i, j, k;
-	i = 10;
-	j = 3;
-	k = i%j;
-	cout << k << endl;
+	
+	float j = 0.5;
+	int i = j;
+	//k = i%j;
+	cout << i << endl;
 
 	return 0;
 }

@@ -35,7 +35,7 @@ output:
 
 |2*3%5
 Os operadores acima têm a mesma prioridade em C++, contudo, como as operações são realizadas da 
-esquerda para a direira, primeiro é executado '2*3' e com o resultado é e feita a operação 
+esquerda para a direita, primeiro é executado '2*3' e com o resultado é e feita a operação 
 dp 'remainder' %: 6%5=1;
 
 ++ -> o operador ++ (plus plus) adiciona 1 à variável:

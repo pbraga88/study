@@ -68,14 +68,35 @@ int main() {
 	// cout << "You left the loop" << endl;
 
 /*=================================================================*/
-	int i;
-	do {
-		cin >> i;
-		if(!i)
-			continue;
-		cout << i << endl;
-	}
-	while(i) ;
+	for(int i = 0; i<10; i++) {
+		int j=1;
+		continue;
+	}	
+	//cout<<i<<" "<<j<<endl; // Não é possível imprimir i e j fora do
+						     // loop. Isso irá gerar erro de compilação
 	cout << "You left the loop" << endl;
+
+/*=================================================================*/
+	// int i ;
+	// int x = 0;
+	// do {
+	// 	cin >> i;
+	// 	if(!i)
+	// 		continue;
+	// 	x+=i;
+	// 	cout << i << endl;
+	// 	cout << x << endl;
+	// }
+	// while(i && x<100) ;
+	// cout << "You left the loop" << endl;
+
+/*=================================================================*/
+	// int i = 0;
+	// do
+	// 	i++;
+	// while(i<10);
+	// cout<<hex<<i<<endl; // i = a;
+
+
 	return 0;
 }
