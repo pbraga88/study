@@ -83,7 +83,6 @@ output:
 Tal característica da anomalia numérica  vale tanto para float quanto para double, com a diferença 
 de que o tipo double obterá aproximadamente o dobro da precisão do tipo float
 
-2.3_Loops/Notes
 2.3 - Loops
 ===========
 Example of pseudo-code notation for loop:
@@ -96,7 +95,6 @@ Example of pseudo-code notation for loop:
 
 Loop while. Enquanto a condição for verdadeira, os statements são executados. Se a condição for falsa, nada é executado (nem mesmo o primeiro loop):
 |while(condition) {
-|	/* O corpo do loop só será executado, caso a condição seja verdadeira. */
 |	statement_1();
 |	statement_2();
 |}
@@ -108,8 +106,6 @@ initiator -> São os valores atribuídos a uma variável do momento de sua cria�
 
 O loop 'do' executa o statement pelo menos uma vez, mesmo que a condição não seja verdadeira:
 |do{
-|	/* O corpo do loop será executado ao menos uma vez, 
-|	   mesma que a condição não seja satisfeita*/
 |	statement_1();
 |	statement_2();
 |}
@@ -121,10 +117,9 @@ O loop for possui 'initialization', 'checking' e 'modifying':
 |}
 Se uma variável é declarado dentro do loop, ela só estará disponível para tal loop:
 |for(int i = 0; i < 100; i++) {
-|	/* A variável i existe apenas para este loop, 
-|	   uma vez que foi decladra dentro dele*/
-|	do_something();	
-|	do_somethingElse();
+|
+|/* the body goes here */
+|
 |}
 Se quaisquer um dos três parâmetros do loop 'for', for omitido, tal parâmetro é considerado 1. 
 O loop for a seguir, por exemplo, é um loop infinito:
@@ -134,17 +129,4 @@ O loop for a seguir, por exemplo, é um loop infinito:
 
 As instruções break e continue, também conhecidas como 'syntatic candies', fazem o seguinte:
 break	-> Sai do loop imediatamente e vai para a pŕoxima instrução fora do loop;
-|while(i){
-|	cin>>i;
-|	if(!i)
-|		break;
-|	i++;
-|	}
 continue	-> Vai direto para a checagem condicional do loop.
-|do{
-|	cin>>x;
-|	if(!n)
-|		continue;
-|	i+=n;
-|}
-|while(n && i<100);

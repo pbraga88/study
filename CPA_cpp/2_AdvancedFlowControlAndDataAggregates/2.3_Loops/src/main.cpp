@@ -68,13 +68,13 @@ int main() {
 	// cout << "You left the loop" << endl;
 
 /*=================================================================*/
-	for(int i = 0; i<10; i++) {
-		int j=1;
-		continue;
-	}	
-	//cout<<i<<" "<<j<<endl; // Não é possível imprimir i e j fora do
-						     // loop. Isso irá gerar erro de compilação
-	cout << "You left the loop" << endl;
+	// for(int i = 0; i<10; i++) {
+	// 	int j=1;
+	// 	continue;
+	// }	
+	// //cout<<i<<" "<<j<<endl; // Não é possível imprimir i e j fora do
+	// 					     // loop. Isso irá gerar erro de compilação
+	// cout << "You left the loop" << endl;
 
 /*=================================================================*/
 	// int i ;

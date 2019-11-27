@@ -1,0 +1,19 @@
+2.4 Boolean Algebra and Computer Logic
+======================================
+Conjunction		-> Duas condições devem ser atendidas
+|if (a==1 && b==1)
+|	cout << "True" << emdl;
+O operador da 'Conjunction' é &&. Trata-se de um operador binário, com menor 
+prioridade do que os operadores de comparação, portanto a seguinte linha
+pode ser expressada sem a necessidade do uso de parênteses:
+|counter>0 && value==100
+
+Disjunction		-> Apenas uma condição precisa ser atendida
+|if (a==1 || b==1)
+|	cout <<"True" << endl;
+O operador da 'Disjunction' é ||. Trata-se também de um operador binário com 
+menor prioridade do que && (bem como '+' em relação à '*')
+
+logical negation	-> Este operador unário é representado por '!'. Ele torna 
+'true' em 'false' e 'false' em 'true'. Sua prioridade é muito alta, assim como 
+os operadores de incremento e decremento
