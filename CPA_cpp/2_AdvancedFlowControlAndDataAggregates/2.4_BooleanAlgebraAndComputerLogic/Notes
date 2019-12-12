@@ -17,3 +17,21 @@ menor prioridade do que && (bem como '+' em relação à '*')
 logical negation	-> Este operador unário é representado por '!'. Ele torna 
 'true' em 'false' e 'false' em 'true'. Sua prioridade é muito alta, assim como 
 os operadores de incremento e decremento
+
+**************************************************************
+A lei de Morgan:											 *
+A negação de uma conjunção é igual a dijunção das negações:  *
+!(a && b) = !a || !b;										 *
+															 *
+A negação de uma disjunção é igual conjunção das negações:	 *
+!(a || b) = !a && !b;										 *
+**************************************************************
+
+bitwise operators	-> São os operadores (4) que permitem manipular bit únicos:
+- & bitwise conjunction
+- | bitwise disjunction
+- ~ bitwise negation
+- ^ bitwise exclusive or
+
+Importante: Os argumentos dessas operações devem ser inteiros (int, long, short ou char); não se deve usar 
+ponto flutuante (float)
