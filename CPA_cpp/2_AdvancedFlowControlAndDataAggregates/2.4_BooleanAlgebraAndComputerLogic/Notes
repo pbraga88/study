@@ -20,7 +20,7 @@ os operadores de incremento e decremento
 
 **************************************************************
 A lei de Morgan:											 *
-A negação de uma conjunção é igual a dijunção das negações:  *
+A negação de uma conjunção é igual a disjunção das negações:  *
 !(a && b) = !a || !b;										 *
 															 *
 A negação de uma disjunção é igual conjunção das negações:	 *
