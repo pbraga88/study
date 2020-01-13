@@ -8,7 +8,9 @@
 using namespace std;
 
 int main(void){
-	cout << "Hello there, my friend!" << endl;
+	float x = 1.0/4.0;
+	int y = x;
+	cout << y << endl;
 
 	return 0;
 }
