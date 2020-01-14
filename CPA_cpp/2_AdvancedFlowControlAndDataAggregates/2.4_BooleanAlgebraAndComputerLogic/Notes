@@ -35,3 +35,22 @@ bitwise operators	-> São os operadores (4) que permitem manipular bit únicos:
 
 Importante: Os argumentos dessas operações devem ser inteiros (int, long, short ou char); não se deve usar 
 ponto flutuante (float)
+
+Operações lógicas e binárias
+Dado:
+	i = 00000000 00000000 00000000 00001111
+	j = 00000000 00000000 00000000 00010110
+	int logic = i && j; // = 00000000 00000000 00000000 00000001
+À operação de conjunção acima, apenas interessa saber se os números são inteiros positivios ou não. O resultado será 
+sempre booleano true (1) ou booleano false (0) dependendo das variáveis. 
+Já a operação de bit (bitwise), vai bit a bit, portanto a linha de código abaixo resulta em um valor diferente:
+	int bit = i & j;// = 00000000 00000000 00000000 00000110
+Utilizando os operadores de negação !(lógico) e ~(bitwise), temos:
+	int logicneg = !i;// = 00000000 00000000 00000000 00000000
+	int bitneg = ~i;// = 11111111 11111111 11111111 11110000
+Õ valor decimal de i será -16, após a operação bitiwise acima, pois trata-se de um complemento de dois
+
+Formas abreviadas:
+x=x|y <=> x|=y
+x=x&y <=> x&=y
+x=x^y <=> x^=y
