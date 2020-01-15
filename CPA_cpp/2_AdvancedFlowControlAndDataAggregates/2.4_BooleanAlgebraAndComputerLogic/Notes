@@ -54,3 +54,41 @@ Formas abreviadas:
 x=x|y <=> x|=y
 x=x&y <=> x&=y
 x=x^y <=> x^=y
+
+Bitmask
+dada uma variável de 32 bits, na qual apenas o terceiro bit deve ser considerado para leitura e escrita:
+	FlagRegister: 00000000 00000000 00000000 0000x000
+O terceiro bit pode ser escrito como: 2^3=8
+Portanto, a máscara deve ser:
+	int mask=8; // em binário: 00000000 00000000 00000000 00001000
+Para apenas ler o bit, pode-se:
+|	if(FlagRegister & mask)
+|		cout<<"bit 3 is set"<<endl;
+|	else
+|		cout<<"bit 3 is not set"<<endl;
+Para resetar o tereceiro bit, pode-e fazer conjunção de bit do FlagRegister com uma negação da máscara (mask):
+	FlagRegister = FlagRegister & ~mask;
+ou, simplesmente:
+	FlagRegister &= mask;
+Já para o set do terceiro bit, pode-se fazer uma disjunção de bit do FlagRegister com a máscara:
+	FlagRegister = FlagRegister | mask;
+ou, simplesmente:
+	FlagRegister |= mask;
+Para inverter (ou negar) o valor do terceiro bit, pode-se utilizar a operação XOR:
+	FlagRegister = FlagRegister ^ mask;
+ou, simplesmente:
+	FlagRegister ^= mask;
+
+
+Shifting
+O shifting pode apenas ser feito com valores inteiros. Como o computador opera na base 2, mover uma casa para esquerda, 
+significa multiplicar o valor por 2, assim como mover uma casa para direita, significa dividir por 2.
+O shift pode ser:
+  Lógico: Todos os bits são movimentados par o lado escolhido; Este tipo de shift é aplicado quando utilizadas 
+unsigned integers.
+  Aritmético: Caso o shift omita o sign bit - Em complemento de dois, o bit mais alto (ou mais a esquerda) é o sign bit; 
+caso ele seja igual à '1', o valor é tratado como negativo; Isto significa que o shift aritmético não pode alterar o sinal 
+do valor "shifted".
+Os operadores do shift são << >>, esquerda e direita, respectivamente. O argumento à esquerda é um valor inteiro cujo os 
+bits passarão pelo shift, e o argumento a direita é o tamanho de tal shif, ou seja, quantas casas os bits hão de andar.
+*** A prioridade deste operador é muito alta!
