@@ -1,0 +1,8 @@
+Arrays
+======
+Todos os elementos de uma array são do mesmo tipo. 
+O vetor (array) é uma coleção de elementos, mas cada um deles é escalar.
+|int var_array[5];
+|var_array[0] = 2;
+O valor dentro dos colchetes é chamado de 'index', enquanto a operação de selecionar um elemento da array é 
+chamado de 'indexing'

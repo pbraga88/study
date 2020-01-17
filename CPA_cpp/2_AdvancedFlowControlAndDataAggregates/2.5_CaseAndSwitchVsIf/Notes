@@ -1,0 +1,22 @@
+Switch Case
+===========
+Trata-se de uma maneira eficiente de substituir uma cascata de if. 
+|	switch(i) {
+|	case 1: cout << "Only one?" << endl; break;
+|	case 2: cout << "I want more" << endl; break;
+|	case 3: cout << "Not bad" << endl; break;
+|	case 4: cout << "OK"<< endl; break;
+|	default: cout << "Values is not in list of cases"
+|	}
+
+O valor dentro dos parêntesis do switch é avaliado e caso encontre alguma correspondência nos cases, o código após os dois 
+pontos (:) é exscutado. Caso haja uma instrução break dentro do case em questão, a execução sai da rotina de switch/case, 
+caso contrário, todas as demais instruções são executadas antes de sair da rotina. 
+Uma instrução default também pode ser adicionada ao final da lista de cases para ser utilizada caso o valor do switch não 
+seja encontrado em nenhum dos cases.
+
+IMPORTANTE:
+	* O valor após a keyword case, NÂO pode ser uma expressão contendo variáveis ou qualquer outra entidade que não são 
+	conhecidas no momento da compilação;
+	* A lista de cases é escaneada na mesma ordem em que é declarada no código, portanto os casos mais comuns devem vir
+	primeiro, o que pode fazer o programa ser executado mais rápido
