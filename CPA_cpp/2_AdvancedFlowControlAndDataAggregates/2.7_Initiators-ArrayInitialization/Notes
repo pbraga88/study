@@ -1,0 +1,24 @@
+Array Initialization
+====================
+Inicializar uma Array, trata-se de atribuir valores à ela no momento da declaração:
+	int vector[5] = { 0, 1, 2, 3, 4};
+
+Se alguns valores não forem declarados, não tem problema, o compilador entenderá que eles são '0':
+RIGHT:
+	int vector[5] = {1, 2, 3};
+	int sec_vector[5] = { 1, 0, 3, 0, 5};
+WRONG:
+	int sec_vector[5] = { 1, , 3, , 5};
+
+Caso o número de elementos passados seja maior do que a Array, será gerado um erro no momento da compilação:
+WRONG:
+	int vector[5] = { 0, 1, 2, 3, 4, 5, 6};
+
+Caso não seja declaro um index, o compilador assumirá que a Array é do tamanho do inicializador:
+	int vector[] = { 0, 1, 2, 3, 4, 5, 6}; // Neste caso: vector[7]
+e.g:
+|	int vector_und[] = { 0, 1, 2, 3, 4, 5, 6};
+|	int size = sizeof(vector_und)/sizeof(int);
+|	cout << size << endl
+output:
+|	7

@@ -1,0 +1,10 @@
+Not only ints - Other array types
+=================================
+Float:
+	float FloatArr[4] = {1.0, 2.0, 3.5, 4.9};
+
+Char:
+	char surname[6] = {'B', 'R', 'A', 'G', 'A', '\0'};
+
+Bool:
+	bool votes[3] = {1, 0, 1};

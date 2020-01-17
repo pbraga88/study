@@ -1,0 +1,19 @@
+Multidimensional Arrays
+=======================
+Array de duas dimensões (por analogia com algebra, Matriz):
+	int chessBoard[8][8];
+Em uma Array de duas dimensões deve ser pensado como coordenads: uma horizontal (e.g linha) e uma vertical (e.g coluna), 
+respectivamente.
+
+Um exemplo de código que calcula a média de temperatura ao meio-dia em um mês, levando em conta que o termômetro 
+captura a temperatura de hora em hora:
+|	float getTemp [31][24];
+|	float sum, average;
+|	int count;
+|
+|	for (count = 0; count<31; count++)
+|		sum+=getTemp[i][11];
+|
+|	average = sum/31;
+|
+|	cout << average << endl;
