@@ -8,12 +8,37 @@ respectivamente.
 Um exemplo de código que calcula a média de temperatura ao meio-dia em um mês, levando em conta que o termômetro 
 captura a temperatura de hora em hora:
 |	float getTemp [31][24];
-|	float sum, average;
+|	float sum=0.0, average;
 |	int count;
 |
 |	for (count = 0; count<31; count++)
-|		sum+=getTemp[i][11];
+|		sum+=getTemp[count][11];
 |
 |	average = sum/31;
 |
 |	cout << average << endl;
+
+Também, um exemplo de código que obtem a maior temperatura do mês:
+|	float getTemp[31][24];
+|	float max=-100.0;
+|	int countDays, countHours;
+|
+|	for(countDays=0; countDays<31; countDays++) {
+|		for(countHours=0; countHours<24; countHours++){
+|			if(getTemp[countDays][countHours] > max)
+|				max=getTemp[countDays][countHours];
+|		}
+|	}
+|
+|	cout << max << endl;
+
+Para escrever '0' em todas os campos array:
+|	float getTemp[31][24];
+|	int d, h;
+|
+|	for (d = 0; d < 31; d++) {
+|		for (h = 0; h < 24; h++)
+|			getTemp[d][h] = 0.0;
+|	}
+
+Importante: A linguagem C++ não limita o número de dimensões de uma array.
