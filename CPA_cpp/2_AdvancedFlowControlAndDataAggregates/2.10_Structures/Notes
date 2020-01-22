@@ -1,0 +1,49 @@
+Structures
+==========
+Uma structures pode conter qualquer número de qualquer elemento de qualquer tipo. Cada um destes elementos é chamado de 
+'field' e é identificado pelo nome que, claramente, deve ser único.
+
+* A declaração de uma structure sempre começa com a palavra 'structure'.
+* Logo em seguida vem a TAG, que é o nome da strucutre propriamente dita.
+* As chaves indicando o início da declaração dos elementos.
+* Os elemntos são declarados são então declarados.
+* Por fim, a declaração termina com o fechamento das chaves.
+|	struct STUDENT {
+|		string name;
+|		int age;
+|		float recent_chapter;
+|	};
+
+Para acessar os campos (fields) da estrutura, utiliza-se o operador de seleção (.):
+|	STUDENT estudante;
+|	estudante.name = "Paulo";
+A prioridade do operador de seleção (selection operator) é muito alta, assim como a do operador de array [].
+
+Apesar de ser permitido declarar outras structures dentro da structure sendo criado, não é possível criar uma 
+instância dela própria. É possível criar uma array de strucures da seguinte maneira:
+	STUDENT estudantes[100000];
+
+Para declarar uma estrutura dentro de outra:
+|	struct DATE {
+|		int year, month, day;
+|	};
+|	
+|	struct STUDENT {
+|	    string  name;
+|	    float time;
+|	    int   recent_chapter;
+|	    struct DATE last_visit;
+|	} HarryPotter;
+E para acessar os campos:
+|	HarryPotter.last_visit.year = 2012;
+|	HarryPotter.last_visit.month = 12;
+|	HarryPotter.last_visit.day = 21;
+
+E neste caso, acesar os campos, requer o uso do operador []:
+	estudantes[4].name = "João";
+
+É possível também declarar a struct sem uma TAG, mas isso é pouco recomendado:
+|	struct {
+|		int dia, mes, ano;
+|	} data;
+|	printf("%d\n", sizeof(data));
