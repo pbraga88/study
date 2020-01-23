@@ -1,4 +1,4 @@
-Switch Case
+2.5 - Switch Case
 ===========
 Trata-se de uma maneira eficiente de substituir uma cascata de if. 
 |	switch(i) {

@@ -1,5 +1,5 @@
-Multidimensional Arrays
-=======================
+2.9 - Multidimensional Arrays
+=============================
 Array de duas dimensões (por analogia com algebra, Matriz):
 	int chessBoard[8][8];
 Em uma Array de duas dimensões deve ser pensado como coordenads: uma horizontal (e.g linha) e uma vertical (e.g coluna), 

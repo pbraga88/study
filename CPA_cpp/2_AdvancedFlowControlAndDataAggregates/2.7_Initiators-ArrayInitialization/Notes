@@ -1,5 +1,5 @@
-Array Initialization
-====================
+2.7 - Array Initialization
+==========================
 Inicializar uma Array, trata-se de atribuir valores à ela no momento da declaração:
 	int vector[5] = { 0, 1, 2, 3, 4};
 

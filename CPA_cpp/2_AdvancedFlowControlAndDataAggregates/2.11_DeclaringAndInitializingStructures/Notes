@@ -1,0 +1,72 @@
+2.11 - Declaring and initializing Structures
+============================================
+É possível que um campo da structure tenha o mesmo nome que sua TAG, contudo isso é pouco aconselhável devido a confusão 
+que isso pode causar:
+|	struct STRUCT {
+|		int STRUCT;
+|	} Structure;
+|
+|	Structure.STRUCT = 0;
+
+Alguns compiladores (talvez, a maioria) podem reclamar quando variáveis são declaradas com o mesmo nome da TAG:
+|	struct STR {
+|		int field;
+|	} Structure;
+|	int STR;
+|
+|	Structure.field = 0;
+|	STR = 1;
+
+Duas diferentes structures podem conter campos com o mesmo nome:
+|	struct { 
+|		int f1;
+|	} str1;
+|
+|	struct {
+|		char f1;
+|	} str2;
+|
+|	str1.f1 = 32;
+|	str2.f1 = str1.f1;
+
+É também possível inicializar structures no momento de sua declaração, utilizando chaves e separando os campo com ','. 
+Caso seja declarado um número menor de campos, o restante será considerado zero:
+|	struct DATE {
+|		int year, month, day;
+|	};
+|
+|	struct DATE date = {2012, 12, 21};
+
+Para iniciar structure dentro structure:
+|	struct BDATE {
+|		int dia, mes, ano;
+|	};
+|
+|	struct STUDENT {
+|		string nome;
+|		int idade;
+|		BDATE birthDate;
+|	};
+|
+|	STUDENT estudante = {"Paulo", 31, 13, 12, 1988};
+|	
+|	cout << estudante.birthDate.dia << endl;
+
+Tipos de inicialização da structure: 
+Correto:
+	STUDENT estudante = {"Paulo", 31, 13, 12, 1988};
+Correto:
+	STUDENT estudante = {"Paulo", 31, {13, 12, 1988} };
+Correto:
+	STUDENT estudante = {"Paulo", 31, {13} };
+Errado:
+	STUDENT estudante = {"Paulo", 31, 13};
+
+Quando um inicializador vazio é aplicado:
+	STUDENT estudante = {};
+O resultado é:
+	estudante.nome = "";
+	estudante.idade = 0;
+	estudante.birthDate.dia = 0;
+	estudante.birthDate.mes = 0;
+	estudante.birthDate.ano = 0;

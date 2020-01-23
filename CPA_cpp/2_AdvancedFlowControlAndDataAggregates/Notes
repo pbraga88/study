@@ -130,3 +130,334 @@ O loop for a seguir, por exemplo, é um loop infinito:
 As instruções break e continue, também conhecidas como 'syntatic candies', fazem o seguinte:
 break	-> Sai do loop imediatamente e vai para a pŕoxima instrução fora do loop;
 continue	-> Vai direto para a checagem condicional do loop.
+
+2.4 Boolean Algebra and Computer Logic
+======================================
+Conjunction		-> Duas condições devem ser atendidas
+|if (a==1 && b==1)
+|	cout << "True" << emdl;
+O operador da 'Conjunction' é &&. Trata-se de um operador binário, com menor 
+prioridade do que os operadores de comparação, portanto a seguinte linha
+pode ser expressada sem a necessidade do uso de parênteses:
+|counter>0 && value==100
+
+Disjunction		-> Apenas uma condição precisa ser atendida
+|if (a==1 || b==1)
+|	cout <<"True" << endl;
+O operador da 'Disjunction' é ||. Trata-se também de um operador binário com 
+menor prioridade do que && (bem como '+' em relação à '*')
+
+logical negation	-> Este operador unário é representado por '!'. Ele torna 
+'true' em 'false' e 'false' em 'true'. Sua prioridade é muito alta, assim como 
+os operadores de incremento e decremento
+
+**************************************************************
+A lei de Morgan:											 *
+A negação de uma conjunção é igual a disjunção das negações:  *
+!(a && b) = !a || !b;										 *
+															 *
+A negação de uma disjunção é igual conjunção das negações:	 *
+!(a || b) = !a && !b;										 *
+**************************************************************
+
+bitwise operators	-> São os operadores (4) que permitem manipular bit únicos:
+- & bitwise conjunction
+- | bitwise disjunction
+- ~ bitwise negation
+- ^ bitwise exclusive or
+
+Importante: Os argumentos dessas operações devem ser inteiros (int, long, short ou char); não se deve usar 
+ponto flutuante (float)
+
+Operações lógicas e binárias
+Dado:
+	i = 00000000 00000000 00000000 00001111
+	j = 00000000 00000000 00000000 00010110
+	int logic = i && j; // = 00000000 00000000 00000000 00000001
+À operação de conjunção acima, apenas interessa saber se os números são inteiros positivios ou não. O resultado será 
+sempre booleano true (1) ou booleano false (0) dependendo das variáveis. 
+Já a operação de bit (bitwise), vai bit a bit, portanto a linha de código abaixo resulta em um valor diferente:
+	int bit = i & j;// = 00000000 00000000 00000000 00000110
+Utilizando os operadores de negação !(lógico) e ~(bitwise), temos:
+	int logicneg = !i;// = 00000000 00000000 00000000 00000000
+	int bitneg = ~i;// = 11111111 11111111 11111111 11110000
+Õ valor decimal de i será -16, após a operação bitiwise acima, pois trata-se de um complemento de dois
+
+Formas abreviadas:
+x=x|y <=> x|=y
+x=x&y <=> x&=y
+x=x^y <=> x^=y
+
+Bitmask
+dada uma variável de 32 bits, na qual apenas o terceiro bit deve ser considerado para leitura e escrita:
+	FlagRegister: 00000000 00000000 00000000 0000x000
+O terceiro bit pode ser escrito como: 2^3=8
+Portanto, a máscara deve ser:
+	int mask=8; // em binário: 00000000 00000000 00000000 00001000
+Para apenas ler o bit, pode-se:
+|	if(FlagRegister & mask)
+|		cout<<"bit 3 is set"<<endl;
+|	else
+|		cout<<"bit 3 is not set"<<endl;
+Para resetar o tereceiro bit, pode-e fazer conjunção de bit do FlagRegister com uma negação da máscara (mask):
+	FlagRegister = FlagRegister & ~mask;
+ou, simplesmente:
+	FlagRegister &= mask;
+Já para o set do terceiro bit, pode-se fazer uma disjunção de bit do FlagRegister com a máscara:
+	FlagRegister = FlagRegister | mask;
+ou, simplesmente:
+	FlagRegister |= mask;
+Para inverter (ou negar) o valor do terceiro bit, pode-se utilizar a operação XOR:
+	FlagRegister = FlagRegister ^ mask;
+ou, simplesmente:
+	FlagRegister ^= mask;
+
+
+Shifting
+O shifting pode apenas ser feito com valores inteiros. Como o computador opera na base 2, mover uma casa para esquerda, 
+significa multiplicar o valor por 2, assim como mover uma casa para direita, significa dividir por 2.
+O shift pode ser:
+  Lógico: Todos os bits são movimentados par o lado escolhido; Este tipo de shift é aplicado quando utilizadas 
+unsigned integers.
+  Aritmético: Caso o shift omita o sign bit - Em complemento de dois, o bit mais alto (ou mais a esquerda) é o sign bit; 
+caso ele seja igual à '1', o valor é tratado como negativo; Isto significa que o shift aritmético não pode alterar o sinal 
+do valor "shifted".
+Os operadores do shift são << >>, esquerda e direita, respectivamente. O argumento à esquerda é um valor inteiro cujo os 
+bits passarão pelo shift, e o argumento a direita é o tamanho de tal shif, ou seja, quantas casas os bits hão de andar.
+*** A prioridade deste operador é muito alta!
+
+2.5 - Switch Case
+=================
+Trata-se de uma maneira eficiente de substituir uma cascata de if. 
+|	switch(i) {
+|	case 1: cout << "Only one?" << endl; break;
+|	case 2: cout << "I want more" << endl; break;
+|	case 3: cout << "Not bad" << endl; break;
+|	case 4: cout << "OK"<< endl; break;
+|	default: cout << "Values is not in list of cases"
+|	}
+
+O valor dentro dos parêntesis do switch é avaliado e caso encontre alguma correspondência nos cases, o código após os dois 
+pontos (:) é exscutado. Caso haja uma instrução break dentro do case em questão, a execução sai da rotina de switch/case, 
+caso contrário, todas as demais instruções são executadas antes de sair da rotina. 
+Uma instrução default também pode ser adicionada ao final da lista de cases para ser utilizada caso o valor do switch não 
+seja encontrado em nenhum dos cases.
+
+IMPORTANTE:
+	* O valor após a keyword case, NÂO pode ser uma expressão contendo variáveis ou qualquer outra entidade que não são 
+	conhecidas no momento da compilação;
+	* A lista de cases é escaneada na mesma ordem em que é declarada no código, portanto os casos mais comuns devem vir
+	primeiro, o que pode fazer o programa ser executado mais rápido
+
+2.6 - Arrays
+============
+Todos os elementos de uma array são do mesmo tipo. 
+O vetor (array) é uma coleção de elementos, mas cada um deles é escalar.
+|	int var_array[5];
+|	var_array[0] = 2;
+O valor dentro dos colchetes é chamado de 'index', enquanto a operação de selecionar um elemento da array é 
+chamado de 'indexing'
+
+2.7 - Array Initialization
+==========================
+Inicializar uma Array, trata-se de atribuir valores à ela no momento da declaração:
+	int vector[5] = { 0, 1, 2, 3, 4};
+
+Se alguns valores não forem declarados, não tem problema, o compilador entenderá que eles são '0':
+RIGHT:
+	int vector[5] = {1, 2, 3};
+	int sec_vector[5] = { 1, 0, 3, 0, 5};
+WRONG:
+	int sec_vector[5] = { 1, , 3, , 5};
+
+Caso o número de elementos passados seja maior do que a Array, será gerado um erro no momento da compilação:
+WRONG:
+	int vector[5] = { 0, 1, 2, 3, 4, 5, 6};
+
+Caso não seja declaro um index, o compilador assumirá que a Array é do tamanho do inicializador:
+	int vector[] = { 0, 1, 2, 3, 4, 5, 6}; // Neste caso: vector[7]
+e.g:
+|	int vector_und[] = { 0, 1, 2, 3, 4, 5, 6};
+|	int size = sizeof(vector_und)/sizeof(int);
+|	cout << size << endl
+output:
+|	7
+
+2.8 - Not only ints - Other array types
+=======================================
+Float:
+	float FloatArr[4] = {1.0, 2.0, 3.5, 4.9};
+
+Char:
+	char surname[6] = {'B', 'R', 'A', 'G', 'A', '\0'};
+
+Bool:
+	bool votes[3] = {1, 0, 1};
+
+2.9 - Multidimensional Arrays
+=============================
+Array de duas dimensões (por analogia com algebra, Matriz):
+	int chessBoard[8][8];
+Em uma Array de duas dimensões deve ser pensado como coordenads: uma horizontal (e.g linha) e uma vertical (e.g coluna), 
+respectivamente.
+
+Um exemplo de código que calcula a média de temperatura ao meio-dia em um mês, levando em conta que o termômetro 
+captura a temperatura de hora em hora:
+|	float getTemp [31][24];
+|	float sum=0.0, average;
+|	int count;
+|
+|	for (count = 0; count<31; count++)
+|		sum+=getTemp[count][11];
+|
+|	average = sum/31;
+|
+|	cout << average << endl;
+
+Também, um exemplo de código que obtem a maior temperatura do mês:
+|	float getTemp[31][24];
+|	float max=-100.0;
+|	int countDays, countHours;
+|
+|	for(countDays=0; countDays<31; countDays++) {
+|		for(countHours=0; countHours<24; countHours++){
+|			if(getTemp[countDays][countHours] > max)
+|				max=getTemp[countDays][countHours];
+|		}
+|	}
+|
+|	cout << max << endl;
+
+Para escrever '0' em todas os campos array:
+|	float getTemp[31][24];
+|	int d, h;
+|
+|	for (d = 0; d < 31; d++) {
+|		for (h = 0; h < 24; h++)
+|			getTemp[d][h] = 0.0;
+|	}
+
+Importante: A linguagem C++ não limita o número de dimensões de uma array.
+
+2.10 - Structures
+=================
+Uma structures pode conter qualquer número de qualquer elemento de qualquer tipo. Cada um destes elementos é chamado de 
+'field' e é identificado pelo nome que, claramente, deve ser único.
+
+* A declaração de uma structure sempre começa com a palavra 'structure'.
+* Logo em seguida vem a TAG, que é o nome da strucutre propriamente dita.
+* As chaves indicando o início da declaração dos elementos.
+* Os elemntos são declarados são então declarados.
+* Por fim, a declaração termina com o fechamento das chaves.
+|	struct STUDENT {
+|		string name;
+|		int age;
+|		float recent_chapter;
+|	};
+
+Para acessar os campos (fields) da estrutura, utiliza-se o operador de seleção (.):
+|	STUDENT estudante;
+|	estudante.name = "Paulo";
+A prioridade do operador de seleção (selection operator) é muito alta, assim como a do operador de array [].
+
+Apesar de ser permitido declarar outras structures dentro da structure sendo criado, não é possível criar uma 
+instância dela própria. É possível criar uma array de strucures da seguinte maneira:
+	STUDENT estudantes[100000];
+
+Para declarar uma estrutura dentro de outra:
+|	struct DATE {
+|		int year, month, day;
+|	};
+|	
+|	struct STUDENT {
+|	    string  name;
+|	    float time;
+|	    int   recent_chapter;
+|	    struct DATE last_visit;
+|	} HarryPotter;
+E para acessar os campos:
+|	HarryPotter.last_visit.year = 2012;
+|	HarryPotter.last_visit.month = 12;
+|	HarryPotter.last_visit.day = 21;
+
+E neste caso, acesar os campos, requer o uso do operador []:
+	estudantes[4].name = "João";
+
+É possível também declarar a struct sem uma TAG, mas isso é pouco recomendado:
+|	struct {
+|		int dia, mes, ano;
+|	} data;
+|	printf("%d\n", sizeof(data));
+
+2.11 - Declaring and initializing Structures
+============================================
+É possível que um campo da structure tenha o mesmo nome que sua TAG, contudo isso é pouco aconselhável devido a confusão 
+que isso pode causar:
+|	struct STRUCT {
+|		int STRUCT;
+|	} Structure;
+|
+|	Structure.STRUCT = 0;
+
+Alguns compiladores (talvez, a maioria) podem reclamar quando variáveis são declaradas com o mesmo nome da TAG:
+|	struct STR {
+|		int field;
+|	} Structure;
+|	int STR;
+|
+|	Structure.field = 0;
+|	STR = 1;
+
+Duas diferentes structures podem conter campos com o mesmo nome:
+|	struct { 
+|		int f1;
+|	} str1;
+|
+|	struct {
+|		char f1;
+|	} str2;
+|
+|	str1.f1 = 32;
+|	str2.f1 = str1.f1;
+
+É também possível inicializar structures no momento de sua declaração, utilizando chaves e separando os campo com ','. 
+Caso seja declarado um número menor de campos, o restante será considerado zero:
+|	struct DATE {
+|		int year, month, day;
+|	};
+|
+|	struct DATE date = {2012, 12, 21};
+
+Para iniciar structure dentro structure:
+|	struct BDATE {
+|		int dia, mes, ano;
+|	};
+|
+|	struct STUDENT {
+|		string nome;
+|		int idade;
+|		BDATE birthDate;
+|	};
+|
+|	STUDENT estudante = {"Paulo", 31, 13, 12, 1988};
+|	
+|	cout << estudante.birthDate.dia << endl;
+
+Tipos de inicialização da structure: 
+Correto:
+	STUDENT estudante = {"Paulo", 31, 13, 12, 1988};
+Correto:
+	STUDENT estudante = {"Paulo", 31, {13, 12, 1988} };
+Correto:
+	STUDENT estudante = {"Paulo", 31, {13} };
+Errado:
+	STUDENT estudante = {"Paulo", 31, 13};
+
+Quando um inicializador vazio é aplicado:
+	STUDENT estudante = {};
+O resultado é:
+	estudante.nome = "";
+	estudante.idade = 0;
+	estudante.birthDate.dia = 0;
+	estudante.birthDate.mes = 0;
+	estudante.birthDate.ano = 0;

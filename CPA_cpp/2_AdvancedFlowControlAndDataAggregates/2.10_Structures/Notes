@@ -1,5 +1,5 @@
-Structures
-==========
+2.10 - Structures
+=================
 Uma structures pode conter qualquer número de qualquer elemento de qualquer tipo. Cada um destes elementos é chamado de 
 'field' e é identificado pelo nome que, claramente, deve ser único.
 
