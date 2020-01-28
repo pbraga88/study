@@ -1,0 +1,6 @@
+3.1_Pointers
+============
+É possível atribuir 0 para um ponteiro:
+	int *ptr = 0; 
+ou:
+	int *ptr = NULL;
