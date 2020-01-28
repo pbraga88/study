@@ -9,7 +9,6 @@ int add_to_var(int *ponteiro);
 
 int main(){
 	int *some_pointer = (int*)malloc(sizeof(int));
-	// int *some_pointer = (int*)malloc(1024);
 	printf("%p\n",(void*)some_pointer);
 	cout<<fixed<<some_pointer<<endl;
 
