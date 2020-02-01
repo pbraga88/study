@@ -1,0 +1,8 @@
+3.4 Declaring and defining functions
+====================================
+Se o tipo de retorno de uma função for omitido, o compilador irá considera-la
+int:
+	int my_func(void);
+é o mesmo que:
+	my_func(void);
+/* Em teste no meu ambiente, não compila sem declarar o tipo de retorno*/

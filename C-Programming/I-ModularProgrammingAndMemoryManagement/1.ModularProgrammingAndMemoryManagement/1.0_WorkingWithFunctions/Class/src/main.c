@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 void printLine(int nCols, char pattern);
 void printTriangle(int nLines, char pattern);

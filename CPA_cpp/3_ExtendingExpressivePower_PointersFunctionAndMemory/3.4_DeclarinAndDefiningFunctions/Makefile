@@ -1,28 +1,26 @@
 # Makefile draft
 
 # Project Name
-PROJ_NAME=wkFunc
+PROJ_NAME=functions
 
-# .c files
-C_SOURCE=$(wildcard ./src/*.c)
-# A macro wildcard pega todos os arquivos .c no diretório src e os atribui, separados por espaço,
-# à variável C_SOURCE
+# .cpp files
+C_SOURCE=$(wildcard ./src/*.cpp)
 
 # .h files
 H_SOURCE=$(wildcard ./src/*.h)
 
 # Object files
-OBJ=$(subst .c,.o,$(subst src,objects,$(C_SOURCE)))
+OBJ=$(subst .cpp,.o,$(subst src,objects,$(C_SOURCE)))
 
 # Compiler and linker
-CC=gcc
+CC=g++
 
 # Flags for compiler
 CC_FLAGS=-c         \
          -W         \
          -Wall      \
-       #  -ansi      \
-       #  -pedantic
+         -ansi      \
+         -pedantic
  
 
 # Command used for clean
@@ -31,9 +29,6 @@ RM = rm -rf
 #
 # Compilation and Linking
 #
-
-print-%  : ; @echo $* = $($*)
-
 all: objFolder $(PROJ_NAME)
 
 $(PROJ_NAME): $(OBJ)
@@ -42,12 +37,12 @@ $(PROJ_NAME): $(OBJ)
 	@ echo 'Finished building binary: $@'
 	@ echo ' '
 
-./objects/%.o: ./src/%.c ./src/%.h
+./objects/%.o: ./src/%.cpp ./src/%.h
 	@ echo 'Building target using GCC compiler: $<'
 	$(CC) $< $(CC_FLAGS) -o $@
 	@ echo ' '
 
-./objects/main.o: ./src/main.c $(H_SOURCE)
+./objects/main.o: ./src/main.cpp $(H_SOURCE)
 	@ echo 'Building target using GCC compiler: $<'
 	$(CC) $< $(CC_FLAGS) -o $@
 	@ echo ' '
@@ -58,6 +53,5 @@ objFolder:
 clean:
 	@ $(RM) ./objects/*.o $(PROJ_NAME) *~
 	@ rmdir objects
-# *~ é utilizado para excluir arquivos de backup 
 
 .PHONY: all clean

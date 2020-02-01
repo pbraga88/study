@@ -4,3 +4,35 @@
 	int *ptr = 0; 
 ou:
 	int *ptr = NULL;
+
+O símbolo NULL, por convenção, deve apenas ser atribuido à ponteiros. Para 
+utilizar o simbolo NULL deve-se adicionar o header cstring, ou qualquer 
+outro header que encapsula cstring (iostream, por exemplo).
+
+Para que o ponteiro aponte para uma variável já existente, utiliza-se o 
+operador de referência &:
+|	int var;
+|	int *ptr;
+|	ptr = &var;
+
+Para acessar o valor apontado por ptr, utiliza-se o operador '*' (aqui, como um 
+operador de dereferência):
+|	int var;
+|	int *ptr;
+|	ptr = &var;
+|	var = 10;
+|	cout<<*ptr<endl;
+output:
+|	10
+
+* sizeof
+O operador de altíssima prioridade 'sizeof()' diz quantos bytes de memória seu 
+argumento ocupa:
+|	sizeof(int);
+output:
+|	4
+Não é necessário o uso de parênteses quando o argumento é literal ou um valor:
+|	cout << sizeof var << endl;
+|	cout << sizeof 10 << endl;
+Mas quando trata-se de um tipo, o uso de parênteses é obrigatório:
+|	cout << sizeof(char) << endl;

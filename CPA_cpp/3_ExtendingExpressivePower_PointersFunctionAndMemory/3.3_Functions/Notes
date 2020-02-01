@@ -1,0 +1,13 @@
+3.3 - Functions
+===============
+Uma função é uma parte do código que pode ser utilizada para analizar e/ou 
+fazer determinada ação.
+O nome de uma função está sejeito às mesmas restrições aplicadas ao nome de 
+uma variável. Também não é possível ter uma função e uma variável com mesmo 
+nome (é possível que uma variável tenha o mesmo nome da função em que ela 
+está declarada, mas isso, definitivamente, não é uma boa prática).
+
+Cada função é caracterizada por:
+*	Nome
+*	Paramêtros
+*	Tipo de resultado/retorno
