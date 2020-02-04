@@ -1,0 +1,9 @@
+3.5 - Transfering Data To And From Functions
+============================================
+Variáveis globais são declaradas fora de qualquer funcção e, portanto, são 
+acessíveis por qualquer função (desde que declaradas antes, no mesmo arquivo 
+fonte)
+
+Ao passar um parâmetro por valor, não há alteração na variável original
+
+Na chamada por referência, o valor da variável original é alterado

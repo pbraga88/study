@@ -1,0 +1,33 @@
+3.7 - Inline Functions
+======================
+Toda função é provida de duas importantes partes: o prólogo e o epílogo.
+* O Prólogo é a parte implicitamente executada antes da função e é responsavel 
+por transferir parâmetros do códig que invoca tal função para uma região chamada 
+de stack. 
+* O Epílogo é executado logo após o término da função e é responsável por 
+transferir o resultado para a função 'invocadora' e por limpar a stack
+
+Para ter um código mais rápido no caso de funções menores, pode-se usar 
+a keyword "inline" e o compilador irá compilar a função toda vez que ela for 
+chamada e, nesse caso, não utilizará nem o Prólogo nem o Epílogo.
+
+********************************************************************************
+If you want a certain function to be compiled and invoked as an inline function, you have to mark it in a special way.
+
+You need to precede the function declaration with the inline keyword. Look at the example on the right →
+
+ 
+
+Luckily for us, the syntax of this construction has some flexibility:
+
+it doesn't matter whether the inline keyword is placed before or after the name of the type; both of the following lines are syntactically correct:
+ 
+
+inline int function(int parameter)
+
+int inline function(int parameter)
+
+ 
+
+if you need to use both the declaration and the definition for the same function, it doesn't matter where you put the inline keyword; it’s correct to use it in the declaration and omit it in the definition; it’s also equally valid to use it in the definition and omit it in the declaration; of course, using the keyword in both places is also valid.
+********************************************************************************

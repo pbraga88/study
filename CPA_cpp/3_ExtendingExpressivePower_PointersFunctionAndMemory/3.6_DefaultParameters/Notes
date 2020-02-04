@@ -1,0 +1,9 @@
+3.6 - Default Parameters
+========================
+É possível definir valores 'defaul' em uma função que serão sobresctios caso 
+seja declarado um valor do momento da chamada de tal função:
+|	int my_func(string greeting, int val = 1);
+Portanto, a função acima pode ser chamada tanto assim:
+|	my_func("Hi", 3);
+como dessa maneira:
+|	my_func("hi");
