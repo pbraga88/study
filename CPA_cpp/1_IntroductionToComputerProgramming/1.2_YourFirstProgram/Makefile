@@ -18,9 +18,9 @@ CC=g++
 # Flags for compiler
 CC_FLAGS=-c         \
          -W         \
-         -Wall      \
-         -ansi      \
-         -pedantic
+         -Wall      
+#         -ansi      \
+#         -pedantic
  
 
 # Command used for clean

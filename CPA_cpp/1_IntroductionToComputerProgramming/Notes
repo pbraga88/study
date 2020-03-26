@@ -23,8 +23,7 @@ Nunca dividir por 0!
 |y = 1.0 / x;
 O código acima deve causar uma exception
 
-O remainder operator '%' calcula o resto de uma divisão de dois inteiros. Seus argumentos não podem
-ser do tipo float:
+O remainder operator '%' calcula o resto de uma divisão de dois inteiros. Seus argumentos não podem ser do tipo float:
 | int i, j, k;
 | i = 13;
 | j = 5;
@@ -36,7 +35,7 @@ output:
 |2*3%5
 Os operadores acima têm a mesma prioridade em C++, contudo, como as operações são realizadas da 
 esquerda para a direita, primeiro é executado '2*3' e com o resultado é e feita a operação 
-dp 'remainder' %: 6%5=1;
+do 'remainder' %: 6%5=1;
 
 ++ -> o operador ++ (plus plus) adiciona 1 à variável:
 | int i = 0;
@@ -48,7 +47,7 @@ para subtrair basta usar 'i --'
 
 Os operadores ++ e -- são chamados de operadores de incremento e decremento, respectivamente, e 
 também podem ser posicionados antes da variável à ser incrementada/decrementada. Para ser mais 
-correto, tais operadores devem ser chamdos de pre/post-increment/decrement.
+correto, tais operadores devem ser chamados de pre/post-increment/decrement.
 Caso o operador seja colocado antes da variável, tal variável tem seu valor alterado antes de ser 
 usada, caso o operador for colocado após a variável, esta mesma variável pode ser utilizada (por 
 exemplo, ter seu valor atribuido a uma outra variável) antes de ter seu valor alterado. Exemplo:
@@ -68,8 +67,7 @@ output
 
 1.5 - Characters Types
 ======================
-A tabela de códigos ASCII é um subset do padrão internacional UNICODE. Tal padrão é capaz de representar 
-virtualmente todos os caracteres.
+A tabela de códigos ASCII é um subset do padrão internacional UNICODE. Tal padrão é capaz de representar virtualmente todos os caracteres.
 
 Para atribuir um valor a uma variável do tipo 'char', utiliza-se aspas simples
 | char character;
@@ -165,7 +163,7 @@ Manipuladores de número:
 	scientific	-> Printa em notação cientifica
 |	float x = 2.5, y = 0.0000000025;
 |	cout << fixed << x << " " << y << endl;
-| 	out << scientific << x << " " << y << endl;
+| 	cout << scientific << x << " " << y << endl;
 output:
 |   2.500000 0.000000
 |   2.500000e+000 2.500000e-009
@@ -187,3 +185,8 @@ e o convertem em linguagem de máquina:
 |        cout << "The squared value is " << square << endl;
 |        return 0;
 |}
+
+
+10	= 10	Dec
+010	= 8 	Oct (0010 ou 000000010 também seria aceito pelo compilador)
+0x10 = 16	Hex
