@@ -12,10 +12,13 @@ using namespace std;
 int main(void){
 	// float x = 1.0/4.0;
 	// int y = x;
-	int a = 0x10;//, b = 26;
-
+	// int a = 0x10;//, b = 26;
 	// cout << y << endl;
-	cout << a << endl;
+	// cout << a << endl;
+
+	float x = 1.0/4.0;
+	int i = x;
+	cout << i << endl;
 /*==========================================================*/
 	// char bd[7] = {0x42, 0x6f, 0x6d, 0x20, 0x64, 0x69, 0x61};
 	// int i;

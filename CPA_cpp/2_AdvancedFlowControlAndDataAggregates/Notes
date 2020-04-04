@@ -153,18 +153,27 @@ os operadores de incremento e decremento
 
 **************************************************************
 A lei de Morgan:											 *
-A negação de uma conjunção é igual a disjunção das negações:  *
+A negação de uma conjunção é igual a disjunção das negações: *
 !(a && b) = !a || !b;										 *
 															 *
 A negação de uma disjunção é igual conjunção das negações:	 *
 !(a || b) = !a && !b;										 *
 **************************************************************
 
-bitwise operators	-> São os operadores (4) que permitem manipular bit únicos:
+bitwise operators	-> São os operadores (4) que permitem manipular bit a bit:
 - & bitwise conjunction
 - | bitwise disjunction
 - ~ bitwise negation
 - ^ bitwise exclusive or
+********************************************************************************
+A operação exclusive OR apenas produz um valor verdadeiro se os dois operandos *
+fprem diferentes:															   *
+A B |Saída																	   *
+0 0	|0																		   *
+0 1	|1																		   *
+1 0	|1																		   *
+1 1	|0																		   *
+********************************************************************************
 
 Importante: Os argumentos dessas operações devem ser inteiros (int, long, short ou char); não se deve usar 
 ponto flutuante (float)
@@ -187,6 +196,36 @@ Formas abreviadas:
 x=x|y <=> x|=y
 x=x&y <=> x&=y
 x=x^y <=> x^=y
+*****************************************************************************
+COMPLEMENTO DE DOIS é a maneira utilizada pelo computador para representar	*
+números inteiros.															*
+Para um sistema de 32 bits, a representação do número 16 é:					*
+00000000 00000000 00000000 00010000	<=> 16 									*
+																			*
+Para representar este mesmo número em complemento de dois, ou seja, ele 	*
+negativo, inverte-se todos os bits:											*
+11111111 11111111 11111111 11101111											*
+																			*
+e então soma-se 1:															*
+11111111 11111111 11111111 11110000	<=> -16									*
+																			*
+Para converter de complemento de dois, segue-se a mesma ideia. Inverte-se o *
+número:																		*
+00000000 00000000 00000000 00001111											*
+																			*
+e soma-se 1:																*
+00000000 00000000 00000000 00010000	<=> 16									*
+																			*
+Exemplo com o número 23:													*
+00000000 00000000 00000000 00010111 <=> 23									*
+11111111 11111111 11111111 11101000 Inverso 								*
+																			*
+11111111 11111111 11111111 11101001 <=> -23	<- soma 1						*
+00000000 00000000 00000000 00010110 Inverso 								*
+																			*
+11111111 11111111 11111111 00010111	<=> 23	<- soma 1						*
+*****************************************************************************
+
 
 Bitmask
 dada uma variável de 32 bits, na qual apenas o terceiro bit deve ser considerado para leitura e escrita:
@@ -202,7 +241,7 @@ Para apenas ler o bit, pode-se:
 Para resetar o tereceiro bit, pode-e fazer conjunção de bit do FlagRegister com uma negação da máscara (mask):
 	FlagRegister = FlagRegister & ~mask;
 ou, simplesmente:
-	FlagRegister &= mask;
+	FlagRegister &= ~mask;
 Já para o set do terceiro bit, pode-se fazer uma disjunção de bit do FlagRegister com a máscara:
 	FlagRegister = FlagRegister | mask;
 ou, simplesmente:
@@ -214,16 +253,14 @@ ou, simplesmente:
 
 
 Shifting
-O shifting pode apenas ser feito com valores inteiros. Como o computador opera na base 2, mover uma casa para esquerda, 
-significa multiplicar o valor por 2, assim como mover uma casa para direita, significa dividir por 2.
+O shifting pode apenas ser feito com valores inteiros. Como o computador opera na base 2, mover uma casa para esquerda, significa multiplicar o valor por 2, assim como mover uma casa para direita, significa dividir por 2.
 O shift pode ser:
   Lógico: Todos os bits são movimentados par o lado escolhido; Este tipo de shift é aplicado quando utilizadas 
 unsigned integers.
   Aritmético: Caso o shift omita o sign bit - Em complemento de dois, o bit mais alto (ou mais a esquerda) é o sign bit; 
-caso ele seja igual à '1', o valor é tratado como negativo; Isto significa que o shift aritmético não pode alterar o sinal 
-do valor "shifted".
+caso ele seja igual à '1', o valor é tratado como negativo; Isto significa que o shift aritmético não pode alterar o sinal do valor "shifted".
 Os operadores do shift são << >>, esquerda e direita, respectivamente. O argumento à esquerda é um valor inteiro cujo os 
-bits passarão pelo shift, e o argumento a direita é o tamanho de tal shif, ou seja, quantas casas os bits hão de andar.
+bits passarão pelo shift, e o argumento a direita é o tamanho de tal shifT, ou seja, quantas casas os bits hão de andar.
 *** A prioridade deste operador é muito alta!
 
 2.5 - Switch Case
@@ -237,7 +274,7 @@ Trata-se de uma maneira eficiente de substituir uma cascata de if.
 |	default: cout << "Values is not in list of cases"
 |	}
 
-O valor dentro dos parêntesis do switch é avaliado e caso encontre alguma correspondência nos cases, o código após os dois 
+O valor dentro dos parênteses do switch é avaliado e caso encontre alguma correspondência nos cases, o código após os dois 
 pontos (:) é exscutado. Caso haja uma instrução break dentro do case em questão, a execução sai da rotina de switch/case, 
 caso contrário, todas as demais instruções são executadas antes de sair da rotina. 
 Uma instrução default também pode ser adicionada ao final da lista de cases para ser utilizada caso o valor do switch não 
@@ -255,8 +292,7 @@ Todos os elementos de uma array são do mesmo tipo.
 O vetor (array) é uma coleção de elementos, mas cada um deles é escalar.
 |	int var_array[5];
 |	var_array[0] = 2;
-O valor dentro dos colchetes é chamado de 'index', enquanto a operação de selecionar um elemento da array é 
-chamado de 'indexing'
+O valor dentro dos colchetes é chamado de 'index', enquanto a operação de selecionar um elemento da array é chamada de 'indexing'
 
 2.7 - Array Initialization
 ==========================
@@ -298,11 +334,9 @@ Bool:
 =============================
 Array de duas dimensões (por analogia com algebra, Matriz):
 	int chessBoard[8][8];
-Em uma Array de duas dimensões deve ser pensado como coordenads: uma horizontal (e.g linha) e uma vertical (e.g coluna), 
-respectivamente.
+Uma Array de duas dimensões deve ser pensada como coordenadas: uma horizontal (e.g linha) e uma vertical (e.g coluna), respectivamente.
 
-Um exemplo de código que calcula a média de temperatura ao meio-dia em um mês, levando em conta que o termômetro 
-captura a temperatura de hora em hora:
+Um exemplo de código que calcula a média de temperatura ao meio-dia em um mês, levando em conta que o termômetro captura a temperatura de hora em hora:
 |	float getTemp [31][24];
 |	float sum=0.0, average;
 |	int count;
@@ -341,13 +375,12 @@ Importante: A linguagem C++ não limita o número de dimensões de uma array.
 
 2.10 - Structures
 =================
-Uma structures pode conter qualquer número de qualquer elemento de qualquer tipo. Cada um destes elementos é chamado de 
-'field' e é identificado pelo nome que, claramente, deve ser único.
+Uma structures pode conter qualquer número de qualquer elemento de qualquer tipo. Cada um destes elementos é chamado de 'field' e é identificado pelo nome que, claramente, deve ser único.
 
-* A declaração de uma structure sempre começa com a palavra 'structure'.
+* A declaração de uma structure sempre começa com a palavra 'struct'.
 * Logo em seguida vem a TAG, que é o nome da strucutre propriamente dita.
 * As chaves indicando o início da declaração dos elementos.
-* Os elemntos são declarados são então declarados.
+* Os elemntos são então declarados.
 * Por fim, a declaração termina com o fechamento das chaves.
 |	struct STUDENT {
 |		string name;
@@ -360,8 +393,7 @@ Para acessar os campos (fields) da estrutura, utiliza-se o operador de seleção
 |	estudante.name = "Paulo";
 A prioridade do operador de seleção (selection operator) é muito alta, assim como a do operador de array [].
 
-Apesar de ser permitido declarar outras structures dentro da structure sendo criado, não é possível criar uma 
-instância dela própria. É possível criar uma array de strucures da seguinte maneira:
+Apesar de ser permitido declarar outras structures dentro da structure sendo criada, não é possível criar uma instância dela própria. É possível criar uma array de strucures da seguinte maneira:
 	STUDENT estudantes[100000];
 
 Para declarar uma estrutura dentro de outra:
@@ -380,7 +412,7 @@ E para acessar os campos:
 |	HarryPotter.last_visit.month = 12;
 |	HarryPotter.last_visit.day = 21;
 
-E neste caso, acesar os campos, requer o uso do operador []:
+E neste caso, acessar os campos, requer o uso do operador []:
 	estudantes[4].name = "João";
 
 É possível também declarar a struct sem uma TAG, mas isso é pouco recomendado:
@@ -391,8 +423,7 @@ E neste caso, acesar os campos, requer o uso do operador []:
 
 2.11 - Declaring and initializing Structures
 ============================================
-É possível que um campo da structure tenha o mesmo nome que sua TAG, contudo isso é pouco aconselhável devido a confusão 
-que isso pode causar:
+É possível que um campo da structure tenha o mesmo nome que sua TAG, contudo isso é pouco aconselhável devido a confusão que isso pode causar:
 |	struct STRUCT {
 |		int STRUCT;
 |	} Structure;

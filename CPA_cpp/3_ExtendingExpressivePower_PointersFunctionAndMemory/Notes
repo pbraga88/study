@@ -1,0 +1,137 @@
+3.1_Pointers
+============
+É possível atribuir 0 para um ponteiro:
+	int *ptr = 0; 
+ou:
+	int *ptr = NULL;
+
+O símbolo NULL, por convenção, deve apenas ser atribuido à ponteiros. Para 
+utilizar o simbolo NULL deve-se adicionar o header cstring, ou qualquer 
+outro header que encapsula cstring (iostream, por exemplo).
+
+Para que o ponteiro aponte para uma variável já existente, utiliza-se o 
+operador de referência &:
+|	int var;
+|	int *ptr;
+|	ptr = &var;
+
+Para acessar o valor apontado por ptr, utiliza-se o operador '*' (aqui, como um 
+operador de dereferência):
+|	int var;
+|	int *ptr;
+|	ptr = &var;
+|	var = 10;
+|	cout<<*ptr<endl;
+output:
+|	10
+
+* sizeof
+O operador de altíssima prioridade 'sizeof()' diz quantos bytes de memória seu 
+argumento ocupa:
+|	sizeof(int);
+output:
+|	4
+Não é necessário o uso de parênteses quando o argumento é literal ou um valor:
+|	cout << sizeof var << endl;
+|	cout << sizeof 10 << endl;
+Mas quando trata-se de um tipo, o uso de parênteses é obrigatório:
+|	cout << sizeof(char) << endl;
+
+3.2 - Pointers Vs Arrays
+========================
+Uma array declarada sem índice é sinonimo para um ponteiro apontando para o 
+primeiro elemento da array. 
+Veja também, as duas declarações de Ptr à seguir, irão apontar para o mesmo 
+lugar:
+|	int *Ptr;
+|	int array[3];
+|	Ptr = &array[0];
+|	Ptr = array;
+
+A aritmética do ponteiro é bem diferente dos números inteiros:
+* adding an integer value to a pointer giving a pointer (ptr + int → ptr)
+* subtracting an integer value from a pointer giving a pointer (ptr – int → ptr)
+* subtracting a pointer from a pointer giving an integer (ptr – ptr → int)
+* comparing the two pointers for equality or inequality (such a comparison gives a value of type int representing true or false) (ptr == ptr → int; ptr != ptr → int)
+
+3.3 - Functions
+===============
+Uma função é uma parte do código que pode ser utilizada para analizar e/ou 
+fazer determinada ação.
+O nome de uma função está sejeito às mesmas restrições aplicadas ao nome de 
+uma variável. Também não é possível ter uma função e uma variável com mesmo 
+nome (é possível que uma variável tenha o mesmo nome da função em que ela 
+está declarada, mas isso, definitivamente, não é uma boa prática).
+
+Cada função é caracterizada por:
+*	Nome
+*	Paramêtros
+*	Tipo de resultado/retorno
+
+3.4 Declaring and defining functions
+====================================
+Se o tipo de retorno de uma função for omitido, o compilador irá considera-la
+int:
+	int my_func(void);
+é o mesmo que:
+	my_func(void);
+/* Em teste no meu ambiente, não compila sem declarar o tipo de retorno*/
+
+3.5 - Transfering Data To And From Functions
+============================================
+Variáveis globais são declaradas fora de qualquer funcção e, portanto, são 
+acessíveis por qualquer função (desde que declaradas antes, no mesmo arquivo 
+fonte)
+
+Ao passar um parâmetro por valor, não há alteração na variável original
+
+Na chamada por referência, o valor da variável original é alterado
+
+3.6 - Default Parameters
+========================
+É possível definir valores 'defaul' em uma função que serão sobresctios caso 
+seja declarado um valor do momento da chamada de tal função:
+|	int my_func(string greeting, int val = 1);
+Portanto, a função acima pode ser chamada tanto assim:
+|	my_func("Hi", 3);
+como dessa maneira:
+|	my_func("hi");
+
+3.7 - Inline Functions
+======================
+Toda função é provida de duas importantes partes: o prólogo e o epílogo.
+* O Prólogo é a parte implicitamente executada antes da função e é responsavel 
+por transferir parâmetros do códig que invoca tal função para uma região chamada 
+de stack. 
+* O Epílogo é executado logo após o término da função e é responsável por 
+transferir o resultado para a função 'invocadora' e por limpar a stack
+
+Para ter um código mais rápido no caso de funções menores, pode-se usar 
+a keyword "inline" e o compilador irá compilar a função toda vez que ela for 
+chamada e, nesse caso, não utilizará nem o Prólogo nem o Epílogo.
+
+********************************************************************************
+If you want a certain function to be compiled and invoked as an inline function, you have to mark it in a special way.
+
+You need to precede the function declaration with the inline keyword. Look at the example on the right →
+
+ 
+
+Luckily for us, the syntax of this construction has some flexibility:
+
+it doesn't matter whether the inline keyword is placed before or after the name of the type; both of the following lines are syntactically correct:
+ 
+
+inline int function(int parameter)
+
+int inline function(int parameter)
+
+ 
+
+if you need to use both the declaration and the definition for the same function, it doesn't matter where you put the inline keyword; it’s correct to use it in the declaration and omit it in the definition; it’s also equally valid to use it in the definition and omit it in the declaration; of course, using the keyword in both places is also valid.
+********************************************************************************
+
+3.8 Overloaded Functions
+========================
+O mecânismo que permite o uso de mais de uma função com o mesmo nome é chamado de 
+'overloading'
