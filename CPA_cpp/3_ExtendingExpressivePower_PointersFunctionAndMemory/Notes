@@ -135,3 +135,35 @@ if you need to use both the declaration and the definition for the same function
 ========================
 O mecânismo que permite o uso de mais de uma função com o mesmo nome é chamado de 
 'overloading'
+
+3.9 - Sorting
+=============
+Um exemplo clássico de algorítimo de sorting é o 'bubble sort', onde são comparados elementos 
+em pares e o maior vai sempre se colocando a direita:
+|void sorting(int *ptr, int size) {
+|	int i;
+|	bool control = true;
+|	int maior;
+|
+|	while (control){
+|		control = false;
+|		for (i = 0; i < size-1; i++){
+|			if (*(ptr+i) > *(ptr+(i+1))) {
+|				maior = ptr[i];
+|				ptr[i] = ptr[i+1];
+|				ptr[i+1] = maior;
+|				control = true;
+|			}
+|		}
+|	}
+|} 
+
+3.10 - Memory on demand
+=======================
+Para alocar memória sob demanda, utiliza-se as 'keywords' 'new' e 'delete', para criar e excluir 
+espaços alocados, respectivamente.
+| int count = new int;
+| delete count;
+Note que para arrays, a alocação e desalocação de memória é um pouco diferente:
+| int array = new int[10];
+| delete []array;
