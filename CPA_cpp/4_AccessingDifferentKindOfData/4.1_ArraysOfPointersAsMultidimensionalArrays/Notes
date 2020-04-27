@@ -1,0 +1,27 @@
+4.1 Arrays of pointers as multidimensional arrays
+=================================================
+Para declarar uma array de ponteiros utiliza-se a notação "pointer to a pointer to a var". 
+Usando como exemplo, uma variável do tipo int, ficaria:
+| int **ptrarr;
+
+Uma vez que o ponteiro é declarado, pode-se alocar uma array. Por exemplo uma array de 
+'rows':
+| int rows = 5;
+| int columns = 5;
+| int **ptrarr;
+| ptrarr = new int* [rows]; 
+
+Em primeiro lugar, o ponteiro retornado pela keyword new é do tipo 'int**' e é atribuído 
+à 'ptrarr'. 
+Em segundo lugar, os elementos da matriz 'rows', são ponteiros para as linhas, portanto 
+de tipo int.
+
+O códido de alocação de memória para cada uma das linhas (rows) e o ponteiro resultante 
+desta alocação pode ser escrito com um loop, da seguinte maneira: 
+| int rows = 5;
+| int columns = 5;
+| int **ptrarr;
+| ptrarr = new int* [rows];
+| for(int r = 0; r < rows)
+| 	ptrarr[r] = new int[columns];
+
