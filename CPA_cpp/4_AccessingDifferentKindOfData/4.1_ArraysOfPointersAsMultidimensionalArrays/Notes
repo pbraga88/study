@@ -25,3 +25,12 @@ desta alocação pode ser escrito com um loop, da seguinte maneira:
 | for(int r = 0; r < rows)
 | 	ptrarr[r] = new int[columns];
 
+-	A expressão ptrarr[r] é interpretada como: *(ptr + r). O que siginfica o dereferenciamento do 
+elemento apontando para a linha selecionada.
+-	O ponteiro é dereferenciado mais uma vez para que toda expressão indexada fique:
+	*(*(ptr+r)+c)
+
+A vantagem desse tipo de matriz é que, diferente das matrizes ordinárias, é possível ter linhas 
+de diferentes tamanhos, possibilitando assim, o uso de matrizes triangulares.
+
+
