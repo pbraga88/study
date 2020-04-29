@@ -1,0 +1,136 @@
+Conversion
+==========
+Converter é o ato the mudar a natureza do dado sem alterar (quando possível) o valor:
+|long data = 1; // A natureza da variável é alterada de int para long mas o valor mantém-se o 
+				// mesmo. Claro, neste caso o número de bits para guardar o mesmo valor é 
+				// maior por tratar-se de um long;
+
+É possível evitar a conversão se o literal for declarado mais claramente:
+| long data = 1L; // O sufixo 'L' (pode-se usar 'l' também), diz explicitamente que o literal é 
+				  // do tiṕo 'long', não precisando assim de uma conversão, do momento da 
+				  // compilação.
+
+- Conversão automática: Também conhecida como 'implícita', é realizada pelo compilador.
+- Conversão explícita: É feita no código. Também conhecida como 'typecasting'
+
+Alguns contextos onde a conversão implícita tem um papel importante (ainda que quase invisível):
+- Um valor é utilizado como parte de uma expressão complexa com valores de diferentes tipos:
+|int Int = 1;
+|short Short = 2;
+|Int = Int + Short; // O tipo short é convertida para ser compatível com o tió int da variável
+
+- Um valor é utilizado em uma condição lógica como if, while, do, etc:
+|double Double = 5.0;
+|if(Double)		// O tipo double aqui é convertido em int para seguir o caminho de execução que 
+|	Double--;	// é 'Double = Double - 1'
+
+- Um valor está sujeito e é utilizado para assignment:
+|float Float = 4.0; // int é convertido para float
+
+|int f(int x){
+|	return x;
+|}
+|f(Float); // O parâmetro de tipo float é convertido para o parâmetro de retorno da função de 
+|		   // tipo formal int
+
+|float g(void){ 
+|	return -1; // O parâmetro de tipo int é retornado pela função tem retorno especificado como
+|			   // float.
+|}
+
+O C++ oferece dois tipos de conversão explicita:
+- C-style casting:
+	(new_type_name) expression_of_old_type
+| double d = 1.23;
+| int k = (int)d;
+
+- Functional notation, que é a nativa do c++
+	new_type_name(expression_of_old_type)
+| float f = 3.2;
+| int k = int(f);
+
+**** Ganhos e Perdas ****
+Um bom cenário é quando o tamanho da memória se mantém o mesmo ou aumenta; neste caso podemos 
+ficar confiantes que o valor será mantido. O programa abaixo vai imprimir "equal", pois o valor 
+total da variável de tipo short s é transferido para a variável de tipo int:
+|#include <iostream>   
+|using namespace std; 
+|int main(void) { 
+|        short s = 32767; 
+|        int i = s; 
+|        if(i == s) 
+|                cout << "equal" << endl; 
+|        else 
+|                cout << "not equal" << endl; 
+|        return 0; 
+|}
+
+Um cenário ruim é quando há perda do valor original. O programa a seguir irá imprimir "not equal" 
+pois o valor da int i é maior que a capacidade da variável do tipo short s:
+|#include  <iostream>
+|using namespace std; 
+|int main(void) { 
+|	int i = 2147483647; 
+|	short s = i; 
+|	cout<<s<<endl;
+|	if(i == s) 
+|		cout << "equal" << endl; 
+|	else 
+|		cout << "not equal" << endl; 
+|	return 0; 
+|}  
+ps.: A variável s terá o valor de '-1'
+
+Agora o próximo exemplo:
+|	float f = 1234.5678; 
+|	double d = f;         
+|	if(d == f) 
+|		cout << "equal" << endl; 
+|	else 
+|		cout << "not equal" << endl;
+Como o tipo double tem um range e uma acuidade maiores que o tipo float, será impresso equal.
+
+Já aqui:
+|	double d = 123456.789012; 
+|	float f = d; 
+|   cout<<f<<endl;
+|	if(d == f) 
+|		cout << "equal" << endl; 
+|	else 
+|		cout << "not equal" << endl;
+Será impresso "not equal" e o valor da variável de tipo float f, será 123457.
+
+Quando da conversão do tipo float para int, sempre perde-se a parte fracionada, contudo, quando 
+o float é extremamente grande (ou pequeno), também têm-se perda de valor:
+|	float f = 123.456;
+|	float g = 1e100;
+|	int i = f;
+|	int j = g;        
+|	cout << i << endl; 
+|	cout << j << endl;
+Output:
+123
+-2147483648
+
+**** Promotions ****
+Uma promotion involve uma conversão de dados para o tipo mais seguro (leia-se, de maior range de
+memória):
+- tipo char ou short int é convertido para tipo int;
+- tipo float sofre uma conversão para tipo double;
+- caso haja alguma conversão do tipo long int na expressão, o valor será convertido para o 
+tipo long int.
+
+Veja o seguinte exemplo:
+|1	int Int = 2;
+|2	char Char = 3;
+|3	short Short = 4;
+|4	float Float = 5.6;
+|5	Int = Short + Char + Float;
+|6	cout << Int << endl;
+Analisando a linha 5, primeira promoção acontece aqui:
+	int(Short) + int(Char)
+Em seguida, considerando a variável de tipo float:
+	double(int(Short) + int(Char) + double(Float))
+A soma acima será do tipo double, contudo, devido ao contexto que leva em consideração o 
+argumento do tipo int a esquerda do sinal de '=', uma conversão final para int é feita:
+	int(double(int(Short) + int(Char) + double(Float)))
