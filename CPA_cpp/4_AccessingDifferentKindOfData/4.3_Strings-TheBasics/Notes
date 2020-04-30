@@ -1,0 +1,91 @@
+4.3 Strings - the basics
+========================
+Para utilizar strings, deve-se utilizar a diretiva '#include':
+|	#include <string>
+|	string name; // Declaração de variável do tipo string
+
+Vale lembrar que a palavra 'string' não é uma keyword como int ou float.
+
+Os dois métodos abaixo estão corretos quando da inicialização de uma string:
+|	string name = "João";		 // Sempre usando aspas duplas ""
+|	string surname("Batista");   // Essa declaração é estilo programação orientada à objeto.
+|							 	 // É importante ressaltar que o operador de assignement '=' não 
+|							 	 // é utilizado aqui
+
+Também é possível utilizar os valor de uma string para inicializar outra:
+|	string student_name = name;
+|	string student_surname(name);
+
+As strings possuem seus próprios operadores, por exemplo, é possível utilizar o operador '+' 
+para concatenar strings:
+|	string TheGood = "Jekyll", TheBad = "Hyde"; 
+|	cout << TheGood + " & " + TheBad << endl; 
+|	cout << TheBad + " & " + TheGood << endl;
+Output:
+| Jekyll & hyde
+| hyde & Jekyll
+
+Uma limitação do operador '+' é a concatenação de literais. E linha de código abaixo, por exemplo, 
+irá gerar um erro:
+|	string String = "A" + "B";
+output:
+| error: invalid operands of types ‘const char [2]’ and ‘const char [2]’ to binary 'operator+'
+|   String = "A" + "B";
+|            ~~~~^~~~~
+
+Contudo, é possível concatenar um literal com uma variável e vice-versa, e obviamente, uma 
+variável com outra, portanto para resolver o erro do código acima pode-se:
+|	string String = "A";
+|	String = String + "B";
+|	cout<<String<<endl;
+output:
+| AB
+
+Também é possível utilizar '+=' para a concatenação:
+|	string String = "Ser";
+|	String += "ou não ser!";
+|	cout<<String<<endl;
+output:
+| Ser ou não ser
+
+**** Input Strings ****
+O input de string é um pouco diferente, pois o stream cin considera espaços (e white characters) 
+como delimitadores. Veja o exemplo abaixo:
+|	string LineOfTypes; 
+|	cin >> LineOfTypes; 
+|	cout << LineOfTypes << endl;
+Input (no prompt):
+| Ser ou não ser
+Output:
+| Ser
+
+Para capturar a linha inteira, utiliza-se então a função getline();
+|	string LineOfTypes; 
+|	geline(cin, LineOfTypes); 
+|	cout << LineOfTypes << endl;
+Input (no prompt):
+| Ser ou não ser
+Output:
+| Ser ou não ser
+
+**** String Comparison ****
+É possível comparar strings com operadores '==', '>' e '<', contudo, uma abordagem mais próxima 
+da orientação à objeto é utilizar a função membro do objeto string (criado à partir de uma classe) 
+'compare()':
+|	string secret = "abracadabra"; 
+|	string password; 
+|	cout << "Enter password:" << endl; 
+|	getline(cin,password); 
+|	if(secret.compare(password) == 0)  // O método (ou função membro) compare, compara os objetos
+|									   // secret e password
+|		cout << "Access granted" << endl; 
+|	else 
+|		cout << "Sorry";
+A função membro também é chamada de método de um objeto/classe, assim como os dados são os 
+'object's property' ou variável membro.
+
+O retorno da função compare() pode ser compreendido como:
+	str1.compare(str2) == 0       when str1 == str2
+	str1.compare(str2) > 0        when   str1 > str2
+	str1.compare(str2) < 0        when   str1 < str2
+	
