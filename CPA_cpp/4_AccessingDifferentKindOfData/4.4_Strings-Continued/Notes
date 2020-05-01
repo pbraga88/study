@@ -1,0 +1,12 @@
+4.4 Strings - continued
+=======================
+Para capturar apenas parte de uma string, pode-se utilizar a função membro 
+substr(substring_start_position, length_of_substring):
+|	string str1, str2; 
+|	str1 = "ABCDEF"; 
+|	str2 = str1.substr(1,1) + str1.substr(4) + str1.substr(); 
+|	cout << str2 << endl;
+output:
+|  BEFABCDEF
+
+Para saber o tamanho de uma string 

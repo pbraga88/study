@@ -7,7 +7,7 @@
 // The namespace is an abstract container which holds a logical groups of blocks (entities)
 // The desired namespace must be included at the top of the program, outside of any function
 using namespace std;
-define BUFFER_SIZE 128
+#define BUFFER_SIZE 128
 
 int main(void){
 	// float x = 1.0/4.0;
@@ -30,7 +30,7 @@ int main(void){
 	 int i;
 
 	 string mystring;
-	 string::size_type sz;
+	 size_t sz;
 	
 	 cout<<"Enter your message in hexadecimal: "<<endl;
 
