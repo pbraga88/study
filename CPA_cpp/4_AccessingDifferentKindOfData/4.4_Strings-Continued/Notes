@@ -1,12 +1,64 @@
 4.4 Strings - continued
 =======================
-Para capturar apenas parte de uma string, pode-se utilizar a funÃ§Ã£o membro 
+Para capturar apenas parte de uma string, pode-se utilizar a função membro
 substr(substring_start_position, length_of_substring):
-|	string str1, str2; 
-|	str1 = "ABCDEF"; 
-|	str2 = str1.substr(1,1) + str1.substr(4) + str1.substr(); 
+|	string str1, str2;
+|	str1 = "ABCDEF";
+|	str2 = str1.substr(1,1) + str1.substr(4) + str1.substr();
 |	cout << str2 << endl;
 output:
 |  BEFABCDEF
 
-Para saber o tamanho de uma string 
+Para saber o tamanho de uma string pode-se utilizar tanto a função size() quanto
+a função length();
+|  string s = "ABCD";
+|  int string_size = s.size();
+|  int string_lengthh = s.length();
+
+Também é possível comparar string com substrings, dela ou de outra string:
+  S.compare(substr_start, substr_length, other_string)
+  S.compare(substr_start, substr_length, other_string,  other_substr_start, \
+            other_substr_length)
+Veja o exemplo de código abaixo:
+|  string S = "ABC";
+|  cout << S.compare(1,1,"BC") + S.compare(2,1,S,2,2) << endl;
+output:
+|  -1
+Aqui o output é -1, pois a primeira comparação mostra que 'BC' é maior que 'ABC'.
+Já na segunda comparação, uma vez que tanto a posição '2,1' como a posição '2,2',
+apontam para a letra C pois a string tem apenas três elementos, o valor é 0;
+
+Para encontrar strings ou caracteres dentro de outra string, pode-se utilizar a
+função membro find():
+| int where_it_begins = S.find(another_string, start_here);
+| int where_it_is = S.find(any_character, start_here);
+
+A função utilizada para saber a capacidade de buffer de uma string é:
+| string s = "Hello";
+| int capacity = s.capacity();
+Já para ver o tamanho máximo que um buffer pode chegar, utiliza-se a função
+| string s = "Hi";
+| double max_size = s.max_size;
+Também é possível reservar buffer para uma string com o uso da função membro
+reserve(). Contudo, é importante ressaltar, que o uso de tal função não altera o
+conteúdo de uma string caso o buffer reservado seja menor que tal string, ou seja
+o buffer será sempre no mínimo do tamanho da string (ou arredondado para o que
+sistema exige):
+| string s = "content";
+| s.reserve(100);
+
+**** Mais funções membro da string ****
+Para alterar o tamanho do buffer da string:
+  string.resize(new_size);
+  string.resize(new_size, character_to_fill_new_space);
+Para apagar o conteúdo da string (a memória alocada continua):
+  string.clear();
+Para conferir se a string está vazia pode-se utilizar empty():
+  string.empty(); //Retorna bool
+
+É possível também acessar (e manipular) os caracteres de uma string
+individualmente (como se fossem do tipo char):
+| string s = "content";
+| cout<<s[4]<<endl;
+output:
+| e

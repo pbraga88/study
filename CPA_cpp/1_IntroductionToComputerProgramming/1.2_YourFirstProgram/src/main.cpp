@@ -31,16 +31,19 @@ int main(void){
 
 	 string mystring;
 	 size_t sz;
-	
+	 int total_size; 	
 	 cout<<"Enter your message in hexadecimal: "<<endl;
 
 	 getline(cin, mystring);
+	 //total_size = mystring.size();
+	 //cout<<total_size<<endl;
 	 hex_to_char[0] = stoi(mystring, &sz, 16);
 	
 	 for(i = 1; i < BUFFER_SIZE; i++){
 	 	try {
 	 		mystring  = mystring.substr(sz);
 	 		hex_to_char[i] = stoi(mystring, &sz, 16);
+			cout<<"sz = "<<sz<<endl;
 	 	}
 	 	catch(std::invalid_argument& ) {
 	 		hex_to_char[i] = '\0';
