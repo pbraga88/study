@@ -1,0 +1,69 @@
+4.5 Strings - temporary summation
+=================================
+A função membro append, adiciona uma string a outra. Veja exemplos de uso:
+| string str1 = "content", str2 = "appendix";
+| cout<<str1.append(str2)<<endl;
+output:
+| contentappendix
+----------
+|  string str1 = "content", str2 = "appendix";
+|  cout<<str1.append(str2,0,3)<<endl;
+output:
+| contentapp
+----------
+|  string str1 = "content";
+|  cout<<str1.append(3, 'x')<<endl;
+output:
+| contentxxx
+
+Uma outra função membro que adiciona apenas um caracter ao final da string é a
+push_back():
+|  string s = "abc";
+|  s.push_back('d')
+|  cout<<s<<endl;
+output
+| abcd
+
+A função membro insert() insere uma string em outro (em qualquer posição
+pré-determinada):
+|  string quote = "to be ";
+|  quote.append(quote); // "to be to be"
+|  quote.insert(6,"or not "); //"to be or not to be"
+
+A função membro assign() apaga o conteúdo de uma string e adiciona um novo:
+|  string sky;
+|  sky.assign("?!");
+|  cout<<sky<<endl;
+|  sky.assign(10, '*');
+|  cout<<sky<<endl;
+output:
+| ?!
+| **********
+
+A função membro replace() substitui uma parte da string por outra:
+|  string s = "Ola como vai?";
+|  string s_2 = "tudo bem tudo certo onde esta";
+|  s.replace(4,8, s_2,9,10);
+|  s.insert(3,1,',');
+|  s.append("?");
+|  cout<<s<<endl;
+outuput:
+Ola, tudo certo?
+
+A função membro erase() apaga partes de string, ou ela toda, caso seja invocada
+sem nenhum parâmetro:
+|  string s = "Ola, tudo bem?";
+|  s.erase(2,11);
+|  cout<<s<<endl;
+|  s.erase();
+|  cout<<s<<endl;
+output:
+| ola
+
+A função membro swap() faz a troca de conteúdo entre duas variáveis.
+|  string s = "Agua";
+|  string s_2 = "Cerveja";
+|  s.swap(s_2);
+|  cout<<s<<" "<<s_2<<endl;
+output:
+| Cerveja Agua

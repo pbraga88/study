@@ -1,0 +1,11 @@
+4.6 Name Spaces
+===============
+O uso de namespace nos permite agrupar entidades (funções, variáveis, etc) em
+escopos reduzidos. Isso permite organizar elementos do programa em blocos
+reduzidos e discriminados pelo seu nome:
+|  namespace namespace_name
+|  {
+|     int x, y; // code declarations where
+|               // x and y are declared in
+|               // namespace_name's scope
+|  }

@@ -1,0 +1,410 @@
+4.1 Arrays of pointers as multidimensional arrays
+=================================================
+Para declarar uma array de ponteiros utiliza-se a notação "pointer to a pointer to a var".
+Usando como exemplo, uma variável do tipo int, ficaria:
+| int **ptrarr;
+
+Uma vez que o ponteiro é declarado, pode-se alocar uma array. Por exemplo uma array de
+'rows':
+| int rows = 5;
+| int columns = 5;
+| int **ptrarr;
+| ptrarr = new int* [rows];
+
+Em primeiro lugar, o ponteiro retornado pela keyword new é do tipo 'int**' e é atribuído
+à 'ptrarr'.
+Em segundo lugar, os elementos da matriz 'rows', são ponteiros para as linhas, portanto
+de tipo int.
+
+O códido de alocação de memória para cada uma das linhas (rows) e o ponteiro resultante
+desta alocação pode ser escrito com um loop, da seguinte maneira:
+| int rows = 5;
+| int columns = 5;
+| int **ptrarr;
+| ptrarr = new int* [rows];
+| for(int r = 0; r < rows)
+| 	ptrarr[r] = new int[columns];
+
+-	A expressão ptrarr[r] é interpretada como: *(ptr + r). O que siginfica o dereferenciamento do
+elemento apontando para a linha selecionada.
+-	O ponteiro é dereferenciado mais uma vez para que toda expressão indexada fique:
+	*(*(ptr+r)+c)
+
+A vantagem desse tipo de matriz é que, diferente das matrizes ordinárias, é possível ter linhas
+de diferentes tamanhos, possibilitando assim, o uso de matrizes triangulares.
+
+
+4.2 Conversion
+==============
+Converter é o ato the mudar a natureza do dado sem alterar (quando possível) o valor:
+|long data = 1; // A natureza da variável é alterada de int para long mas o valor mantém-se o
+				// mesmo. Claro, neste caso o número de bits para guardar o mesmo valor é
+				// maior por tratar-se de um long;
+
+É possível evitar a conversão se o literal for declarado mais claramente:
+| long data = 1L; // O sufixo 'L' (pode-se usar 'l' também), diz explicitamente que o literal é
+				  // do tiṕo 'long', não precisando assim de uma conversão, do momento da
+				  // compilação.
+
+- Conversão automática: Também conhecida como 'implícita', é realizada pelo compilador.
+- Conversão explícita: É feita no código. Também conhecida como 'typecasting'
+
+Alguns contextos onde a conversão implícita tem um papel importante (ainda que quase invisível):
+- Um valor é utilizado como parte de uma expressão complexa com valores de diferentes tipos:
+|int Int = 1;
+|short Short = 2;
+|Int = Int + Short; // O tipo short é convertida para ser compatível com o tió int da variável
+
+- Um valor é utilizado em uma condição lógica como if, while, do, etc:
+|double Double = 5.0;
+|if(Double)		// O tipo double aqui é convertido em int para seguir o caminho de execução que
+|	Double--;	// é 'Double = Double - 1'
+
+- Um valor está sujeito e é utilizado para assignment:
+|float Float = 4.0; // int é convertido para float
+
+|int f(int x){
+|	return x;
+|}
+|f(Float); // O parâmetro de tipo float é convertido para o parâmetro de retorno da função de
+|		   // tipo formal int
+
+|float g(void){
+|	return -1; // O parâmetro de tipo int é retornado pela função tem retorno especificado como
+|			   // float.
+|}
+
+O C++ oferece dois tipos de conversão explicita:
+- C-style casting:
+	(new_type_name) expression_of_old_type
+| double d = 1.23;
+| int k = (int)d;
+
+- Functional notation, que é a nativa do c++
+	new_type_name(expression_of_old_type)
+| float f = 3.2;
+| int k = int(f);
+
+**** Ganhos e Perdas ****
+Um bom cenário é quando o tamanho da memória se mantém o mesmo ou aumenta; neste caso podemos
+ficar confiantes que o valor será mantido. O programa abaixo vai imprimir "equal", pois o valor
+total da variável de tipo short s é transferido para a variável de tipo int:
+|#include <iostream>
+|using namespace std;
+|int main(void) {
+|        short s = 32767;
+|        int i = s;
+|        if(i == s)
+|                cout << "equal" << endl;
+|        else
+|                cout << "not equal" << endl;
+|        return 0;
+|}
+
+Um cenário ruim é quando há perda do valor original. O programa a seguir irá imprimir "not equal"
+pois o valor da int i é maior que a capacidade da variável do tipo short s:
+|#include  <iostream>
+|using namespace std;
+|int main(void) {
+|	int i = 2147483647;
+|	short s = i;
+|	cout<<s<<endl;
+|	if(i == s)
+|		cout << "equal" << endl;
+|	else
+|		cout << "not equal" << endl;
+|	return 0;
+|}
+ps.: A variável s terá o valor de '-1'
+
+Agora o próximo exemplo:
+|	float f = 1234.5678;
+|	double d = f;
+|	if(d == f)
+|		cout << "equal" << endl;
+|	else
+|		cout << "not equal" << endl;
+Como o tipo double tem um range e uma acuidade maiores que o tipo float, será impresso equal.
+
+Já aqui:
+|	double d = 123456.789012;
+|	float f = d;
+|   cout<<f<<endl;
+|	if(d == f)
+|		cout << "equal" << endl;
+|	else
+|		cout << "not equal" << endl;
+Será impresso "not equal" e o valor da variável de tipo float f, será 123457.
+
+Quando da conversão do tipo float para int, sempre perde-se a parte fracionada, contudo, quando
+o float é extremamente grande (ou pequeno), também têm-se perda de valor:
+|	float f = 123.456;
+|	float g = 1e100;
+|	int i = f;
+|	int j = g;
+|	cout << i << endl;
+|	cout << j << endl;
+Output:
+123
+-2147483648
+
+**** Promotions ****
+Uma promotion involve uma conversão de dados para o tipo mais seguro (leia-se, de maior range de
+memória):
+- tipo char ou short int é convertido para tipo int;
+- tipo float sofre uma conversão para tipo double;
+- caso haja alguma conversão do tipo long int na expressão, o valor será convertido para o
+tipo long int.
+
+Veja o seguinte exemplo:
+|1	int Int = 2;
+|2	char Char = 3;
+|3	short Short = 4;
+|4	float Float = 5.6;
+|5	Int = Short + Char + Float;
+|6	cout << Int << endl;
+Analisando a linha 5, primeira promoção acontece aqui:
+	int(Short) + int(Char)
+Em seguida, considerando a variável de tipo float:
+	double(int(Short) + int(Char) + double(Float))
+A soma acima será do tipo double, contudo, devido ao contexto que leva em consideração o
+argumento do tipo int a esquerda do sinal de '=', uma conversão final para int é feita:
+	int(double(int(Short) + int(Char) + double(Float)))
+	
+4.3 Strings - the basics
+========================
+Para utilizar strings, deve-se utilizar a diretiva '#include':
+|	#include <string>
+|	string name; // Declaração de variável do tipo string
+
+Vale lembrar que a palavra 'string' não é uma keyword como int ou float.
+
+Os dois métodos abaixo estão corretos quando da inicialização de uma string:
+|	string name = "João";		 // Sempre usando aspas duplas ""
+|	string surname("Batista");   // Essa declaração é estilo programação orientada à objeto.
+|							 	 // É importante ressaltar que o operador de assignement '=' não
+|							 	 // é utilizado aqui
+
+Também é possível utilizar os valor de uma string para inicializar outra:
+|	string student_name = name;
+|	string student_surname(name);
+
+As strings possuem seus próprios operadores, por exemplo, é possível utilizar o operador '+'
+para concatenar strings:
+|	string TheGood = "Jekyll", TheBad = "Hyde";
+|	cout << TheGood + " & " + TheBad << endl;
+|	cout << TheBad + " & " + TheGood << endl;
+Output:
+| Jekyll & hyde
+| hyde & Jekyll
+
+Uma limitação do operador '+' é a concatenação de literais. E linha de código abaixo, por exemplo,
+irá gerar um erro:
+|	string String = "A" + "B";
+output:
+| error: invalid operands of types ‘const char [2]’ and ‘const char [2]’ to binary 'operator+'
+|   String = "A" + "B";
+|            ~~~~^~~~~
+
+Contudo, é possível concatenar um literal com uma variável e vice-versa, e obviamente, uma
+variável com outra, portanto para resolver o erro do código acima pode-se:
+|	string String = "A";
+|	String = String + "B";
+|	cout<<String<<endl;
+output:
+| AB
+
+Também é possível utilizar '+=' para a concatenação:
+|	string String = "Ser";
+|	String += "ou não ser!";
+|	cout<<String<<endl;
+output:
+| Ser ou não ser
+
+**** Input Strings ****
+O input de string é um pouco diferente, pois o stream cin considera espaços (e white characters)
+como delimitadores. Veja o exemplo abaixo:
+|	string LineOfTypes;
+|	cin >> LineOfTypes;
+|	cout << LineOfTypes << endl;
+Input (no prompt):
+| Ser ou não ser
+Output:
+| Ser
+
+Para capturar a linha inteira, utiliza-se então a função getline();
+|	string LineOfTypes;
+|	geline(cin, LineOfTypes);
+|	cout << LineOfTypes << endl;
+Input (no prompt):
+| Ser ou não ser
+Output:
+| Ser ou não ser
+
+**** String Comparison ****
+É possível comparar strings com operadores '==', '>' e '<', contudo, uma abordagem mais próxima
+da orientação à objeto é utilizar a função membro do objeto string (criado à partir de uma classe)
+'compare()':
+|	string secret = "abracadabra";
+|	string password;
+|	cout << "Enter password:" << endl;
+|	getline(cin,password);
+|	if(secret.compare(password) == 0)  // O método (ou função membro) compare, compara os objetos
+|									   // secret e password
+|		cout << "Access granted" << endl;
+|	else
+|		cout << "Sorry";
+A função membro também é chamada de método de um objeto/classe, assim como os dados são os
+'object's property' ou variável membro.
+
+O retorno da função compare() pode ser compreendido como:
+	str1.compare(str2) == 0       when str1 == str2
+	str1.compare(str2) > 0        when   str1 > str2
+	str1.compare(str2) < 0        when   str1 < str2
+
+4.4 Strings - continued
+=======================
+Para capturar apenas parte de uma string, pode-se utilizar a fun��o membro
+substr(substring_start_position, length_of_substring):
+|	string str1, str2;
+|	str1 = "ABCDEF";
+|	str2 = str1.substr(1,1) + str1.substr(4) + str1.substr();
+|	cout << str2 << endl;
+output:
+|  BEFABCDEF
+
+Para saber o tamanho de uma string pode-se utilizar tanto a fun��o size() quanto
+a fun��o length();
+|  string s = "ABCD";
+|  int string_size = s.size();
+|  int string_lengthh = s.length();
+
+Tamb�m � poss�vel comparar string com substrings, dela ou de outra string:
+  S.compare(substr_start, substr_length, other_string)
+  S.compare(substr_start, substr_length, other_string,  other_substr_start, \
+            other_substr_length)
+Veja o exemplo de c�digo abaixo:
+|  string S = "ABC";
+|  cout << S.compare(1,1,"BC") + S.compare(2,1,S,2,2) << endl;
+output:
+|  -1
+Aqui o output � -1, pois a primeira compara��o mostra que 'BC' � maior que 'ABC'.
+J� na segunda compara��o, uma vez que tanto a posi��o '2,1' como a posi��o '2,2',
+apontam para a letra C pois a string tem apenas tr�s elementos, o valor � 0;
+
+Para encontrar strings ou caracteres dentro de outra string, pode-se utilizar a
+fun��o membro find():
+| int where_it_begins = S.find(another_string, start_here);
+| int where_it_is = S.find(any_character, start_here);
+
+A fun��o utilizada para saber a capacidade de buffer de uma string �:
+| string s = "Hello";
+| int capacity = s.capacity();
+J� para ver o tamanho m�ximo que um buffer pode chegar, utiliza-se a fun��o
+| string s = "Hi";
+| double max_size = s.max_size;
+Tamb�m � poss�vel reservar buffer para uma string com o uso da fun��o membro
+reserve(). Contudo, � importante ressaltar, que o uso de tal fun��o n�o altera o
+conte�do de uma string caso o buffer reservado seja menor que tal string, ou seja
+o buffer ser� sempre no m�nimo do tamanho da string (ou arredondado para o que
+sistema exige):
+| string s = "content";
+| s.reserve(100);
+
+**** Mais fun��es membro da string ****
+Para alterar o tamanho do buffer da string:
+  string.resize(new_size);
+  string.resize(new_size, character_to_fill_new_space);
+Para apagar o conte�do da string (a mem�ria alocada continua):
+  string.clear();
+Para conferir se a string est� vazia pode-se utilizar empty():
+  string.empty(); //Retorna bool
+
+� poss�vel tamb�m acessar (e manipular) os caracteres de uma string
+individualmente (como se fossem do tipo char):
+| string s = "content";
+| cout<<s[4]<<endl;
+output:
+| e
+
+4.5 Strings - temporary summation
+=================================
+A função membro append, adiciona uma string a outra. Veja exemplos de uso:
+| string str1 = "content", str2 = "appendix";
+| cout<<str1.append(str2)<<endl;
+output:
+| contentappendix
+----------
+|  string str1 = "content", str2 = "appendix";
+|  cout<<str1.append(str2,0,3)<<endl;
+output:
+| contentapp
+----------
+|  string str1 = "content";
+|  cout<<str1.append(3, 'x')<<endl;
+output:
+| contentxxx
+
+Uma outra função membro que adiciona apenas um caracter ao final da string é a
+push_back():
+|  string s = "abc";
+|  s.push_back('d')
+|  cout<<s<<endl;
+output
+| abcd
+
+A função membro insert() insere uma string em outro (em qualquer posição
+pré-determinada):
+|  string quote = "to be ";
+|  quote.append(quote); // "to be to be"
+|  quote.insert(6,"or not "); //"to be or not to be"
+
+A função membro assign() apaga o conteúdo de uma string e adiciona um novo:
+|  string sky;
+|  sky.assign("?!");
+|  cout<<sky<<endl;
+|  sky.assign(10, '*');
+|  cout<<sky<<endl;
+output:
+| ?!
+| **********
+
+A função membro replace() substitui uma parte da string por outra:
+|  string s = "Ola como vai?";
+|  string s_2 = "tudo bem tudo certo onde esta";
+|  s.replace(4,8, s_2,9,10);
+|  s.insert(3,1,',');
+|  s.append("?");
+|  cout<<s<<endl;
+outuput:
+Ola, tudo certo?
+
+A função membro erase() apaga partes de string, ou ela toda, caso seja invocada
+sem nenhum parâmetro:
+|  string s = "Ola, tudo bem?";
+|  s.erase(2,11);
+|  cout<<s<<endl;
+|  s.erase();
+|  cout<<s<<endl;
+output:
+| ola
+
+A função membro swap() faz a troca de conteúdo entre duas variáveis.
+|  string s = "Agua";
+|  string s_2 = "Cerveja";
+|  s.swap(s_2);
+|  cout<<s<<" "<<s_2<<endl;
+output:
+| Cerveja Agua
+
+4.6 Name Spaces
+===============
+O uso de namespace nos permite agrupar entidades (funções, variáveis, etc) em
+escopos reduzidos. Isso permite organizar elementos do programa em blocos
+reduzidos e discriminados pelo seu nome:
+|  namespace namespace_name
+|  {
+|     int x, y; // code declarations where
+|               // x and y are declared in
+|               // namespace_name's scope
+|  }
