@@ -22,7 +22,7 @@ desta alocação pode ser escrito com um loop, da seguinte maneira:
 | int columns = 5;
 | int **ptrarr;
 | ptrarr = new int* [rows];
-| for(int r = 0; r < rows)
+| for(int r = 0; r < rows; r++)
 | 	ptrarr[r] = new int[columns];
 
 -	A expressão ptrarr[r] é interpretada como: *(ptr + r). O que siginfica o dereferenciamento do
@@ -76,7 +76,8 @@ Alguns contextos onde a conversão implícita tem um papel importante (ainda que
 
 O C++ oferece dois tipos de conversão explicita:
 - C-style casting:
-	(new_type_name) expression_of_old_type
+		(new_type_name)expression_of_old_type
+Exemplo:
 | double d = 1.23;
 | int k = (int)d;
 
@@ -170,7 +171,7 @@ Em seguida, considerando a variável de tipo float:
 A soma acima será do tipo double, contudo, devido ao contexto que leva em consideração o
 argumento do tipo int a esquerda do sinal de '=', uma conversão final para int é feita:
 	int(double(int(Short) + int(Char) + double(Float)))
-	
+
 4.3 Strings - the basics
 ========================
 Para utilizar strings, deve-se utilizar a diretiva '#include':
@@ -185,7 +186,7 @@ Os dois métodos abaixo estão corretos quando da inicialização de uma string:
 |							 	 // É importante ressaltar que o operador de assignement '=' não
 |							 	 // é utilizado aqui
 
-Também é possível utilizar os valor de uma string para inicializar outra:
+Também é possível utilizar o valor de uma string para inicializar outra:
 |	string student_name = name;
 |	string student_surname(name);
 
@@ -198,7 +199,7 @@ Output:
 | Jekyll & hyde
 | hyde & Jekyll
 
-Uma limitação do operador '+' é a concatenação de literais. E linha de código abaixo, por exemplo,
+Uma limitação do operador '+' é a concatenação de literais. A linha de código abaixo, por exemplo,
 irá gerar um erro:
 |	string String = "A" + "B";
 output:
@@ -264,7 +265,7 @@ O retorno da função compare() pode ser compreendido como:
 
 4.4 Strings - continued
 =======================
-Para capturar apenas parte de uma string, pode-se utilizar a fun��o membro
+Para capturar apenas parte de uma string, pode-se utilizar a função membro
 substr(substring_start_position, length_of_substring):
 |	string str1, str2;
 |	str1 = "ABCDEF";
@@ -273,54 +274,54 @@ substr(substring_start_position, length_of_substring):
 output:
 |  BEFABCDEF
 
-Para saber o tamanho de uma string pode-se utilizar tanto a fun��o size() quanto
-a fun��o length();
+Para saber o tamanho de uma string pode-se utilizar tanto a função membro size()
+quanto a função membro length();
 |  string s = "ABCD";
 |  int string_size = s.size();
 |  int string_lengthh = s.length();
 
-Tamb�m � poss�vel comparar string com substrings, dela ou de outra string:
+Também é possível comparar string com substrings (dela ou de outra string):
   S.compare(substr_start, substr_length, other_string)
   S.compare(substr_start, substr_length, other_string,  other_substr_start, \
             other_substr_length)
-Veja o exemplo de c�digo abaixo:
+Veja o exemplo de código abaixo:
 |  string S = "ABC";
 |  cout << S.compare(1,1,"BC") + S.compare(2,1,S,2,2) << endl;
 output:
 |  -1
-Aqui o output � -1, pois a primeira compara��o mostra que 'BC' � maior que 'ABC'.
-J� na segunda compara��o, uma vez que tanto a posi��o '2,1' como a posi��o '2,2',
-apontam para a letra C pois a string tem apenas tr�s elementos, o valor � 0;
+Aqui o output é -1, pois a primeira comparação mostra que 'BC' é maior que 'B'.
+Já na segunda comparação, uma vez que tanto a posição '2,1' como a posição '2,2',
+apontam para a letra C, pois a string tem apenas três elementos, o valor é '0';
 
 Para encontrar strings ou caracteres dentro de outra string, pode-se utilizar a
-fun��o membro find():
+função membro find():
 | int where_it_begins = S.find(another_string, start_here);
 | int where_it_is = S.find(any_character, start_here);
 
-A fun��o utilizada para saber a capacidade de buffer de uma string �:
+A funçãoo utilizada para saber a capacidade de buffer de uma string é:
 | string s = "Hello";
 | int capacity = s.capacity();
-J� para ver o tamanho m�ximo que um buffer pode chegar, utiliza-se a fun��o
+Já para ver o tamanho máximo que um buffer pode chegar, utiliza-se a função
 | string s = "Hi";
 | double max_size = s.max_size;
-Tamb�m � poss�vel reservar buffer para uma string com o uso da fun��o membro
-reserve(). Contudo, � importante ressaltar, que o uso de tal fun��o n�o altera o
-conte�do de uma string caso o buffer reservado seja menor que tal string, ou seja
-o buffer ser� sempre no m�nimo do tamanho da string (ou arredondado para o que
+Também é possível reservar buffer para uma string com o uso da função membro
+reserve(). Contudo, é importante ressaltar, que o uso de tal função não altera o
+conteúdo de uma string caso o buffer reservado seja menor que tal string, ou seja
+o buffer será sempre, no mínimo, do tamanho da string (ou arredondado para o que
 sistema exige):
 | string s = "content";
 | s.reserve(100);
 
-**** Mais fun��es membro da string ****
+**** Mais funções membro da string ****
 Para alterar o tamanho do buffer da string:
   string.resize(new_size);
   string.resize(new_size, character_to_fill_new_space);
-Para apagar o conte�do da string (a mem�ria alocada continua):
+Para apagar o conteúdo da string (a memória alocada continua):
   string.clear();
-Para conferir se a string est� vazia pode-se utilizar empty():
+Para conferir se a string está vazia pode-se utilizar empty():
   string.empty(); //Retorna bool
 
-� poss�vel tamb�m acessar (e manipular) os caracteres de uma string
+É possível também acessar (e manipular) os caracteres de uma string
 individualmente (como se fossem do tipo char):
 | string s = "content";
 | cout<<s[4]<<endl;
@@ -353,7 +354,7 @@ push_back():
 output
 | abcd
 
-A função membro insert() insere uma string em outro (em qualquer posição
+A função membro insert() insere uma string em outra (em qualquer posição
 pré-determinada):
 |  string quote = "to be ";
 |  quote.append(quote); // "to be to be"

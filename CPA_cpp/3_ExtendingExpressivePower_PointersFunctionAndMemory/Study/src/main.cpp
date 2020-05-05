@@ -115,7 +115,7 @@ using namespace std;
 // 	return 0;
 
 // 	// cout << 1/sizeof(float)<<endl;
-	
+
 
 	/**pointer to void example**/
 	// void *ptr = new int[10];
@@ -133,7 +133,7 @@ using namespace std;
 	/**********Ponteiro de função (Callback)***************/
 	// void (*ptr_to_sorting)(int *pointer, int tam) = &sorting;
 	// (*ptr_to_sorting)(arr, nb_qty);
-	/* O nome da função pode ser utilizado para obter seu 
+	/* O nome da função pode ser utilizado para obter seu
 	endereço, portanto a seguinte declaração também funciona
 	(sem contar que é mais simples):*/
 	// void (*ptr_to_sorting)(int *pointer, int tam) = sorting;
@@ -155,7 +155,7 @@ using namespace std;
 	// 	cout << sort[i] << " ";
 	// cout<<endl;
 	/******************************************************/
-	
+
 	/**********Ponteiro de função que aponta para uma função que retorna ponteiro********/
 	// int *(*ptr_to_sorting_ptr)(int *array, int tam) = sorting_ptr;
 	// int *sort_ret = ptr_to_sorting_ptr(arr, nb_qty);
@@ -186,21 +186,21 @@ using namespace std;
 	/*Questão 01
 	  Resposta Certa: 22
 	  Minha Reposta: 32 */
-	// int t[3] = {3, 2, 1}, *ptr = t + 1;
-	// cout<<"DEBUG: *ptr=" << *ptr<<endl;
-	// cout<<"DEBUG: ptr=" << ptr<<endl;
-	// (*(ptr+1))++;
-	// *ptr++; // Note que aqui a operação de soma '++' é aplicada ao endereço do 
-	// 		// ponteiro 'ptr', fazendo com que ele aponte para 't[2]' ou 't + 2'. Também 
-	// 		// é possível (e torna a leitura do código mais fácil) somar ao endereço sem 
-	// 		// o uso do operador '*'. Veja:
-	// 		// ptr++; 
-	// 		// Para alterar o valor cujo o ponteiro aponta (dereferenciar), que aqui
-	// 		// é o valor em t[1], pode-se utilizar as seguintes notações: 
-	// 		// '(*(ptr))++;' ou 'ptr[0]++' 
-	// cout<<"DEBUG: *ptr=" << *ptr<<endl;
-	// cout<<"DEBUG: ptr=" << ptr<<endl;
-	// cout << t[1] << t[2] <<endl;
+	int t[3] = {3, 2, 1}, *ptr = t + 1;
+	cout<<"DEBUG: *ptr=" << *ptr<<endl;
+	cout<<"DEBUG: ptr=" << ptr<<endl;
+	(*(ptr+1))++;
+	*ptr++; // Note que aqui a operação de soma '++' é aplicada ao endereço (e não ao valor) do
+			// ponteiro 'ptr', fazendo com que ele aponte para 't[2]' ou 't + 2'. Também
+			// é possível (e torna a leitura do código mais fácil) somar ao endereço sem
+			// o uso do operador '*'. Veja:
+			// ptr++;
+			// Para alterar o valor cujo o ponteiro aponta (dereferenciar), que aqui
+			// é o valor em t[1], pode-se utilizar as seguintes notações:
+			// '(*(ptr))++;' ou 'ptr[0]++'
+	cout<<"DEBUG: *ptr=" << *ptr<<endl;
+	cout<<"DEBUG: ptr=" << ptr<<endl;
+	cout << t[1] << t[2] <<endl;
 
 	/*Questão 02
 	  Resposta Certa: 4.14
@@ -216,10 +216,10 @@ using namespace std;
 	// float *p1 = f, *p2 = p1 + 1;
 	// cout<<"DEBUG: p2 = "<<p2<<endl;
 	// cout<<"DEBUG: p1 = "<<p1<<endl;
-	// cout<<"DEBUG: p2 - p1 = "<<(p2-p1)<<endl; // Aqui, a subtração é de endereço de memória, 
-	// 										  // ou seja,  como são do tiṕo float e ocupam 
+	// cout<<"DEBUG: p2 - p1 = "<<(p2-p1)<<endl; // Aqui, a subtração é de endereço de memória,
+	// 										  // ou seja,  como são do tiṕo float e ocupam
 	// 										  // 4 Bytes cada, fica (e.g os valores diferem,
-	// 										  // obivamente, pois são endereços de memória): 
+	// 										  // obivamente, pois são endereços de memória):
 	// 										  // p2 = 0x7fff99947054
 	// 										  // p1 = 0x7fff99947050
 	// 										  // p2 - p1 = 1
@@ -318,8 +318,8 @@ using namespace std;
 	// int main(){
 	// 	int t[] = {5, 6, 7};
 	// 	// Aqui, é importante lembrar que a função 'fun(int t[])' também pode ser declarada
-	// 	// como 'fun(int *t)', ou seja, ela deve receber um ponteiro. 
-	// 	// Portanto, a seguinte chamada desta função também é válida: 
+	// 	// como 'fun(int *t)', ou seja, ela deve receber um ponteiro.
+	// 	// Portanto, a seguinte chamada desta função também é válida:
 	// 	// int *ptr = t;
 	// 	// cout << fun(ptr);
 	// 	cout << fun(t);
@@ -336,8 +336,8 @@ using namespace std;
 		return p;
 	}
 	int* play(int& v){ //(int "referencia a variável passada em" v)
-		cout << ++v; //Não se esqueça que a adição aqui é aplicada na variável referenciada 
-					 // por v. 
+		cout << ++v; //Não se esqueça que a adição aqui é aplicada na variável referenciada
+					 // por v.
 		return &v; // return "endereço de" v;
 	}
 	void remove(int* v){ // (int"espera por um ponteiro" v)
