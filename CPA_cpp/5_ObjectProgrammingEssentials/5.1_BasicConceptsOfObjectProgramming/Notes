@@ -1,0 +1,11 @@
+5.1 - Basic Concepts of object programming
+==========================================
+Todo objeto possui três grupos de atributos:
+1. Um objeto tem um identificador único com o seu 'home namespace';
+2, Um objeto possui propriedades individuais;
+3. Um objeto possui métodos que podem alterar o próprio objeto bem
+como outros objetos.
+Define a class:
+| Class OurClass{};
+Create an object out of that class:
+| OurClass our_object;
