@@ -1,0 +1,102 @@
+5.2 - A stack: a view from two different perspectives
+=====================================================
+LIFO: Last In First Out
+
+O Stack Ponter(SP) é uma variável que pode ser utilizada para guardar a
+quantidade de elementos em um stack:
+| int SP = 0;
+
+Função básica para adicionar (push) elementos em uma stack:
+|  void push(int value){
+|    stack[SP++] = value;
+|  }
+
+E uma função básica para pegar (pop) o valor no topo da stack:
+|  int pop(void){
+|    return stack[--SP];
+|  }
+
+Uma implementação procedural (orientada a máquina), pode ser escrita:
+|  push(3);
+|  push(2);
+|  push(1);
+|  cout<<pop();
+|  cout<<pop();
+|  cout<<pop();
+output:
+| 3
+
+Para tornar o uso da stack mais seguro e versátil, uma aproximação orientada à
+objeto pode ser a solução:
+- O ENCAPSULAMENTO é um recurso que permite a proteção de velores selecionados
+contra o acesso indevido;
+- Quando a stack é criada dentro de uma classe, torna-se muito mais fácil de se
+replicar sem ter de escreve-lá novamente;
+- A INHERITANCE permite herdar funções de outras classes;
+- Já o TEMPLATE permite criar uma classe genérica e parâmetrizada
+
+O encapsulamento faz com que somente a própria classe acesse e modifique o que
+está encapsulado:
+|  class Stack{
+|    private:  // keyword para encapsular
+|      int stackstore[100];
+|      int SP;
+|  }
+** Quando nenhuma keyword é utilizada, o conteúdo é automaticamente encapsulado
+
+A keyword public, por sua vez, torna todos os seus elementos acessíveis de fora
+da classe:
+|  class Stack {
+|  private:
+|        int stackstore[100];
+|        int SP;
+|  public:
+|        void push(int value);
+|        int pop(void) {
+|               return stackstore[--SP];
+|        }
+|  };
+
+Para declarar uma função fora da classe, deve-se utilizar o nome da classe a qual
+ela pertence e o operador '::':
+|  void Stack::push(int value) {
+|  	stackstore[SP++] = value;
+|  }
+
+As duas funções push() e pop() têm acesso aos membros da classe sem nenhum
+obstáculo. Os componentes de uma classe são totalmente visíveis entre si.
+
+Constructor: é, basicamente, o responsável por criar cada objeto de uma classe.
+É importante mencionar que o constructor não é uma função e, portanto, não possui
+nenhum valor de retorno.
+
+A seguinte declaração é utilizada para criar uma sub-classe de Stack:
+|  class AddingStack:Stack{
+|  };
+A classe recém criada, deriva todos os componentes de sua super classe.
+
+O código completo da sub-classe pode ficar:
+|  class AddingStack : Stack {
+|      private:
+|  	int sum;
+|      public:
+|  	AddingStack(void);
+|  	void push(int value);
+|  	int pop(void);
+|  	int getSum(void);
+|  };
+|  AddingStack::AddingStack(void) : Stack() { // Note que aqui a super classe Stack()
+|  	sum = 0;                                  // também  deve ser incializada no
+|  }                                          // constructor
+|  void AddingStack::push(int value) {
+|  	sum += value;
+|  	Stack::push(value);
+|  }
+|  int AddingStack::pop(void) {
+|  	int val = Stack::pop();
+|  	sum -= val;
+|  	return val;
+|  }
+|  int AddingStack::getSum(void) {
+|  	return sum;
+|  }

@@ -2,12 +2,12 @@
 ======================
 Toda função é provida de duas importantes partes: o prólogo e o epílogo.
 * O Prólogo é a parte implicitamente executada antes da função e é responsavel 
-por transferir parâmetros do códig que invoca tal função para uma região chamada 
+por transferir parâmetros do código que invoca tal função para uma região chamada 
 de stack. 
 * O Epílogo é executado logo após o término da função e é responsável por 
 transferir o resultado para a função 'invocadora' e por limpar a stack
 
-Para ter um código mais rápido no caso de funções menores, pode-se usar 
+Para ter um código mais rápido, no caso de funções menores, pode-se usar 
 a keyword "inline" e o compilador irá compilar a função toda vez que ela for 
 chamada e, nesse caso, não utilizará nem o Prólogo nem o Epílogo.
 
