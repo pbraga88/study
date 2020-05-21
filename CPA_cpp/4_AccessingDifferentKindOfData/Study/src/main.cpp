@@ -303,9 +303,9 @@
 //
 // // namespace fdm = first;
 //
-using namespace std;
-//
-int main(){
+// using namespace std;
+
+// int main(){
 //   /*Using namespace for second{} only*/
 //   // using namespace second;
 //   // int x = x_second;
@@ -343,6 +343,6 @@ int main(){
   //   cout<<mult(5)<<endl;
   // }
 
-	cout<<"b"+"c"<<endl;
-  return 0;
-}
+// 	cout<<"b"+"c"<<endl;
+//   return 0;
+// }

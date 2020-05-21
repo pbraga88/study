@@ -33,8 +33,8 @@ output:
 3
 
 |2*3%5
-Os operadores acima têm a mesma prioridade em C++, contudo, como as operações são realizadas da 
-esquerda para a direita, primeiro é executado '2*3' e com o resultado é e feita a operação 
+Os operadores acima têm a mesma prioridade em C++, contudo, como as operações são realizadas da
+esquerda para a direita, primeiro é executado '2*3' e com o resultado é e feita a operação
 do 'remainder' %: 6%5=1;
 
 ++ -> o operador ++ (plus plus) adiciona 1 à variável:
@@ -45,11 +45,11 @@ ouput
 1
 para subtrair basta usar 'i --'
 
-Os operadores ++ e -- são chamados de operadores de incremento e decremento, respectivamente, e 
-também podem ser posicionados antes da variável à ser incrementada/decrementada. Para ser mais 
+Os operadores ++ e -- são chamados de operadores de incremento e decremento, respectivamente, e
+também podem ser posicionados antes da variável à ser incrementada/decrementada. Para ser mais
 correto, tais operadores devem ser chamados de pre/post-increment/decrement.
-Caso o operador seja colocado antes da variável, tal variável tem seu valor alterado antes de ser 
-usada, caso o operador for colocado após a variável, esta mesma variável pode ser utilizada (por 
+Caso o operador seja colocado antes da variável, tal variável tem seu valor alterado antes de ser
+usada, caso o operador for colocado após a variável, esta mesma variável pode ser utilizada (por
 exemplo, ter seu valor atribuido a uma outra variável) antes de ter seu valor alterado. Exemplo:
 |int i = 1;
 |int y;
@@ -87,7 +87,7 @@ Para declarar caracteres especiais como o apóstrofe, deve-se utilizar o backsla
 '\a'	-> BEL (de bell) quando enviado para tela, aciona um pequeno beep
 '\0'	-> null (do latim 'nullus')
 
-É possível passar valores inteiros para um tipo char e um char para uma var 
+É possível passar valores inteiros para um tipo char e um char para uma var
 int.
 
 1.6 - Flow Control
@@ -115,14 +115,14 @@ Uma expressão também é algo permitido para o stream cout:
 | int square = 4;
 | cout << "Quadrado de 4 = " << square*square;
 
-manipulator		-> O manipulator (manipulador) é um tipo especial que diz que o dado do stream 
+manipulator		-> O manipulator (manipulador) é um tipo especial que diz que o dado do stream
 deve ser alterado imediatemente:
 | int byte = 255;
 | cout << "Byte in hex: " << hex << byte;
-output 
+output
 | ff
 
-Vale ressaltar que o manipulador atua do momento em que ele é declarado até o momento em que um 
+Vale ressaltar que o manipulador atua do momento em que ele é declarado até o momento em que um
 outro manipulador cancele sua ação:
 |	int byte = 255;
 |	cout << "Byte in hex: " << hex << byte << endl;
@@ -139,10 +139,10 @@ Manipuladores:
 	hex
 	dec
 	oct
-	setbase()	-> Apenas este precisa da inclusão do header <iomanip> e aceita como 
-				   argumento apenas os 
+	setbase()	-> Apenas este precisa da inclusão do header <iomanip> e aceita como
+				   argumento apenas os
 				   valores 8, 10 e 16;
-	endl	-> Para pular linha 
+	endl	-> Para pular linha
 
 setbase()	-> Faz a conversão para a base passada como argumento:
 |#include <iostream>
@@ -163,18 +163,18 @@ Manipuladores de número:
 	scientific	-> Printa em notação cientifica
 |	float x = 2.5, y = 0.0000000025;
 |	cout << fixed << x << " " << y << endl;
-| 	cout << scientific << x << " " << y << endl;
+| cout << scientific << x << " " << y << endl;
 output:
 |   2.500000 0.000000
 |   2.500000e+000 2.500000e-009
 
-cin e >>	-> O stream cin juntamente com o operador >> transferem os dados humanos do console 
+cin e >>	-> O stream cin juntamente com o operador >> transferem os dados humanos do console
 e o convertem em linguagem de máquina:
 |#include <iostream>
 |
 |using namespace std;
 |
-|int main(void) 
+|int main(void)
 |{
 |        int value,square;
 |

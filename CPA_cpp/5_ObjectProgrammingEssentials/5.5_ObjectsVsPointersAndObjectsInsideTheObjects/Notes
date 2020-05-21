@@ -1,0 +1,76 @@
+5.5 - Objects vs Pointesr and Objects inside the Objects
+========================================================
+Stack:
+Todas a variáveis, incluindo objetos, que são declaradas da maneira ordinária (sem
+reservar espaço na memória) ficam em uma região de memória chamada 'stack'. E tal
+região é dedicada à guardar todas as entidades automáticas
+
+Heap:
+Já as entidades criadas "sob demanda" (com reserva de espaço de memória através
+da keyword 'new'), são guardadas em uma região específica de memória chamada Heap.
+Ao contrário da Stack, todas as entidades do Heap estão quase totalmente sob
+controle do desenvolvedor.
+
+Os objetos criados no Heap devem ser acessados com o uso do operador '->'.
+
+Tanto funções membro, quanto variáveis de uma classe instanciada por um ponteiro,
+devem uutilizar o operador '->':
+|    #include <iostream>
+|    using namespace std;
+|    class Class {
+|    public:
+|    	Class(void) {
+|    		cout << "Object constructed!" << endl;
+|    	}
+|    	~Class(void) {
+|    		cout << "Object destructed!" << endl;
+|    	}
+|    	void IncAndPrint(void) {
+|    		cout << "value = " << ++value << endl;
+|    	}
+|    	int value;
+|    };
+|    int main(void) {
+|    	Class *ptr;
+|    	ptr = new Class;
+|    	ptr -> value = 1;
+|    	ptr -> IncAndPrint();
+|    	delete ptr;
+|    	return 0;
+|    }
+output:
+|  Object constructed!
+|  value = 2
+|  Object destructed!
+
+Quando um objeto é instanciado dentro de outro, também é possível passa valores
+para seus inicializadores. Para tal, deve-se utilzar a seguinte sintaxe:
+| Collection(void) : el2(2), el1(1) { … }
+
+Veja o exmplo de código à seguir:
+|    #include <iostream>
+|    using namespace std;
+|    class Element {
+|    	int value;
+|    public:
+|    	Element(int val) {
+|    		value = val; cout << "Element(" << val << ") constructed!" << endl;
+|    	}
+|    	int Get(void) { return value; }
+|    	void Put(int val) { value = val; }
+|    };
+|    class Collection {
+|    	Element el1, el2;
+|    public:
+|    	Collection(void) : el2(2), el1(1) { cout << "Collection constructed!" << endl; }
+|    	int Get(int elno) { return elno == 1 ? el1.Get() : el2.Get(); }
+|    	int Put(int elno, int val) { if(elno == 1) el1.Put(val); else el2.Put(val); }
+|    };
+|    int main(void) {
+|    	Collection coll;
+|    	return 0;
+|    	}
+Output:
+|  Element(1) constructed!
+|  Element(2) constructed!
+|  Collection constructed!

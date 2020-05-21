@@ -1,0 +1,144 @@
+5.4 Static Components
+=====================
+Todas as variáveis de um código pertencem a uma das duas categorias
+abaixo:
+- Variáveis Automáticas: Criadas e destruidas, algumas repetidamente, e
+automaticamente durante a execução do programa;
+Variáveis Estáticas: Existem de forma contínua durante toda a execução do
+programa.
+
+Tanto a linguagem C quanto a C++, consideram todas as variáveis como automáticas,
+salvo quando, explicitamente, são declaradas do tipo estática.
+
+A variável estática é criada uma única vez durante o "program prologue" e é
+destruída somente quando o programa como um todo termina ("program epilogue").
+Observe, no exemplo abaixo, como a variável 'var' da função fun(void) mantem seu
+valor que foi alterado na chamada anterior:
+|  #include <iostream>
+|  using namespace std;
+|  void fun(void) {
+|  	static int var = 99;
+|  	cout << "var = " << ++var << endl;
+|  }
+|  int main(void) {
+|  	for(int i = 0; i < 5; i++)
+|  		fun();
+|  	return 0;
+|  }
+output:
+100
+101
+102
+103
+104
+
+Uma classe precisa ser instanciada para que seus componentes sejam acessados, ou
+seja, é preciso criar um objeto para acessar os métodos e variáveis, que irão
+pertencer somente aquele objeto.
+Contudo, essa definição não se aplica à uma variável do tipo estática declarada
+dentro de uma classe. Por se tratar de um tipo especial, que estará presente do
+começo ao fim da execução do programa, todas as instâncias (ou objetos) de uma
+classe, compartilham as mesmas variáveis estáticas. A declaração da variável
+estática, deve ser feita dentro da classe, contudo, sua definição e, possível,
+inicialização precisam ser feitas fora da classe. Veja o exemplo a seguir:
+|    #include <iostream>
+|    using namespace std;
+|    class Class {
+|    public:
+|    	static int Static;
+|    	int NonStatic;
+|    	void print(void) {
+|    		cout << "Static = " << ++Static <<
+|    		        ", NonStatic = " << NonStatic << endl;
+|    	}
+|    };
+|    int Class::Static = 0; // A variável estática DEVE ser definida e, se necessário,
+|    int main(void) {       // inicializada fora da classe
+|    	Class instance1, instance2;
+|    	instance1.NonStatic = 10;
+|    	instance2.NonStatic = 20;
+|    	instance1.print();
+|    	instance2.print();
+|    	return 0;
+|    	}
+output:
+|  Static = 1, NonStatic = 10
+|  Static = 2, NonStatic = 20
+
+Também é possível declarar funções estáticas dentro uma classe:
+|    #include <iostream>
+|    using namespace std;
+|    class Classe{
+|      private:
+|        static int counter;
+|      public:
+|        Classe(){
+|          counter++;
+|        }
+|        ~Classe(){
+|          if(!(--counter))
+|            cout<<"bye bye!"<<endl;
+|        }
+|        static void how_many(){
+|          cout<<counter<<" instances"<<endl;
+|        }
+|    };
+|    int Classe::counter = 0;
+|
+|    int main(){
+|      Classe::how_many();
+|      Classe a;
+|      Classe b;
+|      b.how_many(); // Também pode ser chamada com Classe::how_many() ou a.how_many()
+|      Classe c;
+|      Classe d;
+|      d.how_many(); // Também pode ser chamada com Classe::how_many() ou c.how_many()
+|      return 0;
+|    }
+
+***** Interação entre componentes estáticos e não estáticos *****
+Uma função estática pode acessar outra função estática sem problemas:
+|    #include <iostream>
+|    using namespace std;
+|    class Test {
+|    public:
+|    	static void funS1(void) { cout << "static" << endl; }
+|    	static void funS2(void) { funS1(); }
+|    };
+|    int main(void) {
+|    	Test object;
+|    	Test::funS2();
+|    	object.funS2();
+|    	return 0;
+|    }
+output:
+|  static
+|  static
+
+Uma função ESTÁTICA NÃO PODE CHAMAR UMA FUNÇÃO NÃO-ESTÁTICA. A implementação à
+seguir irá gerar um erro de compilação:
+|    class Test{
+|      public:
+|        void funN1(){cout<<"non-static"<<endl;}
+|        static void funS1{funN1();}
+|    };
+
+Já uma função não-estática, pode chamar uma função estática, pois esta já estará
+criada antes que qualqer instância da classe:
+|    #include<iostream>
+|    using namespace std;
+|    class Test{
+|      public:
+|        static void funN1(){cout<<"static"<<endl;}
+|        void funS1(){funN1();}
+|    };
+|    int main(){
+|      Test object;
+|      object.funS1();
+|      return 0;
+|    }
+output:
+|  static
+
+Por fim, como já visto anteriormente, é completamente possível uma função
+não-estática chamar uma outra função não-estática.

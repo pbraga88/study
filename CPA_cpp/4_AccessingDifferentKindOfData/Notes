@@ -154,8 +154,7 @@ Uma promotion involve uma conversão de dados para o tipo mais seguro (leia-se, 
 memória):
 - tipo char ou short int é convertido para tipo int;
 - tipo float sofre uma conversão para tipo double;
-- caso haja alguma conversão do tipo long int na expressão, o valor será convertido para o
-tipo long int.
+- caso haja alguma conversão do tipo long int na expressão, o valor será convertido para o tipo long int.
 
 Veja o seguinte exemplo:
 |1	int Int = 2;

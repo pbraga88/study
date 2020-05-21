@@ -28,7 +28,7 @@ Quando uma condição é colocada dentro de outra, isto é chamado de nesting (a
 |     else
 |            GoShopping();
 
-Quando várias condições if são colocadas em sequencia, isto ś chamado de cascade (cascata). Para tal, 
+Quando várias condições if são colocadas em sequencia, isto ś chamado de cascade (cascata). Para tal,
 utiliza-se o conditional statement 'else if':
 |if(TheWeatherIsGood)
 |    GoForAWalk();
@@ -46,9 +46,9 @@ int, normalmente, tem o tamanho de 4 bytes (32 bits) e vai de -2147483648 até 2
 Para especificar a quantidade de memória, pode-se usar os modifiers (modificadores):
 long	-> Indica a necessidade de um range maior que o padrão para o int
 		   Normalmente 8 Bytes (64 bits) indo de -9223372036854775808 até 9223372036854775807
-short	-> Indica a necessidade de um range menor que o padrão para o int. 
+short	-> Indica a necessidade de um range menor que o padrão para o int.
 		   Normalmente 2 Bytes (32 bits) indo de -32768 até 32767
-unsigned	-> Indica que a variável irá utilizar apenas valores positivos. Pode ser utilizado também com 
+unsigned	-> Indica que a variável irá utilizar apenas valores positivos. Pode ser utilizado também com
 			   variáveis do tipo char (à ver). int, nesse caso por exemplo, varia de 0 até 4294967295
 
 Declarando:
@@ -58,7 +58,7 @@ o tipo int pode ser omitido, uma vez que toda declaração faltando o tipo, é c
 | short a;	// omitindo o int de 'short int a; '
 | long b;	// omitindo o int de 'long int b;'
 
-O tipo char tem normalmente tamanho de 1 byte (8 bits) indo de -128 até 127. Caso seja declarada com 
+O tipo char tem normalmente tamanho de 1 byte (8 bits) indo de -128 até 127. Caso seja declarada com
 o modifier 'unsigned', vai de 0 até 255.
 
 quando o valor literal é acompanhdo por 'l' ou 'L', o compilador considera a variável do tipo long:
@@ -68,11 +68,11 @@ A variável também é considerada do tipo long quando seu valor extrapola valor
 float	-> 4 bytes (32 bits)
 double	-> 8 bytes (64 bits)
 
-O tipo float dá uma precisão de 8 digitos, para precisão maior do que digitos utiliza-se o tipo double 
-(que também é um ponto flutuante). A variável do tipo 'double' tem uma precisão aproximada do dobro do 
+O tipo float dá uma precisão de 8 digitos, para precisão maior do que digitos utiliza-se o tipo double
+(que também é um ponto flutuante). A variável do tipo 'double' tem uma precisão aproximada do dobro do
 tipo float, de 15 a 17 digitos.
 
-Quando um número muito pequeno é adicionado a um muito grande, ocorre o que chamamos de 'anomalia 
+Quando um número muito pequeno é adicionado a um muito grande, ocorre o que chamamos de 'anomalia
 numérica':
 |	float a = 11111111000.0;
 |	float b = 0.00011111111;
@@ -80,7 +80,7 @@ numérica':
 |	cout << fixed << result << endl;
 output:
 | 11111110656.000000
-Tal característica da anomalia numérica  vale tanto para float quanto para double, com a diferença 
+Tal característica da anomalia numérica  vale tanto para float quanto para double, com a diferença
 de que o tipo double obterá aproximadamente o dobro da precisão do tipo float
 
 2.3 - Loops
@@ -121,7 +121,7 @@ Se uma variável é declarado dentro do loop, ela só estará disponível para t
 |/* the body goes here */
 |
 |}
-Se quaisquer um dos três parâmetros do loop 'for', for omitido, tal parâmetro é considerado 1. 
+Se quaisquer um dos três parâmetros do loop 'for', for omitido, tal parâmetro é considerado 1.
 O loop for a seguir, por exemplo, é um loop infinito:
 |for(;;) {
 |	do_something();
@@ -136,7 +136,7 @@ continue	-> Vai direto para a checagem condicional do loop.
 Conjunction		-> Duas condições devem ser atendidas
 |if (a==1 && b==1)
 |	cout << "True" << emdl;
-O operador da 'Conjunction' é &&. Trata-se de um operador binário, com menor 
+O operador da 'Conjunction' é &&. Trata-se de um operador binário, com menor
 prioridade do que os operadores de comparação, portanto a seguinte linha
 pode ser expressada sem a necessidade do uso de parênteses:
 |counter>0 && value==100
@@ -144,11 +144,11 @@ pode ser expressada sem a necessidade do uso de parênteses:
 Disjunction		-> Apenas uma condição precisa ser atendida
 |if (a==1 || b==1)
 |	cout <<"True" << endl;
-O operador da 'Disjunction' é ||. Trata-se também de um operador binário com 
+O operador da 'Disjunction' é ||. Trata-se também de um operador binário com
 menor prioridade do que && (bem como '+' em relação à '*')
 
-logical negation	-> Este operador unário é representado por '!'. Ele torna 
-'true' em 'false' e 'false' em 'true'. Sua prioridade é muito alta, assim como 
+logical negation	-> Este operador unário é representado por '!'. Ele torna
+'true' em 'false' e 'false' em 'true'. Sua prioridade é muito alta, assim como
 os operadores de incremento e decremento
 
 **************************************************************
@@ -167,15 +167,15 @@ bitwise operators	-> São os operadores (4) que permitem manipular bit a bit:
 - ^ bitwise exclusive or
 ********************************************************************************
 A operação exclusive OR apenas produz um valor verdadeiro se os dois operandos *
-fprem diferentes:															   *
-A B |Saída																	   *
-0 0	|0																		   *
-0 1	|1																		   *
-1 0	|1																		   *
-1 1	|0																		   *
+forem diferentes:															   															 *
+A B |Saída																	   																 *
+0 0	|0																		   																	 *
+0 1	|1																		   																	 *
+1 0	|1																		   																	 *
+1 1	|0																		   																	 *
 ********************************************************************************
 
-Importante: Os argumentos dessas operações devem ser inteiros (int, long, short ou char); não se deve usar 
+Importante: Os argumentos dessas operações devem ser inteiros (int, long, short ou char); não se deve usar
 ponto flutuante (float)
 
 Operações lógicas e binárias
@@ -183,8 +183,8 @@ Dado:
 	i = 00000000 00000000 00000000 00001111
 	j = 00000000 00000000 00000000 00010110
 	int logic = i && j; // = 00000000 00000000 00000000 00000001
-À operação de conjunção acima, apenas interessa saber se os números são inteiros positivios ou não. O resultado será 
-sempre booleano true (1) ou booleano false (0) dependendo das variáveis. 
+À operação de conjunção acima, apenas interessa saber se os números são inteiros positivios ou não. O resultado será
+sempre booleano true (1) ou booleano false (0) dependendo das variáveis.
 Já a operação de bit (bitwise), vai bit a bit, portanto a linha de código abaixo resulta em um valor diferente:
 	int bit = i & j;// = 00000000 00000000 00000000 00000110
 Utilizando os operadores de negação !(lógico) e ~(bitwise), temos:
@@ -255,17 +255,17 @@ ou, simplesmente:
 Shifting
 O shifting pode apenas ser feito com valores inteiros. Como o computador opera na base 2, mover uma casa para esquerda, significa multiplicar o valor por 2, assim como mover uma casa para direita, significa dividir por 2.
 O shift pode ser:
-  Lógico: Todos os bits são movimentados par o lado escolhido; Este tipo de shift é aplicado quando utilizadas 
+  Lógico: Todos os bits são movimentados par o lado escolhido; Este tipo de shift é aplicado quando utilizadas
 unsigned integers.
-  Aritmético: Caso o shift omita o sign bit - Em complemento de dois, o bit mais alto (ou mais a esquerda) é o sign bit; 
+  Aritmético: Caso o shift omita o sign bit - Em complemento de dois, o bit mais alto (ou mais a esquerda) é o sign bit;
 caso ele seja igual à '1', o valor é tratado como negativo; Isto significa que o shift aritmético não pode alterar o sinal do valor "shifted".
-Os operadores do shift são << >>, esquerda e direita, respectivamente. O argumento à esquerda é um valor inteiro cujo os 
+Os operadores do shift são << >>, esquerda e direita, respectivamente. O argumento à esquerda é um valor inteiro cujo os
 bits passarão pelo shift, e o argumento a direita é o tamanho de tal shifT, ou seja, quantas casas os bits hão de andar.
 *** A prioridade deste operador é muito alta!
 
 2.5 - Switch Case
 =================
-Trata-se de uma maneira eficiente de substituir uma cascata de if. 
+Trata-se de uma maneira eficiente de substituir uma cascata de if.
 |	switch(i) {
 |	case 1: cout << "Only one?" << endl; break;
 |	case 2: cout << "I want more" << endl; break;
@@ -274,21 +274,21 @@ Trata-se de uma maneira eficiente de substituir uma cascata de if.
 |	default: cout << "Values is not in list of cases"
 |	}
 
-O valor dentro dos parênteses do switch é avaliado e caso encontre alguma correspondência nos cases, o código após os dois 
-pontos (:) é exscutado. Caso haja uma instrução break dentro do case em questão, a execução sai da rotina de switch/case, 
-caso contrário, todas as demais instruções são executadas antes de sair da rotina. 
-Uma instrução default também pode ser adicionada ao final da lista de cases para ser utilizada caso o valor do switch não 
+O valor dentro dos parênteses do switch é avaliado e caso encontre alguma correspondência nos cases, o código após os dois
+pontos (:) é exscutado. Caso haja uma instrução break dentro do case em questão, a execução sai da rotina de switch/case,
+caso contrário, todas as demais instruções são executadas antes de sair da rotina.
+Uma instrução default também pode ser adicionada ao final da lista de cases para ser utilizada caso o valor do switch não
 seja encontrado em nenhum dos cases.
 
 IMPORTANTE:
-	* O valor após a keyword case, NÂO pode ser uma expressão contendo variáveis ou qualquer outra entidade que não são 
+	* O valor após a keyword case, NÂO pode ser uma expressão contendo variáveis ou qualquer outra entidade que não são
 	conhecidas no momento da compilação;
 	* A lista de cases é escaneada na mesma ordem em que é declarada no código, portanto os casos mais comuns devem vir
 	primeiro, o que pode fazer o programa ser executado mais rápido
 
 2.6 - Arrays
 ============
-Todos os elementos de uma array são do mesmo tipo. 
+Todos os elementos de uma array são do mesmo tipo.
 O vetor (array) é uma coleção de elementos, mas cada um deles é escalar.
 |	int var_array[5];
 |	var_array[0] = 2;
@@ -400,7 +400,7 @@ Para declarar uma estrutura dentro de outra:
 |	struct DATE {
 |		int year, month, day;
 |	};
-|	
+|
 |	struct STUDENT {
 |	    string  name;
 |	    float time;
@@ -440,7 +440,7 @@ Alguns compiladores (talvez, a maioria) podem reclamar quando variáveis são de
 |	STR = 1;
 
 Duas diferentes structures podem conter campos com o mesmo nome:
-|	struct { 
+|	struct {
 |		int f1;
 |	} str1;
 |
@@ -451,7 +451,7 @@ Duas diferentes structures podem conter campos com o mesmo nome:
 |	str1.f1 = 32;
 |	str2.f1 = str1.f1;
 
-É também possível inicializar structures no momento de sua declaração, utilizando chaves e separando os campo com ','. 
+É também possível inicializar structures no momento de sua declaração, utilizando chaves e separando os campo com ','.
 Caso seja declarado um número menor de campos, o restante será considerado zero:
 |	struct DATE {
 |		int year, month, day;
@@ -471,10 +471,10 @@ Para iniciar structure dentro structure:
 |	};
 |
 |	STUDENT estudante = {"Paulo", 31, 13, 12, 1988};
-|	
+|
 |	cout << estudante.birthDate.dia << endl;
 
-Tipos de inicialização da structure: 
+Tipos de inicialização da structure:
 Correto:
 	STUDENT estudante = {"Paulo", 31, 13, 12, 1988};
 Correto:

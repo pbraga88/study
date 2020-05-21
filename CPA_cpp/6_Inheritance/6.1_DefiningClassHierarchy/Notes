@@ -1,0 +1,25 @@
+6.1 Defining Class Hierarchy
+============================
+Uma classe pode ser utilizada como base para outra classe, tornando assim uma 
+super classe. Esta classe que está abaixo da super classe é chamada sub-classe:
+ __________    __________    __________
+|SuperClass|  |SuperClass|  |SuperClass|
+------------  ------------  ------------
+     ^                 ^      ^
+ |SubClass|           |SubClass|
+
+ Para declarar uma classe Y de uma super classe x:
+	 class Y : {visibility specifier} X{
+	 }
+para mais de uma super classe:
+	class A:X,Y,Z{
+	}
+
+Para acessar os membros públicos da super classe deve-se utilizar a palavra-chave 
+'public' como 'visibility specifier':
+	 class Y : public X{
+	 }
+
+Existe ainda um terceiro nível de acesso chamado 'protected'. A palavra-chave 
+'protected' comporta-se como público para as sub-classes e como privado para o 
+restante do programa.   

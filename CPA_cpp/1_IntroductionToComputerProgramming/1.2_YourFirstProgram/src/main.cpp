@@ -1,5 +1,5 @@
 // preprocessor (#) directive: Operations performed before compilation
-// The directive "include" will add to the program the content of what file is refered. 
+// The directive "include" will add to the program the content of what file is refered.
 // In our case, the iostream header
 #include <iostream>
 #include <string>
@@ -26,34 +26,35 @@ int main(void){
 	// 	cout<<bd[i];
 	// cout<<'\n';
 /*==================* Convert Hexa to Char *========================================*/
-	 char *hex_to_char = (char*)malloc(BUFFER_SIZE);
-	 int i;
+// 	 char *hex_to_char = (char*)malloc(BUFFER_SIZE);
+// 	 int i;
+//
+// 	 string mystring;
+// 	 size_t sz;
+// 	 int total_size;
+// 	 cout<<"Enter your message in hexadecimal: "<<endl;
+//
+// 	 getline(cin, mystring);
+// 	 //total_size = mystring.size();
+// 	 //cout<<total_size<<endl;
+// 	 hex_to_char[0] = stoi(mystring, &sz, 16);
+//
+// 	 for(i = 1; i < BUFFER_SIZE; i++){
+// 	 	try {
+// 	 		mystring  = mystring.substr(sz);
+// 	 		hex_to_char[i] = stoi(mystring, &sz, 16);
+// 			cout<<"sz = "<<sz<<endl;
+// 	 	}
+// 	 	catch(std::invalid_argument& ) {
+// 	 		hex_to_char[i] = '\0';
+// 	 		break;
+// 	 	}
+// 	 }
+//
+// 	 for(i = 0; hex_to_char[i] != '\0'; i++)
+// 	 	cout<<hex_to_char[i];
+// 	 cout<<endl;
+// /*==========================================================*/
 
-	 string mystring;
-	 size_t sz;
-	 int total_size; 	
-	 cout<<"Enter your message in hexadecimal: "<<endl;
-
-	 getline(cin, mystring);
-	 //total_size = mystring.size();
-	 //cout<<total_size<<endl;
-	 hex_to_char[0] = stoi(mystring, &sz, 16);
-	
-	 for(i = 1; i < BUFFER_SIZE; i++){
-	 	try {
-	 		mystring  = mystring.substr(sz);
-	 		hex_to_char[i] = stoi(mystring, &sz, 16);
-			cout<<"sz = "<<sz<<endl;
-	 	}
-	 	catch(std::invalid_argument& ) {
-	 		hex_to_char[i] = '\0';
-	 		break;
-	 	}
-	 }
-
-	 for(i = 0; hex_to_char[i] != '\0'; i++)
-	 	cout<<hex_to_char[i];
-	 cout<<endl;
-/*==========================================================*/
 	return 0;
 }

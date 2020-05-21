@@ -5,8 +5,8 @@
 using namespace std;
 
 /* Question 01
-   Correct Answer: It prints e
-   My Answer: Compilation fails*/
+Respoosta: e
+Minha Resposta: e */
 // int main(){
   /*******FOR STUDY AND DEBUG********/
   // char t[3][3];
@@ -69,71 +69,71 @@ using namespace std;
 
 //   char t[3][3], *p = (char*)t;
 //   for(int i = 0; i < 9; i++)
-//     *p++ = 'a' + i;
+//     *p++ = 'a' + i; // Aqui, eu dereferencio o lugar da memória para onde p 
+//                     //aponta
 //   cout<<t[1][1]<<endl;
 //   return 0;
 // }
 
 /* Question 02
-   Correct Answer: 8.8
-   My Answer: 8.8*/
+Resposta: 8.8
+Minha Resposta: 8.8 */
 // int main(){
 //   short s = 1;
 //   int i = 2;
 //   long l = 3;
 //   float f = 4.4;
 //   double d = 6.6;
-//
+
 //   cout<< s/i + f/i + d/s <<endl;
 //   return 0;
 // }
 
-
 /* Question 03
-   Correct Answer: It prints 2.5
-   My Answer: Compilation fails*/
+Resposta: 2.5 
+Minha Resposta: 2.5 */
 // int main(){
 //   int i = 2;
 //   float f = 5.8;
-//
+
 //   f = (int)f; // Com esse casting, f passa a valer 5
-//   cout<<f<<endl;
+//   cout<<f<<endl; // DEBUG
 //   i = (float)i; // O valor de i continua sendo 2
-//   cout<<i<<endl;
+//   cout<<i<<endl; // DEBUG
 //   cout<<f/i<<endl; // 5/2=2.5 -> Vale lembrar que a expressão expande para float
 //                    // pois trata-se de um tipo float f dividído por um tipo int i
 //   return 0;
 // }
 
 /* Question 04
-   Correct Answer: Compilation fails
-   My Answer: 2*/
+Resposta: Fail Compilation 
+Minha Resposta: Fail compilation */
 // int main(){
 //   int i = 2;
 //   float f = 4.4;
-//
+
 //   cout<<f%float(i)<<endl; // A compilação falha, pois o operador de remainder "%"
 //                           // só pode ser aplicado em tipo inteiro
 //   return 0;
 // }
 
 /* Question 05
-   Correct Answer: Compilation fails
-   My Answer: Compilation fails*/
+Resposta: Fail Compilation 
+Minha Resposta: Fail Compilation */
 // int main(){
 //   string s = "a";
-//
+
 //   cout<<s<<"b"+"c"<<endl;
 //   return 0;
 // }
 
 /* Question 06
-   Correct Answer: It prints yes
-   My Answer: It prints yes */
+Resposta: yes 
+Minha Resposta: yes*/
 // int main(){
 //   string s1 = "ab";
 //   string s2 = "Abc";
-//
+
 //   if(s1>s2)
 //     cout<<"yes"<<endl;
 //   else
@@ -142,28 +142,28 @@ using namespace std;
 // }
 
 /* Question 07
-   Correct Answer: It prints 0
-   My Answer: It prints 0 */
+Resposta: 0 
+Minha Resposta: 0 */
 // int main(){
 //   string s1 = "Ab";
 //   string s2 = "Abc";
-//
+
 //   cout<<s1.compare(s1)<<endl;
 //   return 0;
 // }
 
-/* Question 08
-   Correct Answer: It prints 56789
-   My Answer: It prints 56789 */
+/* Question 08 
+Resposta: 56789 
+Minha Resposta: 56789 */
 // int main(){
 //   string s = "0123456789";
 //   cout<<s.substr(3,7).substr(2).substr()<<endl;
 //   return 0;
 // }
 
-/* Question 10
-   Correct Answer: It prints 32
-   My Answer: It prints 32 */
+/* Question 10 
+Resposta: 32
+Minha Resposta: 32 */
 namespace S1{
   int A = 1;
 }
@@ -175,11 +175,11 @@ namespace S2{
 int main(void){
   {
     using namespace S1;
-    S2::A = A + 1;
+    S2::A = A + 1; // S2::A = 2;
   }
   {
     using namespace S2;
-    S1::A = A + 1;
+    S1::A = A + 1; // S1::A = 3
   }
   cout<<S1::A<<S2::A<<endl;
   return 0;

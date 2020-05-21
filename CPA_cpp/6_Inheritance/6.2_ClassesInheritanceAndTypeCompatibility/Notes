@@ -1,0 +1,25 @@
+6.2 - Classes, inheritance and type compatibility
+=================================================
+Alguns pontos são importantes, quando se trata de compatibilidade de tipos:
+	* Objetos da sub-classe têm, pelo menos, as mesmas cpacidades que a super 
+	classe;
+	* Objetos da super classe podem não ter as mesmas capacidades que a 
+	sub-classe.
+Pode-se então chegar a seguiinte conclusão:
+	* Objetos da super classe são compatíveis com objetos da sub-classe;
+	* Objetos da sub-classe não são compatíveis com objetos da super classe.
+
+A seguinte declaração não é permitida, pois Pet é uma super classe de Dog:
+|	Pet *a_pet;
+|	a_pet = new Dog("Rex");
+|	a_pet->Run();
+|	a_pet->MakeSound(); // Essa lina irá causar erro de compilação
+
+Contudo, é possível forçar o compilador a entender que 'a_pet' foi convertido 
+para o tipo 'Dog' (temporariamente), utilizando o 'cast operator' chamado de 
+'static cast':
+|	Pet *a_pet;
+|	a_pet = new Dog("Rex");
+|	a_pet->Run();
+|	static_cast<Dog*>(a_pet)->MakeSound(); // aplicando o cast, o código 
+|										   // compila

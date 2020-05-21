@@ -1,0 +1,107 @@
+5.3 - Anatomy of the class
+==========================
+Quando uma função introduz alguma entidade de mesmo nome que um componente da classe,
+o componente da classe é sobrescrito, portanto para acessá-lo, deve-se utilizar
+o nome da classe à qual ele pertence juntamente do operador '::' :
+|  class Class {
+|  public:
+|      void setVal(int value) {
+|              Class::value = value;
+|      }
+|      int getVal(void);
+|  private:
+|      int value;
+|  };
+
+Cada objeto possui um componente especial chamado 'this' que aponta para o próprio
+objeto. Port tratar-se de uma keyword especial, não deve ser declarado explicitamente.
+Veja exemplo de seu uso e como ele substitui a declaração 'Class::' do exemplo anterior:
+|  class Class {
+|  public:
+|       void setVal(int value) {
+|             this -> value = value;
+|      }
+|       int getVal(void);
+|  private:
+|       int value;
+|  };
+
+Overloaded functions também são utilizadas dentro de classes (inclusive, com
+inicializadores default):
+|  class Class {
+|  public:
+|             void setVal(int value) { this -> value = value;  }
+|             void setVal(void) { value = -2; }
+|             int getVal(void) { return value; }
+|  private:
+|             int value;
+|  };
+
+Os construtores também podem ser 'overloaded':
+|  class Class {
+|  public:
+|  	Class(void) { this -> value = -1; }
+|  	Class(int val) { this -> value = val; }
+|          void setVal(int value) { this -> value = value; }
+|  	int getVal(void) { return value; }
+|  private:
+|          int value;
+|  };
+
+Copiando construtores:
+Os construtores também podem ser copiados. Em uma cópia simples, os valores do objeto
+original são mantidos na cópia:
+|  class Class2 {
+|  public:
+|  	Class2(int val) { this -> value = val; }
+|  	int value;
+|  };
+|  int main(void) {
+|  	Class2 object21(200), object22 = object21;
+|  	cout << object21.value << endl;
+|  	cout << object22.value << endl;
+|  	return 0;
+|  }
+output:
+| 200
+| 200
+
+Mas também é possível copiar os valores de objeto e alterá-los com um construtor
+específica para tal:
+|class Classe{
+|  public:
+|    Classe(int value){
+|      this->value = value;
+|    }
+|    // A keyword const é uma garantia de que os valores da função sendo copiada não
+|    // serão alterados
+|    Classe(Classe const& source){ // Aqui o construtor é copiado e a nova instancia
+|      value = source.value + 100;         // desse objeto diz que os seus valores das variáveis
+|      x = source.x + 1;                   // membro 'value' e 'x' são iguais aos valores da instância
+|    }                                     // que está sendo copiada mais as adições específicas deste
+|                                          // construtor.
+|    int value;
+|    int x;
+|};
+|  int main(){
+|    Classe objeto_1(100);
+|    objeto_1.x = 1;
+|    Classe objeto_2 = objeto_1;
+|    cout<<objeto_1.value<<endl;
+|    cout<<objeto_2.value<<endl;
+|    cout<<objeto_1.x<<endl;
+|    cout<<objeto_2.x<<endl;
+|    return 0;
+|  }
+output:
+|  100
+|  200
+|  1
+|  2
+
+ O detructor é uma função membro que apaga um objeto. Caso ele não seja declarado,
+ o compilador o fará automaticamente. Contudo, quando utilizamos alocação de memória
+ e/ou ponteiros, sua declaração é imprescindível, para desalocação de memória:
+    * if a class is named X, its destructor is named ~X
+    * a class can have no more than one destructor
+    * a destructor must be a parameter-less function
