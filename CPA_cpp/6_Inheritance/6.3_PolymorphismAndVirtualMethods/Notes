@@ -1,2 +1,46 @@
 Polymorphism And Virtual Methods
 ================================
+Quando uma sub-classe declara um método de mesmo nome que um outro na 
+super classe, tal método é sobreescrito e o que passa a valer é o método 
+da sub-classe.
+|	class Pet {
+|	protected:
+|		string Name;
+|	public:
+|		Pet(string n) { Name = n; }
+|		void MakeSound(void) { cout << Name << " the Pet says: Shh! Shh!" << endl; }
+|	};
+|	class Cat : public Pet {
+|	public:
+|		Cat(string n) : Pet(n) { }
+|		void MakeSound(void) { cout << Name << " the Cat says: Meow! Meow!" << endl; }
+|	};
+Portanto, quando um objeto do tipo 'Cat' chama a função 'MakeSound()', ele está 
+chmando a sua própria sub-classe
+
+Contudo, é possível chamar o método 'Makesound()' da super classe com o uso do 
+operador static_cast:
+|	a_cat = new Cat("Kitty")
+|	static_cast<Pet *>(a_cat) -> MakeSound();
+Neste caso, trata-se de um uppercast, pois é um objeto da sub-classe fazendo cast 
+para um método da super classe.
+
+**** Polymorphism:
+	A palavra polimorfismo indica que uma classe pode se comportar de maneiras 
+diversas. E tal comportamento não é definido pela classe, propriamente dita, mas 
+sim por suas eventuais sub-classes. 
+	Para aplicar o polimorfismo ao método de uma classe, deve-se utilizar a 
+palavra-chave 'virtual':
+|	class Pet {
+|	protected:
+|		string Name;
+|	public:
+|		Pet(string n) { Name = n; }
+|		virtual void MakeSound(void) { cout << Name << " the Pet says: Shh! Shh!" << endl; }
+|	};
+Assim, o método pode ser redefinido pela sub-classe:
+|	class Cat : public Pet {
+|	public:
+|		Cat(string n) : Pet(n) { }
+|		void MakeSound(void) { cout << Name << " the Cat says: Meow! Meow!" << endl; }
+|	};
