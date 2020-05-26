@@ -88,7 +88,7 @@ int main(){
 	// static_cast<Pet*>(cat)->MakeSound(); //Aqui, mesmo fazendo o uppercast, o 
 	// 									 // método utilizado é o da sub-classe, 
 	// 									 // pois 'MakeSound()' foi redefinido 
-	// 									 // utilizando-se de polimorfismo, uma 
+	// 									 // utilizando-se de polimorfismo, uma vez 
 	// 									 // que o mesmo método foi declarado 
 	// 									 // como virtual na super classe  
 	
