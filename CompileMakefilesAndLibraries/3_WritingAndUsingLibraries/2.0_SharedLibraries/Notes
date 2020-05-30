@@ -1,6 +1,6 @@
 A biblioteca compartilhada (shared lib), assim como a estática, é composta por arquivos objeto. A diferença
 fundamental, contudo, para uma lib estática, está no fato de a shared library (lib.so) não ser incluída no 
-binário final. O que acontece é apenas o binário referenciar a lib.so. Daí o nome shared (comartilhado), pois uma mesma lib.so pode set 'linkada' com diversos binários.
+binário final. O que acontece é apenas o binário referenciar a lib.so. Daí o nome shared (compartilhado), pois uma mesma lib.so pode ser 'linkada' com diversos binários.
 
 Uma segunda, é o fato de que quando o binário faz o link com a lib.so, tal link é feito com o arquivo como
 um todo, e não somente com os arquivos objeto necessários, como acontece na lib estática. 
@@ -45,3 +45,7 @@ Outra opção (mais comum) é utilizar a variável de ambiente 'LD_LIBRARY_PATH'
 deve ser feita a busca da shared lib:
 |$ export LD_LIBRARY_PATH=./	<- aponta para o diretório atual
 |$ gcc -o myAppSO main.o -L. -llinkedlist
+
+
+LIB=../dist/lib/
+INC=../3pp/sqlite/sqlite-autoconf-3310100/
