@@ -31,3 +31,10 @@ Qualquer objeto pode ser usado como parâmetro de uma função
 |
 |		return 0;
 |	}
+
+O operador dinâmico, é utilizado para verifcar se os objetos são do mesmo tipo:
+Com ponteiro:
+	dynamic_cast<pointer_type>(pointer_to_object)
+Com referência:
+	dynamic_cast<reference_type>(reference_to_object)
+	

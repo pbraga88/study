@@ -70,9 +70,6 @@ class Pet{
 		virtual void MakeSound(void){
 			cout<<name<<" is silent."<<endl;
 		}
-		void ejecutar(void){
-			cout<<name<<" corre!"<<endl;
-		}
 };
 class Dog:public Pet{
 	public:
@@ -102,24 +99,32 @@ class MastinEspanol:public Dog{
 		}
 };
 
+// void PlayWithPet(Pet &pet){
+// 	pet.MakeSound();
+// }
+/*Using Pointer */
+// void PlayWithPet(Pet *pet){
+// 	GermanShepherd *gs;
+// 	MastinEspanol *mes;
+// 	pet->MakeSound();
+// 	if(gs = dynamic_cast<GermanShepherd *>(pet)){
+// 		gs->Laufen();
+// 	}
+// 	if(mes = dynamic_cast<MastinEspanol *>(pet)){
+// 		mes->ejecutar();
+// 	}
+// }
+/*Using Reference*/
 void PlayWithPet(Pet &pet){
 	pet.MakeSound();
-}
-void PlayWithPet(Pet *pet){
-	GermanShepherd *gs;
-	MastinEspanol *mes;
-	Pet *a_pet;
-	pet->MakeSound();
-	if(gs = dynamic_cast<GermanShepherd *>(pet)){
-		gs->Laufen();
+	try{
+		dynamic_cast<GermanShepherd &>(pet).Laufen();
 	}
-	if(mes = dynamic_cast<MastinEspanol *>(pet)){
-		mes->ejecutar();
+	catch(...){}
+	try{
+		dynamic_cast<MastinEspanol &>(pet).ejecutar();
 	}
-	a_pet = dynamic_cast<MastinEspanol *>(a_pet);
-	// a_pet = new MastinEspanol("rex");
-	a_pet->ejecutar();
-	cout<<endl;
+	catch(...){}
 }
 int main(void){
 	/*Pass subobject by reference*/
@@ -133,15 +138,26 @@ int main(void){
 	// PlayWithPet(mes);
 	/**********/
 
-	/*Pass subobject by pointer*/
-	Pet *pet = new Pet("creature");
-	Dog *dog = new Dog("Dog");
-	GermanShepherd *gs = new GermanShepherd("Hund");
-	MastinEspanol *mes = new MastinEspanol("Perro");
+	/*dynamic_cast: Pass subobject by pointer*/
+	// Pet *pet = new Pet("creature");
+	// Dog *dog = new Dog("Dog");
+	// GermanShepherd *gs = new GermanShepherd("Hund");
+	// MastinEspanol *mes = new MastinEspanol("Perro");
+	// PlayWithPet(pet);
+	// PlayWithPet(dog);
+	// PlayWithPet(mes);
+	// PlayWithPet(gs);
+	/**********/
+
+	/*dynamic_cast: Pass subobject by reference*/
+	Pet pet("creature");
+	Dog dog("Dog");
+	GermanShepherd gs("Hund");
+	MastinEspanol mes("Perro");
 	PlayWithPet(pet);
 	PlayWithPet(dog);
-	PlayWithPet(gs);
 	PlayWithPet(mes);
+	PlayWithPet(gs);
 
 	return 0;
 }

@@ -1,0 +1,9 @@
+6.5 - Various Suplements
+========================
+O 'copying constructor' é um construtor de classe que cria um objeto mais ou 
+menos parecido com a classe original. Em todas as classes o 'copy constructor' 
+é implícito, neste caso, quando a copia é feita, o objeto copiado é 
+igual ao anterior. Contudo, se o 'copy constructor' for feito explícito, suas 
+características dependerão de como ele é implementado. Ele pode ser declarado 
+como: 
+	A(A &)
