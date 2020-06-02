@@ -45,7 +45,3 @@ Outra opção (mais comum) é utilizar a variável de ambiente 'LD_LIBRARY_PATH'
 deve ser feita a busca da shared lib:
 |$ export LD_LIBRARY_PATH=./	<- aponta para o diretório atual
 |$ gcc -o myAppSO main.o -L. -llinkedlist
-
-
-LIB=../dist/lib/
-INC=../3pp/sqlite/sqlite-autoconf-3310100/

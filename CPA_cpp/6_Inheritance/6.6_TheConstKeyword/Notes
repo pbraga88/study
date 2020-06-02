@@ -1,0 +1,29 @@
+6.6 - The const keyword
+=======================
+As variáveis constantes são protegidas, no momento da compilação, para que seus valores 
+não sejam alterados. :
+|	const int size1 = 100;
+|	int const size2 = 100;
+
+Ponteiros também podem ser declarados como constantes:
+|	int arr[5] = {1, 2, 4, 8, 16};
+|	int *const iptr = arr + 2;
+|	char *const cptr = "Why?";
+Deve-se manter sempre estilo <tipo_de_variável> *<nome_da_variável>. 
+Vale ressaltar também que os ponteiros não podem ser alterados, mas as variáveis para 
+onde eles apontam podem:
+|	*ptr = 0;
+|	*ptr = 'T';
+
+Ponteiros constantes NÃO são equivalentes a ponteiros para constantes:
+|	int arr[5] = {1, 2, 4, 8, 16};
+|	const int *iptr = arr + 2;
+|	const char *cptr = "Why?";
+Agora, os endereços podem ser alterados, mas não é possível alterar o valor dereferenciando 
+o ponteiro.
+Correct:
+|	--iptr; 
+|	++cptr;
+Incorrect:
+|	*iptr = 0;
+|	*cptr = 'T';
