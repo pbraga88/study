@@ -27,3 +27,37 @@ Correct:
 Incorrect:
 |	*iptr = 0;
 |	*cptr = 'T';
+
+
+****Classes com variáveis constantes
+Qualquer classe pode ter seus campos declarados como constantes. Isso significa que tal 
+campo não poderá ser alterado durante a existência do objeto. 
+É importante ressaltar que cada objeto tera sua cópia exclusiva do campo constante e que 
+ele deve ser inicializado no construtor da classe:
+|	class Class {
+|	private:
+|		const int field;
+|	public:
+|		Class(int n) : field(n) { };
+|		Class(Class &c) : field(0) { };
+|		Class(void) : field(1) { };
+|	};
+
+Objetos constantes também são possíveis dentro do C++, contudo, ao ser declarado dessa 
+forma torna-se proibido modificar qualquer campo ou invocar funções membros deste 
+objeto
+
+Funções membro também podem ser declaradas constantes:
+	type name(parameters) const; in declarations
+	type name(parameters) const { … } in definitions
+Note que a palavra-chave 'const' deve vir depois da declaração dos parâmetros:
+|	class Class{
+|	public:
+|		int field;
+|		Class(int n) : field(n){};
+|		Class(Class &c) : field(0){};
+|		Class(void) : field(1){};
+|		void  print_field() const{
+|			cout<<field<<endl;
+|		}
+|	};

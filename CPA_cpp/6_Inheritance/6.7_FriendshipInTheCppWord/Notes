@@ -1,0 +1,43 @@
+6.7 - Friendship in the "C++" world
+===================================
+* Friend Class: 'friend class' pode acessar qualquer membro de uma outra classe que a 
+declara como 'friend':
+|	#include <iostream>
+|	using namespace std;
+|	class Class {
+|	friend class Friend; // Declara a classe Friend como 'friend'
+|	private:
+|		int field;
+|		void print(void) { cout << "It's a secret, that field = " << field << endl; }
+|	};
+|	class Friend {
+|	public:
+|		void DoIt(Class &c) { c.field = 100; c.print(); }
+|	};
+	A declaração pode ser feita em qualquer lugar dentro da classe (private, public e
+protected), apenas não é permitido que seja declarado dentro de uma função, por razões 
+óbvias. 
+|int main(void) {
+|	Class o;
+|	Friend f;	
+|	f.DoIt(o);
+|	return 0;
+|}
+Output:
+|  It's a secret, that field = 100
+
+Regras Gerais:
+	* Uma classe pode ser 'friend' de diversas classes
+	* Uma classe pode ter muitos 'friends'
+	* "a friend’s friend isn’t my friend"
+	* "friendship isn’t inherited": a sub-classe precisa definir seus próprios 'friendships'
+
+* Friend Function: 'friend function' também pode acessar qualquer membro privado ou protegido 
+da classe que a declara como 'friend'. A declaração da função 'friend' deve conter seu 
+protótipo completo e tanto funções membro, quanto funções globais, podem ser declaradas como 
+'friend':
+|	class A {
+|		friend class B;
+|		friend void C::dec(A&);
+|		friend void DoIt(A&);
+|	};
