@@ -26,4 +26,4 @@ $ gcc -o inverso main.o inverso.o
 gcc -o inverso main.o inverso.o -lpam 	-> A grande maioria das libs linux começam com 'lib'. Portanto o gcc complementa o nome e adiciona o sufixo ".a".
 
 -L -> Flag utilizada para definir um caminho adicional para busca de libs. O compilador, por padrão, busca as libs em "/lib" e "/usr/lib". Se a opção "-L" for utilizada, primeiro o compilador busca na pasta apontada por tal opção. Veja exemplo:
-$ gcc -o inverso main.o inverso.o -L/usr/local/lib/pam -lpam 	-> A flag -L deve ser utilizada mesmo que a 																   lib esteja no mesmo repositório de build.
+$ gcc -o inverso main.o inverso.o -L/usr/local/lib/pam -lpam 	-> A flag -L deve ser utilizada mesmo que a lib esteja no mesmo repositório de build.

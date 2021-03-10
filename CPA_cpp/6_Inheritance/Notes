@@ -1,0 +1,302 @@
+6.1 Defining Class Hierarchy
+============================
+Uma classe pode ser utilizada como base para outra classe, tornando assim uma 
+super classe. Esta classe que está abaixo da super classe é chamada sub-classe:
+ __________    __________    __________
+|SuperClass|  |SuperClass|  |SuperClass|
+------------  ------------  ------------
+     ^                 ^      ^
+ |SubClass|           |SubClass|
+
+ Para declarar uma classe Y de uma super classe x:
+	 class Y : {visibility specifier} X{
+	 }
+para mais de uma super classe:
+	class A:X,Y,Z{
+	}
+
+Para acessar os membros públicos da super classe deve-se utilizar a palavra-chave 
+'public' como 'visibility specifier':
+	 class Y : public X{
+	 }
+
+Existe ainda um terceiro nível de acesso chamado 'protected'. A palavra-chave 
+'protected' comporta-se como público para as sub-classes e como privado para o 
+restante do programa.   
+
+6.2 - Classes, inheritance and type compatibility
+=================================================
+Alguns pontos são importantes, quando se trata de compatibilidade de tipos:
+	* Objetos da sub-classe têm, pelo menos, as mesmas capacidades que a super 
+	classe;
+	* Objetos da super classe podem não ter as mesmas capacidades que a 
+	sub-classe.
+Pode-se então chegar a seguiinte conclusão:
+	* Objetos da super classe são compatíveis com objetos da sub-classe;
+	* Objetos da sub-classe não são compatíveis com objetos da super classe.
+
+A seguinte declaração não é permitida, pois Pet é uma super classe de Dog, e o método 
+MakeSound() pertence à sub-classe Dog:
+|	Pet *a_pet;
+|	a_pet = new Dog("Rex");
+|	a_pet->Run();
+|	a_pet->MakeSound(); // Essa linha irá causar erro de compilação
+
+Contudo, é possível forçar o compilador a entender que 'a_pet' foi convertido 
+para o tipo 'Dog' (temporariamente), utilizando o 'cast operator' chamado de 
+'static cast':
+|	Pet *a_pet;
+|	a_pet = new Dog("Rex");
+|	a_pet->Run();
+|	static_cast<Dog*>(a_pet)->MakeSound(); // aplicando o cast, o código 
+|										   // compila
+
+6.3 - Polymorphism And Virtual Methods
+================================
+Quando uma sub-classe declara um método de mesmo nome que um outro na 
+super classe, tal método é sobreescrito e o que passa a valer é o método 
+da sub-classe.
+|	class Pet {
+|	protected:
+|		string Name;
+|	public:
+|		Pet(string n) { Name = n; }
+|		void MakeSound(void) { cout << Name << " the Pet says: Shh! Shh!" << endl; }
+|	};
+|	class Cat : public Pet {
+|	public:
+|		Cat(string n) : Pet(n) { }
+|		void MakeSound(void) { cout << Name << " the Cat says: Meow! Meow!" << endl; }
+|	};
+Portanto, quando um objeto do tipo 'Cat' chama a função 'MakeSound()', ele está 
+chmando a sua própria sub-classe
+
+Contudo, é possível chamar o método 'Makesound()' da super classe com o uso do 
+operador static_cast:
+|	a_cat = new Cat("Kitty")
+|	static_cast<Pet *>(a_cat) -> MakeSound();
+Neste caso, trata-se de um uppercast, pois é um objeto da sub-classe fazendo cast 
+para um método da super classe.
+
+**** Polymorphism:
+	A palavra polimorfismo indica que uma classe pode se comportar de maneiras 
+diversas. E tal comportamento não é definido pela classe, propriamente dita, mas 
+sim por suas eventuais sub-classes. 
+	Para aplicar o polimorfismo ao método de uma classe, deve-se utilizar a 
+palavra-chave 'virtual':
+|	class Pet {
+|	protected:
+|		string Name;
+|	public:
+|		Pet(string n) { Name = n; }
+|		virtual void MakeSound(void) { cout << Name << " the Pet says: Shh! Shh!" << endl; }
+|	};
+Assim, o método pode ser redefinido pela sub-classe:
+|	class Cat : public Pet {
+|	public:
+|		Cat(string n) : Pet(n) { }
+|		void MakeSound(void) { cout << Name << " the Cat says: Meow! Meow!" << endl; }
+|	};
+
+6.4 - Objects as parameters and dynamic casting
+===============================================
+Qualquer objeto pode ser usado como parâmetro de uma função
+|	class Pet{
+|		protected:
+|			string name;
+|		public:
+|			void NameMe(string name){
+|				this->name = name;
+|			}
+|			void MakeSound(void){
+|				cout<<name<<" says: no comments"<<endl;
+|			}
+|			void WhatIsMyName(void){
+|				cout<<"My name is: "<<name<<endl;
+|			}
+|	};
+|	void PlayWithPetByPointer(string name, Pet *pet){
+|		pet->NameMe(name);
+|		pet->MakeSound();
+|	}
+|	void PlayWithPetByReference(string name, Pet &pet){
+|		pet.NameMe(name);
+|		pet.MakeSound();
+|	}
+|	int main(void){
+|		Pet *p1 = new Pet;
+|		Pet p2;
+|		PlayWithPetByPointer("anonymous", p1);
+|		PlayWithPetByReference("no_name", p2);
+|
+|		return 0;
+|	}
+
+O operador dinâmico, é utilizado para verifcar se os objetos são do mesmo tipo:
+Com ponteiro:
+	dynamic_cast<pointer_type>(pointer_to_object)
+Com referência:
+	dynamic_cast<reference_type>(reference_to_object)
+Exemplo:
+|	 void PlayWithPet(Pet *pet){
+|	 	GermanShepherd *gs;
+|	 	MastinEspanol *mes;
+|	 	pet->MakeSound();
+|	 	if(gs = dynamic_cast<GermanShepherd *>(pet)){
+|	 		gs->Laufen();
+|	 	}
+|	 	if(mes = dynamic_cast<MastinEspanol *>(pet)){
+|	 		mes->ejecutar();
+|	 	}
+|	 }
+	
+6.5 - Various Suplements
+========================
+O 'copying constructor' é um construtor de classe que cria um objeto mais ou 
+menos parecido com a classe original. Em todas as classes o 'copy constructor' 
+é implícito, neste caso, quando a copia é feita, o objeto copiado é 
+igual ao anterior. Contudo, se o 'copy constructor' for feito explícito, suas 
+características dependerão de como ele é implementado. Ele pode ser declarado 
+como: 
+	A(A &)
+Exemplo:
+|	class A{
+|	public:
+|		A(){cout<<"Default constructor A"<<endl;}
+|		A(A &source){
+|			cout<<"copying constructor A..."<<endl;
+|		}
+|		void Do(){cout<<"A does something"<<endl;}
+|	};
+|	class B{
+|	public:
+|		B(){cout<<"Default constructor B"<<endl;}
+|		B(B &source){
+|			cout<<"copying constructor B..."<<endl;
+|		}
+|		void Do(){cout<<"B does something else"<<endl;}
+|	};
+|	class Compo{
+|	public:
+|		Compo(){}
+|		Compo(Compo &source):f1(source.f1), f2(source.f2){
+|			cout<<"copying Compo..."<<endl;
+|		}
+|		A f1;
+|		B f2;
+|	};
+|	int main(){
+|		Compo compA;
+|		Compo compB(compA);
+|		// compA.f1.Do();
+|		// compB.f2.Do();
+|		return 0;
+|	}
+
+6.6 - The const keyword
+=======================
+As variáveis constantes são protegidas, no momento da compilação, para que seus valores 
+não sejam alterados. :
+|	const int size1 = 100;
+|	int const size2 = 100;
+
+Ponteiros também podem ser declarados como constantes:
+|	int arr[5] = {1, 2, 4, 8, 16};
+|	int *const iptr = arr + 2;
+|	char *const cptr = "Why?";
+Deve-se manter sempre estilo <tipo_de_variável> *<nome_da_variável>. 
+Vale ressaltar também que os ponteiros não podem ser alterados, mas as variáveis para 
+onde eles apontam podem:
+|	*ptr = 0;
+|	*ptr = 'T';
+
+Ponteiros constantes NÃO são equivalentes a ponteiros para constantes:
+|	int arr[5] = {1, 2, 4, 8, 16};
+|	const int *iptr = arr + 2;
+|	const char *cptr = "Why?";
+Agora, os endereços podem ser alterados, mas não é possível alterar o valor dereferenciando 
+o ponteiro.
+Correct:
+|	--iptr; 
+|	++cptr;
+Incorrect:
+|	*iptr = 0;
+|	*cptr = 'T';
+
+
+****Classes com variáveis constantes
+Qualquer classe pode ter seus campos declarados como constantes. Isso significa que tal 
+campo não poderá ser alterado durante a existência do objeto. 
+É importante ressaltar que cada objeto tera sua cópia exclusiva do campo constante e que 
+ele deve ser inicializado no construtor da classe:
+|	class Class {
+|	private:
+|		const int field;
+|	public:
+|		Class(int n) : field(n) { };
+|		Class(Class &c) : field(0) { };
+|		Class(void) : field(1) { };
+|	};
+
+Objetos constantes também são possíveis dentro do C++, contudo, ao ser declarado dessa 
+forma torna-se proibido modificar qualquer campo ou invocar funções membros deste 
+objeto
+
+Funções membro também podem ser declaradas constantes:
+	type name(parameters) const; in declarations
+	type name(parameters) const { … } in definitions
+Note que a palavra-chave 'const' deve vir depois da declaração dos parâmetros:
+|	class Class{
+|	public:
+|		int field;
+|		Class(int n) : field(n){};
+|		Class(Class &c) : field(0){};
+|		Class(void) : field(1){};
+|		void  print_field() const{
+|			cout<<field<<endl;
+|		}
+|	};
+
+6.7 - Friendship in the "C++" world
+===================================
+* Friend Class: 'friend class' pode acessar qualquer membro de uma outra classe que a 
+declara como 'friend':
+|	#include <iostream>
+|	using namespace std;
+|	class Class {
+|	friend class Friend; // Declara a classe Friend como 'friend'
+|	private:
+|		int field;
+|		void print(void) { cout << "It's a secret, that field = " << field << endl; }
+|	};
+|	class Friend {
+|	public:
+|		void DoIt(Class &c) { c.field = 100; c.print(); }
+|	};
+	A declaração pode ser feita em qualquer lugar dentro da classe (private, public e
+protected), apenas não é permitido que seja declarado dentro de uma função, por razões 
+óbvias. 
+|int main(void) {
+|	Class o;
+|	Friend f;	
+|	f.DoIt(o);
+|	return 0;
+|}
+Output:
+|  It's a secret, that field = 100
+
+Regras Gerais:
+	* Uma classe pode ser 'friend' de diversas classes
+	* Uma classe pode ter muitos 'friends'
+	* "a friend’s friend isn’t my friend"
+	* "friendship isn’t inherited": a sub-classe precisa definir seus próprios 'friendships'
+
+* Friend Function: 'friend function' também pode acessar qualquer membro privado ou protegido 
+da classe que a declara como 'friend'. A declaração da função 'friend' deve conter seu 
+protótipo completo e tanto funções membro, quanto funções globais, podem ser declaradas como 
+'friend':
+|	class A {
+|		friend class B;
+|		friend void C::dec(A&);
+|		friend void DoIt(A&);
+|	};

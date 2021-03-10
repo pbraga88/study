@@ -1,4 +1,4 @@
-LINUX  := ~/WorkSpace/Build-BSP/dropJ.p1_Device_Drivers/stblinux-4.9/linux/
+LINUX  := ~/Workspace/BSP/DEV_master/broadcom_stblinux/linux/
 ROOTFS := /export/nfs/romfs/
 obj-m += timerexample.o
 

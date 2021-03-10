@@ -118,13 +118,19 @@ class MastinEspanol:public Dog{
 void PlayWithPet(Pet &pet){
 	pet.MakeSound();
 	try{
+		cout<<"try: GermanShepherd"<<endl;
 		dynamic_cast<GermanShepherd &>(pet).Laufen();
 	}
-	catch(...){}
+	catch(...){
+		cout<<"catch: error"<<endl;
+	}
 	try{
+		cout<<"try: MastinEspanol"<<endl;
 		dynamic_cast<MastinEspanol &>(pet).ejecutar();
 	}
-	catch(...){}
+	catch(...){
+		cout<<"catch: error"<<endl;
+	}
 }
 int main(void){
 	/*Pass subobject by reference*/
@@ -154,9 +160,17 @@ int main(void){
 	Dog dog("Dog");
 	GermanShepherd gs("Hund");
 	MastinEspanol mes("Perro");
+
+	cout<<"first call:"<<endl;
 	PlayWithPet(pet);
+	
+	cout<<endl<<"second call:"<<endl;
 	PlayWithPet(dog);
+	
+	cout<<endl<<"third call:"<<endl;
 	PlayWithPet(mes);
+	
+	cout<<endl<<"fourth call:"<<endl;
 	PlayWithPet(gs);
 
 	return 0;

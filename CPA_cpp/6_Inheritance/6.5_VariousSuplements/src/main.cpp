@@ -140,8 +140,8 @@ int main(){
 	Compo compA;
 	Compo compB(compA);
 
-	// compA.f1.Do();
-	// compB.f2.Do();
+	compA.f1.Do();
+	compB.f2.Do();
 
 	return 0;
 }

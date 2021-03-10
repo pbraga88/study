@@ -38,9 +38,10 @@ Output:
 	/lib64/ld-linux-x86-64.so.2 (0x00007f315c509000)
 
 Uma vez que o linker não adiciona automaticamente o path para a shared lib quando do momento da compilação,
-deve-se especificar tal path ou no próprio comando de compilação ou via variável de ambiente.
+deve-se especificar tal path, ou no próprio comando de compilação ou via variável de ambiente.
 Definindo o path na compilação com as flags '-Wl, -rpath':
 |$ gcc -o myAppSO main.o -L. -llinkedlist -Wl,-rpath,./
+
 Outra opção (mais comum) é utilizar a variável de ambiente 'LD_LIBRARY_PATH' apontando para o caminho onde
 deve ser feita a busca da shared lib:
 |$ export LD_LIBRARY_PATH=./	<- aponta para o diretório atual
