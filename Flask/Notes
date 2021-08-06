@@ -1,0 +1,11 @@
+TO DO:
+Ocultar senha do database no arquivo config.py
+
+Libs/Packages used:
+- Flask-Migrate: Trabalha com migração nas aplicações com SQLAlchemy. Migração é uma forma
+de controlar as alterações no banco de dados. Em outras palavras mantém a estrutura do banco 
+de dados quando inserções são feitas.
+
+# To start the flask server
+enf FLASK_APP=my_app.py flask run
+

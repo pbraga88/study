@@ -1,0 +1,40 @@
+Basics Of Information
+=====================
+Informação transmitida ou recebida que retira alguma incerteza sobre algum fato 
+ou circunstância:
+I(data) = log2(1/Pdata) # Pi = Probabilidade associada
+ou
+I(data) = log2(N/M) bits
+Onde: N = Todas as escolhas/opções prováveis
+      M = Escolhas após algum dado ser passado
+
+Exemplo:
+Ao retirar uma carta aleatória de um baralho com 52 cartas, qual a quantidade de 
+informação passada em cada um dos casos abaixo:
+a) A carta é de Copas:
+    N = 52
+    M = 13 # Todas cartas de Copas presentes no baralho
+    I(data) = log2(52/13) = 2 bits
+
+b) A carta não é um Ás de Espadas:
+    N = 52
+    M = 51
+    I(data) = log2(52/51) = 0,028 bits
+
+c) A carta é J, Q ou K
+    N = 52
+    M = 12
+    I(data) = log2(52/12) = 2,115 bits
+
+d) A carta é o Rei de Copas:
+    N = 52
+    M = 1
+    I(data) = log2(52/1) = 5,7 bits
+
+Em suma, mais informação é transmitida/recebida quando o dado remove mais 
+incertezas sobre algum fato ou circunstância.
+
+Entropia
+========
+Em teoria da informação, a entropia H(X) é a média de informções contida em 
+cada peça de dado recebida sobre o valor de X

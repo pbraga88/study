@@ -7,7 +7,7 @@ Para criar uma lib estática utiliza-se o comando 'ar':
 A flag 'cr' diz para criar um arquivo do tipo archive
 
 Após, pode-se linkar a lib estática com outro(s) arquivo(s) objeto(s):
-|$gcc -o libEstatica obj/main.o -L. -lLinkedList
+|$gcc -o myAppLibEstatica obj/main.o -L. -lLinkedList
 
 Obs.: Uma vez que o 'linker' procura o as definições dentro da lib.a quando esta é encontrada na linha de 
 comando, deve-se declarar a(s) lib(s) estática(s) ao final da linha.

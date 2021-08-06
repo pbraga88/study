@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+readarray -t my_array < my_file
+
+# echo ${my_array[0]}
+# echo ${#my_array[@]}
+
+# for i in {1..${#my_array[@]}}
+for ((c=0; c<${#my_array[@]}; c++))
+for ((c=0; c<${#my_array[@]}; c++))
+do
+	z=$((c % 2))
+	# echo ${z}
+	if [[ $z -eq '0' ]]
+	if [[ $z -eq '0' ]]
+	
+	then
+		echo ${my_array[c]}
+	fi
+done
+exit 0

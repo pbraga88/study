@@ -4,6 +4,10 @@ namespace first{
   int mult(int val){
     return val*10;
   }
+  
+  float div(float var, float sec_var){
+    return var/sec_var;
+  }
 }
 
 namespace second{
@@ -13,11 +17,11 @@ namespace second{
   }
 }
 
-namespace first{
-  float div(float var, float sec_var){
-    return var/sec_var;
-  }
-}
+// namespace first{
+//   float div(float var, float sec_var){
+//     return var/sec_var;
+//   }
+// }
 
 namespace second{
   int div(int var, int sec_var){
@@ -33,6 +37,8 @@ namespace second{
 // }
 
 namespace fdm = first;
+
+using namespace  first;
 
 using namespace std;
 

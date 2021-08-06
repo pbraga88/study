@@ -11,6 +11,7 @@ Para ter um código mais rápido, no caso de funções menores, pode-se usar
 a keyword "inline" e o compilador irá compilar a função toda vez que ela for 
 chamada e, nesse caso, não utilizará nem o Prólogo nem o Epílogo.
 
+Quando uma função inline é chamada, o compilador substitui os argumentos
 ********************************************************************************
 If you want a certain function to be compiled and invoked as an inline function, you have to mark it in a special way.
 
