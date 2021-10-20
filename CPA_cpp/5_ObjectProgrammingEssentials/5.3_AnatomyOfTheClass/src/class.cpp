@@ -20,8 +20,10 @@ Classe::Classe(Classe const& source){ // Aqui o construtor é copiado e a nova i
                                       // construtor.
 
 Classe::~Classe(void){
-  cout<<"deletion of allocated memory"<<endl;
-  delete []mem;
+  if(mem){
+    cout<<"deletion of allocated memory"<<endl;
+    delete []mem;
+  }
 }
 
 int Classe::getValue(void){

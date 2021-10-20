@@ -1,5 +1,7 @@
 Um 'Archive' é uma biblioteca estática. Bibliotecas estáticas são um conjunto de arquivos objeto.
-Quando da compilação, caso uma uma biblioteca estática (.a) seja passada, o arquivo objeto (.o) específico demandado pelo programa é copiado da biblioteca estática e anexado ao executável/binário final. Isso faz com que binários compilados com bibliotecas estáticas sejam maiores, mais difíceis de atualizar, contudo, com um tempo de entrega (eg para produção) mais rápido. 
+Quando da compilação, caso uma uma biblioteca estática (.a) seja passada, o arquivo objeto (.o) específico demandado pelo programa é copiado da biblioteca estática e anexado 
+ao executável/binário final. Isso faz com que binários compilados com bibliotecas estáticas sejam maiores, mais difíceis de atualizar, contudo, com um tempo de 
+entrega (eg para produção) mais rápido. 
 
 Para criar uma lib estática utiliza-se o comando 'ar':
 |$ ar cr libLinkedList.a  obj/linkedListOperations.o obj/numberOperations.o obj/printAndFree.o
@@ -9,5 +11,5 @@ A flag 'cr' diz para criar um arquivo do tipo archive
 Após, pode-se linkar a lib estática com outro(s) arquivo(s) objeto(s):
 |$gcc -o myAppLibEstatica obj/main.o -L. -lLinkedList
 
-Obs.: Uma vez que o 'linker' procura o as definições dentro da lib.a quando esta é encontrada na linha de 
+Obs.: Uma vez que o 'linker' procura o as definições dentro da lib.a, quando esta é encontrada na linha de 
 comando, deve-se declarar a(s) lib(s) estática(s) ao final da linha.

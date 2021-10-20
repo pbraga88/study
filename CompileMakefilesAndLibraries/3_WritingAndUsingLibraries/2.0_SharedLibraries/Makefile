@@ -6,7 +6,7 @@ LIB_SOURCE=$(wildcard ./lib_src/*.c)
 OBJ=$(subst .c,.o, $(subst lib_src,obj, $(LIB_SOURCE)))
 S_OBJ=$(subst .c,.o, $(subst lib_src,s_obj, $(LIB_SOURCE)))
 
-INC=include/
+INC = include
 LIB=lib
 
 # -c: Compila arquivo objeto; -W: Warning; Wall: Warning para tudo; 
@@ -14,7 +14,9 @@ CFLAGS=-c 	    \
        -W	    \
        -Wall    \
        -ansi	\
-       -pedantic
+       -pedantic 
+	   
+CFLAGS += -include $(INC)/numberOperations.h
 
 CC=gcc
 
@@ -38,12 +40,12 @@ sharedObj: $(S_OBJ)
 
 ./s_obj/%.o: ./lib_src/%.c
 	@ echo 'Build shared object: $@'
-	$(CC) -c -fPIC -I $(INC) $< -o $@
+	$(CC) $(CFLAGS) -c -fPIC -I $(INC)  $< -o $@
 	@ echo ' '
 
 buildShared: sharedLib
 	@ echo 'Build Binary with shared lib'
-	$(CC) -o $(PROJECT)_shared src/main.c -I $(INC) -L$(LIB) -lLinkedList 
+	$(CC) $(CFLAGS) -o $(PROJECT)_shared src/main.c -I $(INC) -L$(LIB) -lLinkedList 
 	@ echo ' '
 
 # Build static lib and Binary

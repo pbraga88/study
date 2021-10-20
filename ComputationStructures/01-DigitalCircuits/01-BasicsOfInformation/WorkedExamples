@@ -1,0 +1,76 @@
+Quantifying Information
+========================
+For the problems below enter your responses as a formula in the form log2(X/Y) 
+where X and Y are integers, or as an integer number of bits.
+
+1) Someone picks a name out of a hat known to contain the names of 5 women 
+and 3 men, and tells you a man has been selected. How much information have they 
+given you about the selection?
+N = 8
+M = 3
+Formula -> I(data) = log2(N/M)
+
+I(data) = log2(8/3) = 1,415 bits
+
+
+2) You are asked to guess a random 4-bit 2's complement number. I then tell you 
+that the number is >0. How much information have you been given?
+N = 16
+M = 7
+I(data) = log2(16/7) = 1,193 
+
+
+Two's Complement Representation
+===============================
+1) What is the decimal equivalent of the 6-bit binary two’s complement 
+ number 001000? 
+R: 8
+
+2) What is the decimal equivalent of the 6-bit binary two’s complement
+ number 101100? 
+ R:
+ 101100 -> flip -> 010011
+                  +000001
+                  -------
+                   010100
+na base 10 = -20
+
+3) Using a 6-bit two’s complement representation, what is the range of integers
+ that can be represented with a single 6-bit quantity? 
+ Provide your response in decimal notation.
+ R:
+ -32 ~ 31
+
+4) What is the result of the following subtraction problem in 6-bit two's
+ complement representation?
+ 15 - 18 = 111101b
+ 27 - 6 = 010101b
+
+ Huffman Encoding
+================
+The table below shows the enrollments in the various EECS majors. To save a bit
+of space in their database the department would like to use a variable-length
+Huffman code to encode a student’s choice of major. For each of the four majors,
+please give the encoding the department should use.
+
+Major  Count  p     plog2(1/p)
+6-1	    74	  0.09	 0.30
+6-2	    387	  0.44	 0.52
+6-3	    360	  0.41	 0.53
+6-7	    54	  0.06	 0.25
+Total	875	  1.00	 1.60
+R:
+    C 
+  0/ \1
+ 6-2  B 
+    0/ \1
+    A  6-3
+  0/ \ 1
+ 6-7 6-1
+
+6-1 = 101
+6-2 = 0
+6-3 = 11
+6-7 = 100
+
+Error Correction

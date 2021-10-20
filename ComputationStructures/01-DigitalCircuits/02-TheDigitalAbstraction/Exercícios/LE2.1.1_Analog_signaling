@@ -1,0 +1,19 @@
+1:
+Consider an analog image processing system built entirely from COPY blocks, which when given V volts on their input are designed to produce V volts on their output. 
+Armo, an inexpensive brand of COPY blocks, comes close to meeting the specification, but produces an output with up to a 1% error. So for a V volt input, an Armo COPY block 
+will produce an output voltage in the range 0.99V to 1.01V.
+
+If an Armo COPY block has an input of 0.5 volts, what are the smallest and largest voltages we might measure on its output? Please give a numeric answer to the nearest .001 volt.
+
+Smallest output voltage (volts): 0.495
+Largest output voltage (volts): 0.505
+
+
+
+2: 
+Now consider a system that uses 50 Armo COPY blocks connected in series, i.e., the output of one block is connected to the input of the next block. If a signal of 0.5 volts 
+is input to the first block in the series, what is the range of voltages we might measure on the output of the fiftieth block? Please give a numeric answer to the nearest .001 volt. 
+Hint: the answer is not simply an increase or decrease of 0.01*0.5*50 volts.
+
+Smallest output voltage (volts): 0.303
+Largest output voltage (volts): 0.822

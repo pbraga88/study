@@ -2,7 +2,10 @@
 #include <stdlib.h>
 
 #include "linkedListOperations.h"
-#include "numberOperations.h"
+/* Testing the inclusion of the below header in Makefile as:
+CFLAGS += -include $(INC)/numberOperations.h
+
+#include "numberOperations.h" */
 #include "printAndFree.h"
 
 int main(void) {

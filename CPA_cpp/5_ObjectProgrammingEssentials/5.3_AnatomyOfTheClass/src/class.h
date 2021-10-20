@@ -12,7 +12,7 @@ class Classe{
   // private:
     int value;
     int x;
-    int *mem;
+    int *mem = NULL;
 };
 
 class Classe_2{
