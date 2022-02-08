@@ -1,0 +1,1 @@
+/usr/bin/c++   -Wall  -rdynamic CMakeFiles/LinkedList.dir/src/main.cpp.o  -o bin/LinkedList  -Wl,-rpath,/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/cmake/Example02/build/lib lib/liblinkedListLib.so 

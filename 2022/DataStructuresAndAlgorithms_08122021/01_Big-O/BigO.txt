@@ -1,0 +1,60 @@
+Rule Book
+=========
+Rule 1 - Worst Case
+Sempre considere o pior cenário possível quando for calcular o Big O
+
+Rule 2 - Remove constants
+As constantes devem ser removidas
+O(2n + 10) -> O(n)
+
+Rule 3 - Different terms for input
+O Big O para a função abaixo é O(n + m), pois a iteração ocorre com dois termos diferentes ('a' e 'b') 
+|    void someFunc(int a, int b){
+|        for(int i = 0; i < a; i++) {
+|            std::cout<<"some message"<<std::endl;
+|        }
+|        for(int i = 0; i < b; i++) {
+|            std::cout<<"some other message"<<std::endl;
+|        }
+|    }
+Já o Big O para a função abaixo é O(n*m), pois os loops estão aninhados
+|    void someFunc(int a, int b){
+|        for(int i = 0; i < a; i++) {
+|            std::cout<<"some message"<<std::endl;
+|            for(int j = 0; j < b; j++) {
+|                std::cout<<"some other message"<<std::endl;
+|            }
+|        }
+|    }
+
+Rule 4 - Drop non dominants
+O Big O da função abaixo pode ser escrito com O(n + n²), contudo, como o termo não dominante
+deve ser excluído, a notação final fica: O(n²)
+|    void someFunc(int numbers[], int size){
+|        for(int i = 0; i < size; i++){
+|            cout<<numbers[i]<<endl;
+|        }
+|
+|        for(int i = 0; i < size; i++) {
+|            for (int j = 0; j < size; j++) {
+|                cout<<numbers[i]<<" "<<numbers[j]<<endl;
+|            }
+|        }
+
+Space Complexity
+================
+Quando falamos de "space complexity", falamos de espaço adicional necessário. Por exemplo, o big O da função abaixo 
+é O(1), pois não há espaço de memória adicional utilizado por ela
+|    function boo(n){
+|        for(int i = 0; i<n; i++){
+|            cout<<"boo!"<<endl;
+|        }
+|    }
+
+Já a função abaixo tem um O(n), pois o espaço aumento de acordo com a entrada n:
+|    void arrayOfN(int num){
+|        string *array;
+|        array = new string[num];
+|        for(int i =0; i < num; i++) {
+|            array[i] = "hi";
+|        }

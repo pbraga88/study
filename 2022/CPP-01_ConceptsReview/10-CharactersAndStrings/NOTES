@@ -1,0 +1,4 @@
+ Characters and Strings
+ ====================== 
+ Will read up to 50 into var or until the user presses enter
+ cin.getline(var, 50);

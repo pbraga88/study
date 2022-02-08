@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/linkedListOperations.h
+
+../include/numberOperations.h
+linkedListOperations.h
+../include/linkedListOperations.h
+
+../include/printAndFree.h
+linkedListOperations.h
+../include/linkedListOperations.h
+
+/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/cmake/Example02/lib_src/linkedListOperations.cpp
+stdio.h
+-
+stdlib.h
+-
+linkedListOperations.h
+/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/cmake/Example02/lib_src/linkedListOperations.h
+
+/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/cmake/Example02/lib_src/numberOperations.cpp
+stdio.h
+-
+stdlib.h
+-
+numberOperations.h
+/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/cmake/Example02/lib_src/numberOperations.h
+linkedListOperations.h
+/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/cmake/Example02/lib_src/linkedListOperations.h
+
+/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/cmake/Example02/lib_src/printAndFree.cpp
+stdio.h
+-
+stdlib.h
+-
+printAndFree.h
+/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/cmake/Example02/lib_src/printAndFree.h
+

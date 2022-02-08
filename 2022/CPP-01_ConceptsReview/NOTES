@@ -1,0 +1,13 @@
+Configure g++ compiler
+==================
+View > Command Palette > C/C++: Edit Configurations (UI)
+
+Compiler Path:
+/usr/bin/g++
+
+C++ standard:
+c++17
+
+Create default build task (to compile and build the code)
+=========================================================
+

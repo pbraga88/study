@@ -1,0 +1,11 @@
+Variável é uma abstração para um local de memória:
+int age {33}; // age = @1002 (eg local da memmória)
+
+Diferentemente de das varáveis locais, as variáveis globais são automaticamente inicializadas com 0
+
+long people_on_earth {7'600'000'000}; // Á partir do C++14 é possível utilizar apóstrofo para 
+                                      // tornar mais fácil a leitura de números grandes
+
+Constansts
+==========
+O valor de uma constante não pode ser alterado, uma vez que declarado

@@ -1,0 +1,61 @@
+07.02.2022
+==========
+Section 7:
+    * 81. Solution: Implement A Hash Table (17'00)
+
+28.01.2022
+==========
+Section 7:
+    * 78. Hash Colisions (3'42)
+
+27.01.2022
+==========
+Section 6:
+    * 74.
+
+LIÇÃO DE CASA - Semana 17.01 a 21.01
+    1. Implementar uma Array (02_implementingAnArray.cpp)
+
+21.01.2022
+==========
+Section 6:
+    * 73 - Solution: Merge Sorted Array
+
+21.01.2022
+==========
+Section 6:
+    * 73 - Solution: Merge Sorted Array
+
+19.01.2022
+==========
+Section 6:
+    * 68 - Implementing an Array
+        - To Do: Convert from jscript to C++
+
+18.01.2022
+==========
+Section 6: Data Structures: 
+    * 64 - Arrays Introduction (13'02)
+
+17.01.2022
+==========
+Section 5 - Data Structures: Introduction
+    * 61 - How Computers Stores Data 
+
+13.01.2022
+==========
+Section 4 - How To Solve Coding Problems
+    * 55. (18'04)
+
+12.01.2022
+==========
+Section 4 - How To Solve Coding Problems
+    * 54. (1'45)
+11.01.2022
+==========
+Section 4 - How To Solve Coding Problems
+
+05.01.2022
+==========
+Section 3 - Big O
+    * 46. Exercise: Space Complexity

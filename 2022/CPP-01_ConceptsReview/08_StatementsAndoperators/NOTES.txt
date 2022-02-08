@@ -1,0 +1,30 @@
+Assignment Operators
+====================
+    // Initialization
+    int num1 {10};
+    int num2 {20};
+    
+    // Assignment
+    num1 = 100;
+
+Arithmetic Operators
+===================
+    +   addition
+    -   subtraction
+    *   multiplication
+    /   division
+    %   modulo or remainder  (works only with integers)
+    
+    +, -. * and /  operators are overloaded to work with multiple types such as int, double, etc.
+    %  only for integer types
+
+Relational Operators
+====================
+cout << boolalpha;      // will display true/false instead of 1/0 for booleans
+cout << noboolalpha     // Will deactivate the above
+
+Logical Operators
+=================
+'not' (!) tem uma prioridade maior que 'and' (&&), que tem uma priodidade maior que 'or' (||).
+'not' é unário
+'and' e 'or' são binários

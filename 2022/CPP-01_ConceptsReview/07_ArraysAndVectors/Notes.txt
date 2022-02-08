@@ -1,0 +1,6 @@
+Vectors
+=======
+Vector é um Object Oriented Container, parte da Standard Template Library (STL)
+#include <vector>
+std::vector <char> vowels;
+std::vector <int> test_scores;
