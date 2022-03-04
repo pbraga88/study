@@ -1,3 +1,28 @@
+23.02.2022
+==========
+Section 8:
+    * 104. Exercise: Doubly Linked Lists
+
+22.02.2022
+==========
+Section 8:
+    * 103. Doubly Linked Lists
+
+17.02.2022
+==========
+Section 8:
+    * 97. Solution: prepend()
+
+16.02.2022
+==========
+Section 8:
+    * 95. Our First Linked List (8'18)
+
+11.02.2022
+==========
+Section 7:
+    * 86. Solution: First Recurring Character (4'51)
+
 07.02.2022
 ==========
 Section 7:

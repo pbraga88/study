@@ -13,16 +13,6 @@ std::vector<int> mergeAndSort(std::vector<int> vec1, std::vector<int> vec2) {
         vec1.push_back(value);
     }
 
-    // for(int i = 0; i<vec1.size(); i++) {
-    //     for(int j = i+1; j < vec1.size(); j++) {
-    //         if (vec1[i] > vec1[j]) {
-    //             aux = vec1[j];
-    //             vec1[j] = vec1[i];
-    //             vec1[i] = aux;
-    //         }
-    //     }
-    // }
-
     for(int i = 0; i<vec1.size(); i++) {
         for(int j = i+1; j < vec1.size(); j++) {
             if (vec1[i] > vec1[j]) {
@@ -57,7 +47,6 @@ std::vector<int> mergeAndSort2(std::vector<int> vec1, std::vector<int> vec2) {
             j++;
         }
     }
-
 
     return merged;
 }

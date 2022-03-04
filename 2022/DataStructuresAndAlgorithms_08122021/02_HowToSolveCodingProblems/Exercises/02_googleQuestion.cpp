@@ -18,7 +18,7 @@ Is there a pair in the Array1 which sums up to 8?
 bool checkPairs(std::vector<int> intArr, int sumValue) {
     // Go through array item by item and check the sum
     // with every item in list
-    // If there's is a pait which sums up to sumValue,
+    // If there's is a pair which sums up to sumValue,
     // return true, otherwise, return false
 
     for (int i = 0; i < intArr.size(); i++){
