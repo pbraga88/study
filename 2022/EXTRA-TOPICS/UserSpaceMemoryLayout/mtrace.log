@@ -1,0 +1,7 @@
+= Start
+@ /lib/x86_64-linux-gnu/libc.so.6:(_IO_file_doallocate+0x94)[0x7fafc216ae84] + 0x5569b212a690 0x400
+@ ./mtrace-example:[0x5569b0206312] + 0x7fafc1fe5010 0x100000
+@ ./mtrace-example:[0x5569b020638d] + 0x5569b212aaa0 0x64
+@ ./mtrace-example:[0x5569b020638d] + 0x5569b212ab10 0x64
+@ ./mtrace-example:[0x5569b02063a6] + 0x5569b212ab80 0x100
+@ /lib/x86_64-linux-gnu/libc.so.6:[0x7fafc228196c] - 0x5569b212a690

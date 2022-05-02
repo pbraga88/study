@@ -4,6 +4,10 @@ Data Structures and Algorithms
 https://commscope1.udemy.com/course/master-the-coding-interview-data-structures-algorithms/learn/lecture/12145936?start=0#overview
 Status: On Going
 
+Exercism - CPP Track
+https://exercism.org/dashboard
+Status: Not Started
+
 CPP 01 - Concepts Refreshment:
 https://commscope1.udemy.com/course/beginning-c-plus-plus-programming/
 Status: On Going

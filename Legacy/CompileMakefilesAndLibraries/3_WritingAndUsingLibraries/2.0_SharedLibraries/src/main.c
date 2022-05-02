@@ -11,11 +11,11 @@ CFLAGS += -include $(INC)/numberOperations.h
 int main(void) {
     struct digit *start;
     start = readNumber();
-
+    set_value(1000); /*For testing purpose*/
     printf("The number ");
     printNumber(start);
     printf("contains %d redundancies.\n", countRedun(start));
-
+    get_value(); /*For testing purpose*/
     freeNumber(start);
 
     return 0;

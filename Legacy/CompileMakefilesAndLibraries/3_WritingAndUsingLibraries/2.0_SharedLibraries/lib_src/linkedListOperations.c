@@ -3,6 +3,18 @@
 
 #include "linkedListOperations.h"
 
+static int test_var = 0;
+
+void set_value(int n) {
+    test_var = n;
+    printf("Setting number: %d\n", test_var);
+}
+
+void get_value() {
+    printf("Retrieving number: %d\n", test_var);
+}
+
+
 struct digit *sortDigits(struct digit *newSortedStart, struct digit *newNbToBeSorted) {
     struct digit *ptr = newSortedStart;
     struct digit *prev = NULL;

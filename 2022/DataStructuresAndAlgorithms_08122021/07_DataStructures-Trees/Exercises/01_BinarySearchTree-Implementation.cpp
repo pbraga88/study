@@ -1,11 +1,18 @@
 #include <iostream>
 #include <string>
+#include <vector>
+#include <set>
 
 typedef struct bst {
     int value;
     struct bst* left;
     struct bst* right;
 } BinaryST;
+
+typedef struct llist {
+    int value; 
+    struct llist* next;
+} LinkedList;
 
 /* O(log n) */
 class BST {
@@ -90,8 +97,24 @@ void traverse(BinaryST *node) {
     }
 }
 
-void print_tree(BinaryST* node) {
+void traverse_vec(BinaryST *node, std::vector<int> &vec) {
+    vec.push_back(node->value);
+    if (node->left != NULL) {
+        traverse_vec(node->left, vec);
+    }
+    if (node->right != NULL) {
+        traverse_vec(node->right, vec);
+    }
+}
 
+void traverse_set(BinaryST *node, std::set<int> &set_tree) {
+    set_tree.insert(node->value);
+    if (node->left != NULL) {
+        traverse_set(node->left, set_tree);
+    }
+    if (node->right != NULL) {
+        traverse_set(node->right, set_tree);
+    }
 }
 
 /*
@@ -110,16 +133,29 @@ int main() {
     my_bst.insert(15);
     my_bst.insert(1);
 
-
-    traverse(my_bst.root);
-
-    int nb = 200;
-    BinaryST* node = my_bst.lookup(nb);
-    if (node != NULL) {
-        std::cout<<"value: "<<node->value<<std::endl;
-        std::cout<<"left: "<<(node->left==NULL?-1:node->left->value)<<std::endl;
-        std::cout<<"right: "<<(node->right==NULL?-1:node->right->value)<<std::endl;
+    std::vector<int> my_vec;
+    traverse_vec(my_bst.root, my_vec);
+    for (auto val: my_vec) {
+        std::cout<<val<<" ";
     }
+    std::cout<<std::endl;
+
+    std::set<int> my_set;
+    traverse_set(my_bst.root, my_set);
+    for (auto val: my_set) {
+        std::cout<<val<<" ";
+    }
+    std::cout<<std::endl;
+
+    // traverse(my_bst.root);
+
+    // int nb = 200;
+    // BinaryST* node = my_bst.lookup(nb);
+    // if (node != NULL) {
+    //     std::cout<<"value: "<<node->value<<std::endl;
+    //     std::cout<<"left: "<<(node->left==NULL?-1:node->left->value)<<std::endl;
+    //     std::cout<<"right: "<<(node->right==NULL?-1:node->right->value)<<std::endl;
+    // }
 
     return 0;
 }

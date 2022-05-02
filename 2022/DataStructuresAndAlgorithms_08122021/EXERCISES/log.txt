@@ -1,0 +1,9 @@
+[    0.000000]  event  foo.bar  START
+[    0.500000]  event  other  some log message  
+[    1.000000]  event  foo.bar  STOP
+[    2.000000]  event  foo.bar  START
+[    5.000000]  event  foo.bar  STOP
+[    6.000000]  event  foo.bar  START
+[    8.000000]  event  foo.bar  STOP
+[    9.000000]  event  foo.qux  START
+[   10.000000]  event  foo.qux  STOP

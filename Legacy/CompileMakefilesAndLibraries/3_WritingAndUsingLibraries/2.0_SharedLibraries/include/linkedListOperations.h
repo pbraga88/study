@@ -12,4 +12,8 @@ struct digit * createDigit(int);
 struct digit * append(struct digit * end, struct digit * newDigptr);
 struct digit *readNumber(void);
 
+
+void set_value(int n);
+void get_value();
+
 #endif

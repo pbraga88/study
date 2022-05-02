@@ -32,6 +32,7 @@ int findFirstRecurring_hashTable(std::vector<int> int_array) {
         }
         int_set.insert(val);
     }
+    
 
     return fr;
 }
