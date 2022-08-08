@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/Friend_class.h
+string
+-
+Player.h
+../include/Player.h
+
+../include/Other_class.h
+
+../include/Player.h
+string
+-
+Other_class.h
+../include/Other_class.h
+
+/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/CPP-01_ConceptsReview/13-OOP-ClassesAndObjects/14_FriendsOfA-Class/src/main.cpp
+iostream
+-
+string
+-
+Player.h
+/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/CPP-01_ConceptsReview/13-OOP-ClassesAndObjects/14_FriendsOfA-Class/src/Player.h
+Other_class.h
+/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/CPP-01_ConceptsReview/13-OOP-ClassesAndObjects/14_FriendsOfA-Class/src/Other_class.h
+Friend_class.h
+/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/CPP-01_ConceptsReview/13-OOP-ClassesAndObjects/14_FriendsOfA-Class/src/Friend_class.h
+

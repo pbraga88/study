@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/Player.h
+string
+-
+
+/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/CPP-01_ConceptsReview/13-OOP-ClassesAndObjects/07_CopyContructor/src/main.cpp
+iostream
+-
+string
+-
+Player.h
+/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/CPP-01_ConceptsReview/13-OOP-ClassesAndObjects/07_CopyContructor/src/Player.h
+

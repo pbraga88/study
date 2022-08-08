@@ -20,7 +20,7 @@ int main() {
     std::cout<<"First number greater than 4 is: "<<*p<<std::endl;
 
     // Function to sort vector. Lambda expression is for sorting in non-increaseing order
-    // Compiler can make out return tupe as bool, but it's shown here for the sake of the example
+    // Compiler can make out return type as bool, but it's explicitly shown here for the sake of example
     std::sort(vec.begin(), vec.end(), [](const int &a, const int &b) -> bool{
         return a>b;
     });

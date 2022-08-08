@@ -68,7 +68,7 @@ void print_top_two(vector<pair<string, int>> vec) {
 }
 
 int main() {
-    string str {"this is an example of input. as you can see this this is repeated of unknown magnitude is not this?"};
+    string str {"this is an example of input. as you can see this this is repeated of unknown magnitude is not it?"};
     unordered_map<string, int> umap = str_parser(str);
     vector<pair<string, int>> str_vec = fill_vec(umap);
     sort_vector(str_vec);

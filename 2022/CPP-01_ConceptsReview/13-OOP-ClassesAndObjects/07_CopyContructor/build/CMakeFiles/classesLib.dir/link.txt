@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC  -Wall  -shared -Wl,-soname,libclassesLib.so -o lib/libclassesLib.so CMakeFiles/classesLib.dir/lib_src/Player.cpp.o 

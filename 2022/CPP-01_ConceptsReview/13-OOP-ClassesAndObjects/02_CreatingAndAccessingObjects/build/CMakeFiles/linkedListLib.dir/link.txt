@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC  -Wall  -shared -Wl,-soname,liblinkedListLib.so -o lib/liblinkedListLib.so CMakeFiles/linkedListLib.dir/lib_src/exercise.cpp.o 

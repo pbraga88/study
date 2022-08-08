@@ -42,7 +42,7 @@ std::vector<std::string> reg_func(std::regex reg, std::string str) {
 	return l_extractions;
 }
 
-std::vector<std::vector<std::string>> parse_to_vector (std::string path_to_file){
+std::vector<std::vector<std::string>> parse_to_vector(std::string path_to_file) {
 	std::vector<std::vector<std::string>> parsed_file;
     std::vector<std::string> parsed_line;
 	std::string line; 

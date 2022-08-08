@@ -4,14 +4,14 @@
 #include <mutex>
 #include <chrono>
 
-std::mutex g_lock;
+std::mutex g_lock; // mutex declaration
 
 void func() {
-   g_lock.lock();
+   g_lock.lock(); // lock function so only one thread at a time will access it
    std::cout<<"Entered thread "<<std::this_thread::get_id()<<std::endl;
    std::this_thread::sleep_for(std::chrono::seconds(rand()%10));
    std::cout<<"Leaving thread "<<std::this_thread::get_id()<<std::endl;
-   g_lock.unlock();
+   g_lock.unlock(); // unlock function so other threads can access it
 }
 
 int main() {

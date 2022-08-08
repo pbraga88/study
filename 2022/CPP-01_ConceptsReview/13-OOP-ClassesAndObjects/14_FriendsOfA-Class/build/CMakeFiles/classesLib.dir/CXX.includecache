@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/Friend_class.h
+string
+-
+Player.h
+../include/Player.h
+
+../include/Other_class.h
+
+../include/Player.h
+string
+-
+Other_class.h
+../include/Other_class.h
+
+/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/CPP-01_ConceptsReview/13-OOP-ClassesAndObjects/14_FriendsOfA-Class/lib_src/Friend_class.cpp
+iostream
+-
+Friend_class.h
+/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/CPP-01_ConceptsReview/13-OOP-ClassesAndObjects/14_FriendsOfA-Class/lib_src/Friend_class.h
+
+/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/CPP-01_ConceptsReview/13-OOP-ClassesAndObjects/14_FriendsOfA-Class/lib_src/Other_class.cpp
+iostream
+-
+Other_class.h
+/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/CPP-01_ConceptsReview/13-OOP-ClassesAndObjects/14_FriendsOfA-Class/lib_src/Other_class.h
+Player.h
+/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/CPP-01_ConceptsReview/13-OOP-ClassesAndObjects/14_FriendsOfA-Class/lib_src/Player.h
+
+/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/CPP-01_ConceptsReview/13-OOP-ClassesAndObjects/14_FriendsOfA-Class/lib_src/Player.cpp
+Player.h
+/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/CPP-01_ConceptsReview/13-OOP-ClassesAndObjects/14_FriendsOfA-Class/lib_src/Player.h
+

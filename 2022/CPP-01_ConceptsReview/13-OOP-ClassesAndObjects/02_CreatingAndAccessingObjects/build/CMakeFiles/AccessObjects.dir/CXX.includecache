@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/Dog.h
+string
+-
+
+../include/exercise.h
+iostream
+-
+Dog.h
+../include/Dog.h
+
+/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/CPP-01_ConceptsReview/13-OOP-ClassesAndObjects/02_CreatingAndAccessingObjects/src/main.cpp
+stdio.h
+-
+stdlib.h
+-
+Dog.h
+/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/CPP-01_ConceptsReview/13-OOP-ClassesAndObjects/02_CreatingAndAccessingObjects/src/Dog.h
+exercise.h
+/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/CPP-01_ConceptsReview/13-OOP-ClassesAndObjects/02_CreatingAndAccessingObjects/src/exercise.h
+

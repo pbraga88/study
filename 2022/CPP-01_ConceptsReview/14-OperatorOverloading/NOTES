@@ -1,0 +1,6 @@
+The follow operators can NOT be overloaded:
+    - Scope Resolution Operator (::)
+    - Conditional Operator (:?)
+    - Pointer To Member Operator (.?)
+    - Dot Operator (.)
+    - Size Of Operator (sizeof)

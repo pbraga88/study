@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/my_string.h
+
+/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/CPP-01_ConceptsReview/14-OperatorOverloading/01_WhatIsOperatorOverloading/lib_src/my_string.cpp
+iostream
+-
+cstring
+-
+my_string.h
+/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/CPP-01_ConceptsReview/14-OperatorOverloading/01_WhatIsOperatorOverloading/lib_src/my_string.h
+

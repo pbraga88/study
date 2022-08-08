@@ -8,7 +8,7 @@
 
 template <typename T>
 class container {
-    std::recursive_mutex _lock;
+    std::recursive_mutex _lock; // Recursive mutex is used to allow the same mutex to be aqcuired multiple times 
     std::vector<T> _elements;
 
 public:
@@ -44,16 +44,20 @@ void func(container<int>& cont) {
 
 int main() {
     srand((unsigned int)time(0));
+
+    int *p = new int[10];
     
     container<int> cont;
 
-    std::thread t1(func, std::ref(cont));
+    std::thread t1(func, std::ref(cont)); // If the function needs argument to be passed by reference, 'std::ref' must be used
     std::thread t2(func, std::ref(cont));
     std::thread t3(func, std::ref(cont));
 
     t1.join();
     t2.join();
     t3.join();
+
+    delete p;
 
     return 0;
 }

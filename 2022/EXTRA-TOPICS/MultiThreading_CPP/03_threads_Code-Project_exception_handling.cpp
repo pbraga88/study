@@ -6,13 +6,13 @@
 #include <vector>
 #include <stdexcept>
 
-std::mutex                       g_mutex;
-std::vector<std::exception_ptr>  g_exceptions;
+std::mutex                       g_mutex; // mutex declaration
+std::vector<std::exception_ptr>  g_exceptions; // vector of exception pointers
 
+// Throw exception
 void throw_function()
 {
-   throw std::exception("something wrong happened");
-   // throw std::invalid_argument( "received negative value" );
+   throw std::domain_error( "domain error" );
 }
 
 void func()
@@ -21,20 +21,25 @@ void func()
    {
       throw_function();
    }
-   catch(...)
+   catch(std::domain_error)
    {
+      // uses lock_guard: it will aqcuire the mutex on it's construction and release on object destruction 
       std::lock_guard<std::mutex> lock(g_mutex);
-      g_exceptions.push_back(std::current_exception());
+      g_exceptions.push_back(std::current_exception()); // push to vector of exception pointers
    }
 }
 
 int main()
 {
+   // Clean the global vector
    g_exceptions.clear();
-
+   
+   // Create the thread 't' passing function 'func' as argument
    std::thread t(func);
+   // 'main' thread will wait 't' thread conclusion 
    t.join();
 
+   // routine to print vector of exception pointers
    for(auto& e : g_exceptions)
    {
       try 
@@ -46,7 +51,7 @@ int main()
       }
       catch(const std::exception& e)
       {
-         std::cout << e.what() << std::endl;
+         std::cout << "what: "<<e.what() << std::endl;
       }
    }
 

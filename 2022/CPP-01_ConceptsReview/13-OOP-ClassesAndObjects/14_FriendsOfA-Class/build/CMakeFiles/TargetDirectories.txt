@@ -1,0 +1,4 @@
+/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/CPP-01_ConceptsReview/13-OOP-ClassesAndObjects/14_FriendsOfA-Class/build/CMakeFiles/rebuild_cache.dir
+/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/CPP-01_ConceptsReview/13-OOP-ClassesAndObjects/14_FriendsOfA-Class/build/CMakeFiles/edit_cache.dir
+/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/CPP-01_ConceptsReview/13-OOP-ClassesAndObjects/14_FriendsOfA-Class/build/CMakeFiles/OOP_ClassesAndObjects.dir
+/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/CPP-01_ConceptsReview/13-OOP-ClassesAndObjects/14_FriendsOfA-Class/build/CMakeFiles/classesLib.dir
