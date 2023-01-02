@@ -109,5 +109,17 @@ bool operator==(const Mystring &lhs, const Mystring &rhs) {
 
 // Make lowercase
 Mystring operator-(const Mystring &obj) {
-    
+    char *buff = new char[std::strlen(obj.str) + 1];
+    std::strcpy(buff, obj.str);
+    for (size_t i = 0; i < std::strlen(buff); i++) {
+        buff[i] = std::tolower(buff[i]);
+    }
+    Mystring temp(buff);
+    delete []buff;
+    return temp;
+}
+
+// Concatenation
+Mystring operator+(const Mystring &lhs, const Mystring &rhs) {
+    char *buff = new char[std::strlen(lhs.str) + std::strlen(rhs.str) + 1];
 }
