@@ -36,6 +36,7 @@ Mystring &Mystring::operator=(const Mystring &rhs) {
     delete [] this->str; // Delete whatever is there in current object str
     str = new char[std::strlen(rhs.str) + 1]; // Allocate the length of 
                                               // "rhs.str + 1" for null-terminator character
+    std::strcpy(this->str, rhs.str);
     return *this; // Return a reference to current object
 }
 

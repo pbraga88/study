@@ -60,6 +60,7 @@ $(PROJECT): $(OBJ)
 
 ./obj/%.o: ./src/%.c
 	@ echo 'Build obj: $<'
+	@ echo '$@: $<'
 	$(CC) $(CFLAGS) -I $(INC) $< -o $@
 	@ echo ' '
 # Flag NDEBUG exclusiva para este projeto

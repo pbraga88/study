@@ -4,3 +4,6 @@ The follow operators can NOT be overloaded:
     - Pointer To Member Operator (.?)
     - Dot Operator (.)
     - Size Of Operator (sizeof)
+
+Copy Contructor: Used with reference r-value
+Move Constructor: Used with temp reference r-value
