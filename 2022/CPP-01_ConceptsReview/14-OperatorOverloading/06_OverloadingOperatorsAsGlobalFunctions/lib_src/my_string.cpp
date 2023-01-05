@@ -122,4 +122,10 @@ Mystring operator-(const Mystring &obj) {
 // Concatenation
 Mystring operator+(const Mystring &lhs, const Mystring &rhs) {
     char *buff = new char[std::strlen(lhs.str) + std::strlen(rhs.str) + 1];
+    std::strcpy(buff, lhs.str);
+    std::strcat(buff, rhs.str);
+    Mystring temp(buff);
+    delete []buff;
+
+    return temp;
 }
