@@ -1,0 +1,4 @@
+/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/CPP-01_ConceptsReview/14-OperatorOverloading/09_CODING_EXERCISE_OperatorOverloadingTheStreamInsertionOperator/build/CMakeFiles/rebuild_cache.dir
+/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/CPP-01_ConceptsReview/14-OperatorOverloading/09_CODING_EXERCISE_OperatorOverloadingTheStreamInsertionOperator/build/CMakeFiles/edit_cache.dir
+/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/CPP-01_ConceptsReview/14-OperatorOverloading/09_CODING_EXERCISE_OperatorOverloadingTheStreamInsertionOperator/build/CMakeFiles/OperatorOveloading.dir
+/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/CPP-01_ConceptsReview/14-OperatorOverloading/09_CODING_EXERCISE_OperatorOverloadingTheStreamInsertionOperator/build/CMakeFiles/opOverloadLib.dir

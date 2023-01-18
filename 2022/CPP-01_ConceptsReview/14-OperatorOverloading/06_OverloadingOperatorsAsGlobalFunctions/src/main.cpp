@@ -24,7 +24,7 @@ int main(int argc, char **argv) {
     Mystring stooges = larry + " " + "Moe";
     stooges.display();                        // LarryMoe
     
-    // Mystring two_stooges = "Moes"+larry;      // Compilatio error
+    // Mystring two_stooges = "Moes"+larry;      // Compilation error
 
     Mystring three_stooges = larry + " " + moe + " " + "Curly";
     three_stooges.display();
