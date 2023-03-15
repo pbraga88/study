@@ -1,0 +1,4 @@
+1 - Pomodoro Project
+2 - User clusterization based on IR Remote usage patterns
+    * Use TFTP client/server communication with support to threads
+3 - Acronym APP using QT and TFTP client/server communication with support to threads (up 10 access at a time)
