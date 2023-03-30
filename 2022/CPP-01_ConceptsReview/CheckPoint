@@ -1,11 +1,21 @@
+29.03.2023
+==========
+Section 17: Smart Pointers
+    * 198. What is a Smart Pointer? Ownership and RAII (2'36)
+
+27.03.2023
+==========
+Section 16: Polymorphism
+    * 190. Pure Virtual Functions and Abstract Classes (9'16)
+
 15.03.2023
 ==========
-Section 16: Plymorphism
+Section 16: Polymorphism
     * 189. Using Base Class References (2'00)
 
 06.03.2023
 ==========
-Section 16: Plymorphism
+Section 16: Polymorphism
     * 184. Using a Base Class Pointer (0'10)
 
 27.02.2023
