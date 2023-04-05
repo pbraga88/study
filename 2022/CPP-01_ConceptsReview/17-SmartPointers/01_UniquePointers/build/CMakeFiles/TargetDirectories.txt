@@ -1,0 +1,3 @@
+/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/CPP-01_ConceptsReview/17-SmartPointers/build/CMakeFiles/rebuild_cache.dir
+/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/CPP-01_ConceptsReview/17-SmartPointers/build/CMakeFiles/edit_cache.dir
+/home/pbraga/Workspace/Pessoal/Repositories/Study/study/2022/CPP-01_ConceptsReview/17-SmartPointers/build/CMakeFiles/my_program.dir

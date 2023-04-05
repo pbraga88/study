@@ -20,7 +20,7 @@ std::unordered_map<std::string, int> readToUMap(std::string file_path) {
 	in_file.open(file_path, std::ios::in);
 	while(in_file) {
 		std::getline(in_file, line);
-        std::cout<<line<<std::endl;
+        	std::cout<<line<<std::endl;
 		std::stringstream str_s(line);
 		while(str_s>>word) {
 			if (uMap.find(word) == uMap.end()) {
