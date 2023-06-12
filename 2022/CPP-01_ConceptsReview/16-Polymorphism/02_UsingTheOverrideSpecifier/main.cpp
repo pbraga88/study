@@ -28,7 +28,7 @@ public:
 class Savings: public Account  {
 public:
     virtual void withdraw(double amount) { // Note that here, the signature is different and 'override' specifier is not used.
-                                           // This will cause a function redefinition instead, which will lead to a base calss
+                                           // This will cause a function redefinition instead, which will lead to a base class
                                            // call of funtcion, when an Account object is created as pointer to Savings:
                                            // Account *p2 = new Savings();
         std::cout << "In Savings::withdraw" << std::endl;

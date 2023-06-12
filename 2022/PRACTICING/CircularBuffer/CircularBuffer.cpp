@@ -204,7 +204,7 @@ int main() {
     // Create object
     CB::CircularBuffer static_size_buffer;
 
-    // Init the handler 
+    // Init the handler
     CB::cbuf_handle_t me = static_size_buffer.circular_buf_init(buffer, SIZE);
     
     std::cout<<static_size_buffer.circular_buf_capacity(me)<<std::endl;
