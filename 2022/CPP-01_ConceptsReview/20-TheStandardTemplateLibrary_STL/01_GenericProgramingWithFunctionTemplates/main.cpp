@@ -20,6 +20,12 @@ struct Person {
 };
 
 
+std::ostream &operator<<(std::ostream &os, const Person &p) {
+    os << p.name;
+    return os;
+}
+
+
 int main () {
     Person p1 {"Curly", 50};
     Person p2 {"Moe", 80};
@@ -39,6 +45,7 @@ int main () {
     // print_func(10,9);
     // print_func(20.1,22.3);
     // print_func('A','B');
+    print_func(p1, p2);
 
 
     return 0;
