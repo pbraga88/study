@@ -125,6 +125,114 @@ void test5() {
     display(stooges);
 }
 
+void test6() {
+    std::cout<<"================ test 06 ================"<<std::endl;
+    std::vector<int> vec {1,2,3,4,5};
+    display(vec);
+
+    vec.clear(); // remove all elements
+    display(vec);
+
+    vec = {1,2,3,4,5,6,7,8,9,10};
+    display(vec);
+    vec.erase(vec.begin(), vec.begin()+2); // remove first two elements
+    display(vec);
+
+    vec = {1,2,3,4,5,6,7,8,9,10};
+    // erase all even numbers
+    auto it = vec.begin();
+    while (it != vec.end()) {
+        if(*it % 2 == 0) {
+            vec.erase(it);
+        }
+        else {
+            it++; // Only increment if not erased
+        }
+        
+    }
+    display(vec);
+
+}
+
+void test7() {
+    std::cout<<"================ test 07 ================"<<std::endl;
+    std::vector<int> vec1 {1,2,3,4,5};
+    std::vector<int> vec2 {10,20,30,40,50};
+
+    display(vec1);
+    display(vec2);
+    std::cout<<std::endl;
+
+    vec2.swap(vec1);
+    display(vec1);
+    display(vec2);
+}
+
+void test8() {
+    std::cout<<"================ test 08 ================"<<std::endl;
+    std::vector<int> vec {100,45,99,1,0,5,88,74,68,33,28,49,71,13};
+    display(vec);
+
+    std::sort(vec.begin(), vec.end());
+    display(vec);
+    
+}
+
+void test9() {
+    // std::back_inserter constructs a back-insert iterator that inserts new elements
+    // at the end of the container it applied to. It's a special output iterator.
+    // There is also a front_inserter to be used with deques and lists
+    std::cout<<"================ test 09 ================"<<std::endl;
+
+    std::vector<int> vec1 {1,2,3,4,5};
+    std::vector<int> vec2 {10,20};
+    display(vec1);
+    display(vec2);
+    std::cout<<std::endl;
+
+    std::copy(vec1.begin(), vec1.end(), std::back_inserter(vec2));
+    display(vec1);
+    display(vec2);
+    std::cout<<std::endl;
+
+    // copy_if element is even
+    std::copy_if(vec1.begin(), vec1.end(), std::back_inserter(vec2), [](int x){return x%2==0;});
+    display(vec1);
+    display(vec2);
+}
+
+void test10() {
+    std::cout<<"================ test 10 ================"<<std::endl;
+    std::vector<int> vec1 {1,2,3,4,5};
+    std::vector<int> vec2 {10,20,30,40,50};
+    std::vector<int> vec3;
+
+    // 1*10, 2*20,0 3*30, 4*40, 5*50 and store in vec3
+    std::transform(vec1.begin(), vec1.end(), vec2.begin(), std::back_inserter(vec3),
+                    [](int x, int y) {return x*y;});
+    display(vec3);
+
+}
+
+void test11() {
+    std::cout<<"================ test 11 ================"<<std::endl;
+    std::vector<int> vec1 {1,2,3,4,5,6,7,8,9,10};
+    std::vector<int> vec2 {100,200,300,400};
+
+    display(vec1);
+    display(vec2);
+
+    auto it = std::find(vec1.begin(), vec1.end(), 5);
+    if (it != vec1.end()) {
+        std::cout<<"Inserting..."<<std::endl;
+        vec1.insert(it, vec2.begin(), vec2.end());
+    }
+    else {
+        std::cout<<"5 not found!"<<std::endl;
+    }
+    display(vec1);
+
+}
 
 int main() {
 /* Testing*/
@@ -137,7 +245,13 @@ int main() {
     // test2();
     // test3();
     // test4();
-    test5();
+    // test5();
+    // test6();
+    // test7();
+    // test8();
+    // test9();
+    // test10();
+    test11();
 
 
     return 0;
