@@ -61,7 +61,7 @@ void part1() {
     std::map<std::string, int> words;
     std::string line;       
     std::string word;   
-    std::ifstream in_file {"../words.txt"};
+    std::ifstream in_file {"words.txt"};
     if (in_file) {
         while (std::getline(in_file, line)) {
             //std::cout << line;
@@ -84,7 +84,7 @@ void part2() {
     std::map<std::string, std::set<int>> words;
     std::string line;
     std::string word;
-    std::ifstream in_file {"../words.txt"};
+    std::ifstream in_file {"words.txt"};
     if (in_file) {
         int line_number = 0;
         while (std::getline(in_file, line)) {
