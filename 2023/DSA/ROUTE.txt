@@ -1,0 +1,43 @@
+Exercises:
+ARRAYS:
+    01_MaximumSubarraySum.cpp - OK
+    02_2D-ArrayDS.cpp - OK
+    03_NewYearChaos.cpp - OK
+
+HASH-TABLE:
+    01_get_top_2_occurrence.cpp - OK
+    02_Hash-Table_And_Sorting_Dishes.cpp - OK
+    03_Hash-Table_areFollowingPatterns.cpp - OK
+    04_HAsh-Table_containsCloseNums.cpp - OK
+    05_Hash-Table_ParseStringInFileAndSort.cpp - 
+
+OTHER:
+    01_reverse_string.cpp - (Using stack or pure linked-list)
+    02_reverse_string_in_place.cpp - 
+    03_convert_char_number_to_int.cpp -  (Refer to Andrés Hernández-Schafhauser email)
+    04_circular_buffer.cpp - 
+
+Concepts:
+    Data-structure:
+        Hash Table - must be able to explain how internals of hash tables work for example hashing.
+            * Review content from course. You got it!
+
+        Linked List -
+    Algorithms:
+        Big O notation - 
+        Breadth First Search/Depth First Search
+        Binary Search 
+        Merge Sort
+        Quick Sort
+    General:
+        - C++ Concepts
+            - ITERATORS
+        - Common Algorithms like:
+            * accumulate(vec.begin(), vec.end()), find(vec.begin(), vec.end()), sort(vec.begin(), vec.end()) and etc
+
+
+Arrays, Circular Buffer,  Linked List, Stack, Queue, FIFO, LIFO, Trees, Graphs, set, map, unordered_set, unordered_map
+
+Arrays, Recursion, Stacks/Queues, Bit Manipulation
+You will want to know recursion (remember the termination clause!!) and linked lists. Same for Stacks and Queues. Questions involving bit manipulation are rare but are encountered from time to time.
+

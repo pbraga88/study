@@ -73,7 +73,14 @@
         "thread": "cpp",
         "typeindex": "cpp",
         "valarray": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "strstream": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+        "ranges": "cpp",
+        "stop_token": "cpp",
+        "climits": "cpp",
+        "span": "cpp"
     },
     "cmake.configureOnOpen": false
 }
