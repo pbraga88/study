@@ -80,7 +80,9 @@
         "ranges": "cpp",
         "stop_token": "cpp",
         "climits": "cpp",
-        "span": "cpp"
+        "span": "cpp",
+        "coroutine": "cpp",
+        "numbers": "cpp"
     },
     "cmake.configureOnOpen": false
 }

@@ -38,10 +38,12 @@ class ApiClient {
 public:
     ApiClient(std::shared_ptr<MockedDatabase> db): database_{db} {};
     HttpCode httpPost(const std::string &route, const rapidjson::Document &json);
-    private:
+private:
+    std::shared_ptr<MockedDatabase> database_;
 };
 
 void save(const User &user) { 
     database_->addUser (user);
 }
+
 std::shared_ptr<MockedDatabase> database_;

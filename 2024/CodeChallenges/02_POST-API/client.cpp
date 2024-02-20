@@ -50,7 +50,10 @@ HttpCode ApiClient::httpPost(const std::string &route, const rapidjson::Document
 }
 
 int main() {
+    std::shared_ptr<MockedDatabase> db;
+    
 
+    ApiClient someUser(db);
 
     return 0;
 }
