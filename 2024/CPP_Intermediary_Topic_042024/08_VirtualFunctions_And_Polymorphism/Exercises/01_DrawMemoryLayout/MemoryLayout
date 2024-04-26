@@ -1,0 +1,33 @@
+Draw memory layout for instance of class Derived (including vftptr):
+
+class Base1 { 
+public: 
+	virtual void f(); 
+	int b1; 
+	char c1;
+};
+
+class Base2 { 
+public: 
+	virtual void g(); 
+	int b2;
+};
+
+class Derived : public Base1, public Base2 {
+	public:
+	int d1; 
+};
+
+Virtual Function Table - Class Derived
+|	Base1::f()|
+|	Base2::g()|
+
+
+Memory Layout				 ---->	    Virtual Function Table - Class Derived
+-------------				| 			--------------------------------------
+Member						|			Base1::f()|
+vtptr (hidden, inherited) --			Base2::g()|
+int b1		
+char c1		
+int b2		
+int d1

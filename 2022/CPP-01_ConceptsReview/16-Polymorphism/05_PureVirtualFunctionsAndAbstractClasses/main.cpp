@@ -6,7 +6,7 @@
 
 
 /* The declaration of virtual functions below assigning the value of '0' (e.g: virtual void draw() = 0;), makes this class 
-a 'Abstract Class', meanings that it can not be instantiated by any means. It's possible to only derive it.
+an 'Abstract Class', meanings that it can not be instantiated by any means. It's possible to only derive it.
    This one will be the 'Abstract Base Class'.
 */
 class Shape {
