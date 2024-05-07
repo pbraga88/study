@@ -5,11 +5,9 @@
 #include "ABS.h"
 #include "IControl.h"
 
-Car * CarBuilder::Build() 
+Car* CarBuilder::Build() 
 {
 	Car* car = new Car();
-
-	// IControl* controler_motor = new MotorManagement;
 
 	car->processController(new MotorManagement);
 	car->processController(new ABS);

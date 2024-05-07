@@ -9,25 +9,11 @@ Car::Car()
 
 Car::~Car()
 {
-	// delete abs; 
-	// abs = nullptr;
-
-	// delete motorManagement; 
-	// motorManagement = nullptr;
 	for(auto &part:controller) {
 		delete part;
 	}
 	controller.clear();
 }
-
-// void Car::SetABS(ABS* a_abs) 
-// {
-// 	abs = a_abs;
-// }
-// void Car::SetMotorManagement(MotorManagement* a_motorManagement)
-// {
-// 	motorManagement = a_motorManagement;
-// }
 
 void Car::Start()
 {
