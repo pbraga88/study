@@ -1,0 +1,358 @@
+CPP Notes
+=========
+Copy Constructor:
+-----
+Takes the an object as parameter and copies it's data to the caller objects at construction time.
+Note that the type (object) must be const an passes as a reference
+	// Copy-constructor definition
+	Person::Person(const Person& source )
+	{
+		int len = strlen(source.mp_Name) + 1; 
+		mp_Name = new char[ len ];
+		strcpy(mp_Name, source.mp_Name );
+	}
+	
+Operator overload:
+-----
+Operator overloading is a feature in C++ that allows you to define the behavior of operators (such as +, -, *, /, ==, !=, =, etc.) 
+for user-defined types (classes and structs). This means it's possible define what these operators should do when they are used with objects of your own classes.
+Example of overloading the assignement operator (=):
+	Person& Person::operator=(const Person& src)
+	{
+		if (this != & src) 
+		{
+			delete mp_Name;
+			mp_Name = nullptr;
+			int len = strlen(src.mp_Name) + 1;
+			mp_Name = new char[len];
+			strcpy(mp_Name, src.mp_Name);
+		}
+		return *this;
+	}
+	
+static data a method within class:
+-----
+static will make it tied to the class not the object, hence it can be used to count
+the number of instances of a class or, as in this example, give an unique identifier
+to each object:
+	static int		m_Identifier;
+A static method, for instance, can be directly called from a class without the need of a object instantiation
+	// clock.h
+	clas clock {
+	[...]
+	static clock at(int hours, int minutes);
+	};
+	// main.cpp
+	const auto actual = std::string(date_independent::clock::at(t.hour, t.minute));
+	
+Pointers:
+-----
+	// eg char pointer
+	int		max_capacity{128};
+	char	*m_Data; // <- char pointer
+	m_data = new char[max_capacity]
+	delete []m_data;
+	m_data = nullptr;
+	// eg int pointer
+	int *data;
+	data = new int[128]
+	delete []data;
+	data = nullptr;
+	
+Guards
+-----
+Using the guard in the header file will guarantee it's included only once during compilation.
+One can use either (modern versions):
+	#pragma once
+Or (legacy version, but still widely used):
+	#if !defined(COMPLEX_H)
+	#define COMPLEX_H
+	[...]
+	#endif
+
+Function Pointers
+-----
+Function pointers are broadly used as callback;
+C style:
+	void some_function();
+	void (fptr*)(void) = nullptr;
+	fptr = &some_function;
+	fptr();
+or:
+	float some_other_function(int x);
+	float (fptr_float*)(int) = nullptr;
+	fptr_float = &some_other_function;
+	float get_calc_value = fptr_float(10);
+or (using classes):
+	int (A::*fptr)(bool) = nullptr;
+	fptr = &A::function_within_class;
+	A = a;	// Needs to be created so 'this' can be passes to the function pointer
+	(a.*fptr)(false);
+
+C++ style:
+Using a "trampolin" static function within the class as the callback:
+	class CgiveMeAValue {
+	public:
+		int callmeInAClass()
+		{
+			std::cout<<"Trampolim callback just called me!"<<std::endl;
+			return std::rand();
+		}
+		static int trampolim(void* callback) {
+			// Note that the callback of type 'void *' must be casted to the type of the class (CgiveMeAValue)
+			CgiveMeAValue* callback_function = static_cast<CgiveMeAValue*>(callback);
+			return callback_function->callmeInAClass();
+		}
+	};
+	[...]
+	// Call from main
+	CgiveMeAValue aValue;
+	int someRandomValue = CgiveMeAValue::trampolim(&aValue); // 'trampolim()' is called directly with an instance of CgiveMeAValue as parameter
+
+Using a an additional function to register the callback:
+	static void* storeInstance = nullptr;
+	static int(*storefunctionPointer)(void* p) = nullptr;
+	void registerCallback(void *a, int(*funcPtr)(void* p)) {	
+		storeInstance = a;
+		storefunctionPointer = funcPtr;
+	}
+	int DoCalculation() {   
+		//processing takes minutes
+		if ((storefunctionPointer != nullptr) && (storeInstance != nullptr))
+		{
+			return storefunctionPointer(storeInstance);
+		}
+		return 0;
+	}
+	[...]
+	// Call from main
+	registerCallback(&aValue, &CgiveMeAValue::trampolim); // Register the callback in the lib
+	DoCalculation(); // Call the lib function which will use the registered callback
+
+Rule of 3
+-----
+For proper management of memory, the rule says that if any of the following is defined, the other two might also be defined:
+Destructor
+Copy Constructor
+Copy Assignment operator (=)
+
+Casting
+-----
+static_cast: Compile time type covnersion
+	int main() {
+		// static_cast -> Compile time type covnersion
+		float f = 10.10;
+		std::cout<<f<<std::endl; // output: 10.1
+		int i = static_cast<int>(f);
+		std::cout<<i<<std::endl;  // output: 10
+		std::cout<<typeid(static_cast<int>(f)).name()<<std::endl;   // output: i
+		std::cout<<typeid(static_cast<float>(i)).name()<<std::endl;   // output: f
+
+		return 0;
+	}
+dynamic_cast: The dynamic_cast oprator is used to perform downcast and assures safety by returning a nullptr when a bad casting occurs
+	class base {
+	public:
+		virtual void style() {
+			std::cout<<"Do things base style"<<std::endl;
+		}
+	};
+	class derived : public base {
+	public:
+		void style() {
+			std::cout<<"Do things derived style"<<std::endl;
+		}
+	};
+	class another_derived : public base {
+	public:
+		void style() {
+			std::cout<<"Do things in another_derived way"<<std::endl;
+		}
+	};
+	int main() {
+		base* styles = new derived;
+		styles->style();
+		// downscasting
+		derived* derived_style = dynamic_cast<derived*>(styles);
+		if (derived_style!= nullptr) {
+			std::cout<<"Good casting"<<std::endl;
+			derived_style->style();
+		}
+		else {
+			std::cout<<"Bad casting"<<std::endl;
+		}
+		// returns a nullptr since styles object is of type derived
+		another_derived* another_derived_style = dynamic_cast<another_derived*>(styles);
+		if (another_derived_style != nullptr) {
+			another_derived_style->style();
+			std::cout<<"Good casting"<<std::endl;
+		}
+		else {
+			std::cout<<"Bad casting"<<std::endl;
+		}
+		return 0;
+	}
+
+const_cast: Is used to change the qualifier const or volatile of a variable. e.g a const variable can have its constness removed temporally by the programmer for 
+modifications. Cauntio must be exercised when using cons_cast:
+	int main() {
+		const int number = 10;
+		const int* nbPtr = &number;
+		int* aux =const_cast<int*>(nbPtr);
+		*aux += 1;
+		return 0;
+	}
+
+reinterpret_cast: It converts a pointer to any other type of pointers. It does not make any check to verify whether the converted pointer is of the same 
+type or not:
+	int main() {
+		int number = 10;
+		int *nbPtr = &number;
+		char* cPtr = reinterpret_cast<char*>(nbPtr);
+		std::cout<<"Address of nbPtr: "<<nbPtr<<std::endl;
+		// note that reinterpret_cast<void*> is used to bypass the type-checking 
+		// mechanism of C++ and allow the memory address to be printed accordingly
+		std::cout<<"Address of cPtr : "<<reinterpret_cast<void*>(cPtr)<<std::endl; 
+		return 0;
+	}
+
+
+bit_cast (C++20: try reinterpreting the object representation can be used in constexpr, reinterpret_cast not)
+Allow to reinterpret the bit pattern of one object as it was another object pattern. The purpose is to provide safe and efficient way for type punning 
+(act of reinterpret the memory layout of an object as it was of another type)
+	int main() {
+		float rounding_error = 3.14;//0.002/10;
+		std::cout<<rounding_error<<std::endl;
+		int absolut_value = std::bit_cast<int>(rounding_error); 
+		std::cout<<absolut_value<<std::endl;
+		return 0;
+	}
+
+
+Polymorphism
+------------
+Polymorphism can be defined as late binding, meanings that the objects will be created only in run time. The Polymorphic class will 
+override the original implementation of a given function, inherited from base class, using the keyword virtual (both parent and child class must use the keyword virtual).
+A pure virtual class or Interface will have at least one of its methods declared equals 0 ('virtual void foo()=0'). It's important to note that a virtual destructor must
+be also declared in the interface to prevent memory leak, otherwise a base object of type derived wouldn't be able to see the derived class destructor.
+e.g Interface:
+	#include <iostream>
+	class interface{
+	public:
+		interface(){}
+		~interface(){
+			std::cout<<"Bye from interface"<<std::endl;
+		}
+		virtual int do_something(void) const = 0;
+	};
+	class make_use : public interface {
+	public:
+		~make_use(){
+			std::cout<<"Bye from make_use"<<std::endl;
+		}
+		virtual int do_something(void) const {
+			std::cout<<"Doing something else through the interface and from make_use"<<std::endl;
+			return 0;
+		}
+	};
+	class make_ANOTHET_use : public interface {
+	public:
+		~make_ANOTHET_use(){
+			std::cout<<"Bye from make_ANOTHET_use"<<std::endl;
+		}
+		virtual int do_something(void) const {
+			std::cout<<"Doing something else through the interface and from make_ANOTHET_use"<<std::endl;
+			return 0;
+		}
+	};
+	class client {
+	public:
+		client(interface* execute) {
+			exe = execute;
+		}
+		~client() {
+			delete exe;
+		}
+		void caller() {
+			exe->do_something();
+		}
+	private:
+		interface* exe;
+	};
+	int main() {
+		client new_Client(new make_use);
+		client another_client(new make_ANOTHET_use);
+		new_Client.caller();
+		another_client.caller();
+		return 0;
+	}
+
+Virtual Function Table
+======================
+Brief Explanation: [...]	
+	class Base1 { 
+	public: 
+		virtual void f(); 
+		int b1; 
+		char c1;
+	};
+
+	class Base2 { 
+	public: 
+		virtual void g(); 
+		int b2;
+	};
+
+	class Derived : public Base1, public Base2 {
+	public:
+		int d1; 
+	};
+
+	Virtual Function Table - Class Derived
+	|	Base1::f()|
+	|	Base2::g()|
+
+
+	Memory Layout				 ---->	    Virtual Function Table - Class Derived
+	-------------				| 			--------------------------------------
+	Member						|			Base1::f()|
+	vtptr (hidden, inherited) --			Base2::g()|
+	int b1		
+	char c1		
+	int b2		
+	int d1
+	
+Templates
+=========
+	template <typename Tplt>
+	Tplt min(Tplt a, Tplt b){
+		return (a<b) ? a : b;
+	}
+	template <typename T1, typename T2>
+	void print_only(T1 a, T2 b){
+		std::cout<<a<<" and "<<b<<std::endl;
+	}
+
+	// Template classes are typically completely contained in header files
+	// So, we would have the template class in Item.h and no Item.cpp file
+	// would be used
+	template <typename T>
+	class item{
+		public:
+			item(std::string name, T val) : name(name), value(val){
+			}
+		std::string get_name(){
+			return this->name;
+		}
+		T get_value() {
+			return this->value;
+		}
+		private:
+			std::string name;
+			T value;
+	};
+	template <typename T1, typename T2>
+	struct myPair{
+		T1 first;
+		T2 second;
+	};
