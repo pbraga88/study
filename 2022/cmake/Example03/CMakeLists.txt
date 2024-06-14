@@ -30,6 +30,7 @@ include_directories(${INC})
 set(LIB_SRC lib_src/linkedListOperations.cpp
             lib_src/numberOperations.cpp
             lib_src/printAndFree.cpp)
+set(NEW_LIB_SRC lib_src/new_test_lib.cpp)
 
 # show log message during 'cmake CMakeLists.txt' exectution
 message(${CMAKE_BINARY_DIR})
@@ -39,6 +40,10 @@ message(${CMAKE_BINARY_DIR})
 
 # create libraries (shared or static)
 add_library(linkedListLib SHARED ${LIB_SRC})
+
+add_library(newTestLib SHARED ${NEW_LIB_SRC})
+target_link_libraries(linkedListLib PRIVATE newTestLib)
+
 #add_library(math STATIC ${LIB_SRC})
 
 # add the executable
@@ -46,3 +51,4 @@ add_executable(LinkedList src/main.cpp)
 
 # link the binary with the library
 target_link_libraries(LinkedList linkedListLib)
+# target_link_libraries(LinkedList newTestLib)

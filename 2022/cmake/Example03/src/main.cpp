@@ -4,6 +4,7 @@
 #include "linkedListOperations.h"
 #include "numberOperations.h"
 #include "printAndFree.h"
+#include "new_test_lib.h"
 
 int main(void) {
     struct digit *start;
@@ -15,5 +16,6 @@ int main(void) {
 
     freeNumber(start);
 
+    test_lib_function();
     return 0;
 }

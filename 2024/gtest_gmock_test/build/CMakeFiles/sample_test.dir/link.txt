@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/sample_test.dir/sample_test.cpp.o -o sample_test  /usr/local/lib/libgmock.a /usr/local/lib/libgtest.a /usr/local/lib/libgmock_main.a /usr/local/lib/libgtest_main.a -lpthread /usr/local/lib/libgmock.a /usr/local/lib/libgtest.a 

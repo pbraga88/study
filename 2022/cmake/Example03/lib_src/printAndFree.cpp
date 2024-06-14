@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include "printAndFree.h"
+#include "new_test_lib.h"
 
 void printNumber(struct digit *start) {
     struct digit * ptr = start;
@@ -10,6 +11,7 @@ void printNumber(struct digit *start) {
         ptr = ptr->next;
     }
     printf("\n");
+    test_lib_function();
 }
 
 void freeNumber(struct digit *start) {

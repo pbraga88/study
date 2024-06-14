@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC  -Wall -shared -Wl,-soname,libnewTestLib.so -o lib/libnewTestLib.so CMakeFiles/newTestLib.dir/lib_src/new_test_lib.cpp.o 

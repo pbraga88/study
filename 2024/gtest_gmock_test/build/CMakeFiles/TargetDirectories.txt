@@ -1,0 +1,3 @@
+/home/pbraga/Workspace/Repositories/Study/study/2024/gtest_gmock_test/build/CMakeFiles/sample_test.dir
+/home/pbraga/Workspace/Repositories/Study/study/2024/gtest_gmock_test/build/CMakeFiles/edit_cache.dir
+/home/pbraga/Workspace/Repositories/Study/study/2024/gtest_gmock_test/build/CMakeFiles/rebuild_cache.dir
